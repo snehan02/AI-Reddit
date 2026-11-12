@@ -1,0 +1,293 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e6]:
+    - generic:
+      - generic: "Why did I get told to call a number? : r/DMV"
+      - banner [ref=e10]:
+        - navigation [ref=e11]:
+          - generic [ref=e12]:
+            - button "Open menu" [ref=e16] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - link "Home":
+                        - /url: https://www.reddit.com/
+          - search [ref=e31]:
+            - generic [ref=e33]:
+              - generic "Remove r/DMV filter and expand search to all of Reddit" [ref=e39] [cursor=pointer]:
+                - button [pressed] [ref=e40]:
+                  - generic [aria-hidden] [ref=e45]: r/DMV
+              - textbox "Remove r/DMV filter and expand search to all of Reddit" [ref=e51]:
+                - /placeholder: Search in ⁨r/DMV⁩
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - button "Open chat" [ref=e61] [cursor=pointer]
+              - link "Create post" [ref=e71] [cursor=pointer]:
+                - /url: /r/DMV/submit/
+                - generic [ref=e72]: Create
+              - link "Open inbox" [ref=e83] [cursor=pointer]:
+                - /url: /notifications
+            - button "User Avatar Expand user menu" [ref=e93] [cursor=pointer]:
+              - img "User Avatar" [ref=e101]
+              - generic [ref=e103]: Expand user menu
+      - generic [ref=e107]:
+        - main [ref=e108]:
+          - 'generic "Why did I get told to call a number? : r/DMV"'
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - button "Back" [ref=e113] [cursor=pointer]
+                - link "Go to DMV" [ref=e121] [cursor=pointer]:
+                  - /url: https://www.reddit.com/r/DMV/
+                - group [ref=e128]:
+                  - generic [ref=e129]:
+                    - link "r/DMV" [ref=e133] [cursor=pointer]:
+                      - /url: https://www.reddit.com/r/DMV/
+                    - generic [aria-hidden] [ref=e134]: •
+                    - time [ref=e136]: 1mo ago
+                  - 'link "Author: Weird_Plantain_5086" [ref=e142] [cursor=pointer]':
+                    - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                    - generic [ref=e143]: u/Weird_Plantain_5086
+              - button "Open user actions" [ref=e148] [cursor=pointer]
+            - generic [ref=e154]:
+              - 'heading "Post Title: Why did I get told to call a number?" [level=1] [ref=e155]': Why did I get told to call a number?
+              - 'link "Flair: CALIFORNIA" [ref=e158] [cursor=pointer]':
+                - /url: /r/DMV/?f=flair_name%3A%22CALIFORNIA%22
+                - 'generic "Flair: CALIFORNIA" [ref=e160]': CALIFORNIA
+            - generic [ref=e164]:
+              - paragraph [ref=e165]: I came from Alabama to California and decided to go to the dmv and switch my license and was told I have to take the knowledge test which I was fine with. I did it passed went to the lady at the counter and she checked my Alabama license and went to the back came back with my recipe paper and my photo I took at the start attached to it and said to call the number that was written on the top after 5 business days and wasn’t given a temporary license or anything the paper has my DL number on it and says to keep the photo until my application is complete and Is not a ID or DL. Anyone know why it happened like this or if it’s just normal procedure. Just wanna make sure I didn’t miss anything.
+              - paragraph [ref=e166]: Everything got resolved! It was just a misunderstanding and a small mistake. Since I already have my Alabama license, they didn’t give me a temporary California license because my Alabama one is still valid and I’m allowed to use it for the time being. That’s why I only got the photo receipt, and they didn’t void my Alabama license yet.As for the phone number, it looks like she gave me the wrong one, which is why when I tried calling to get some answers, it just made a weird computer/siren type sound and wouldn’t work.So now I’m just waiting for my official California license to arrive!
+            - generic "Actions available for this post" [ref=e168]:
+              - generic [ref=e171]:
+                - button "Upvote" [ref=e172] [cursor=pointer]
+                - generic [ref=e177]: "4"
+                - button "Downvote" [ref=e179] [cursor=pointer]
+              - button "21 Go to comments" [ref=e184] [cursor=pointer]:
+                - generic [ref=e185]: "21"
+                - generic [ref=e191]: Go to comments
+              - button "Repost" [ref=e194] [cursor=pointer]
+              - button "Share" [ref=e203] [cursor=pointer]
+          - generic "You shouldn't need to check 4 tools just to know if a project is on track." [ref=e210]:
+            - generic [ref=e211]:
+              - 'link "Advertisement: You shouldn''t need to check 4 tools just to know if a project is on track." [ref=e212] [cursor=pointer]':
+                - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - link "ClickUp_App" [ref=e217] [cursor=pointer]:
+                    - /url: /user/ClickUp_App/
+                    - img "u/ClickUp_App avatar" [ref=e220]
+                  - generic [ref=e222]: •
+                  - link "Ad" [ref=e224] [cursor=pointer]:
+                    - /url: /user/ClickUp_App/
+                  - link [ref=e226] [cursor=pointer]:
+                    - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                - button "Open user actions" [ref=e232] [cursor=pointer]
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - link "You shouldn't need to check 4 tools just to know if a project is on track." [ref=e241] [cursor=pointer]:
+                    - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                  - generic [ref=e242]:
+                    - link [ref=e243] [cursor=pointer]:
+                      - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                    - generic [ref=e244]:
+                      - link "Sign Up" [ref=e245] [cursor=pointer]:
+                        - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                      - link "clickup.com" [ref=e249] [cursor=pointer]:
+                        - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                - link [ref=e252] [cursor=pointer]:
+                  - /url: https://alb.reddit.com/cr?za=NrlFBIncTkWqgyuAaXGf7-EPUNxICtCqZQqRCEWpKEduKuOdK4AH9t8CsDPzc5eNWvT1SjThE_WQUh6L1fSNLA2cJiT5eWUfICSxO93I42j2krj4QSgu9bsqeWX39RDPddetx_U7SMnVNh38kk1hd5iljpv1lx-5LANQVMzvKMKAV0M5ps9WYZ5asB1T8YJtjBGx-Qq7T-P_1-bL6IwnYAShTrSQlX8iPWBqrbGTA8Uw6RCJ55c-aFi_NA3db6HkFF8Q2LPP1xZ3dUDb6HE9GOJo5Ets8qogwmKgxf_c2DT4Certbrzax0RWxHFbe2s33MOCHqcNKuPRgvzw7vo5qx-AlD6_otLPtJEiASL7g18v_8jR8BGZQN_aEteMKDEOkt-GBEjZtZ2mqwM0d4jPHj9yIFaU3zHAIazLOvK0_d8zVJN8w2RUADjDUigU5AGxhmGYvCKDIws4jYgLmLEIUfT-n9dRL7fUIlh6-_93BKxtRD4mO6IFvTpB_mcwMaCiZNVtrt05nqC1zS8du9g-9h6b8fkFa6YzuyG2aIYC5yO1ZYkh2ZNGDOWkAIweDfnHNdutlJ9ZznLUCEWYbqEHtBWXzBFUJUGmLkvriSa52-1YwO7WiDZ_EpcOPPsoGkOx3ZMZppwuH8NHKFJzoKDbqPEKdkLIswjltmIUDPncc1QkIauHOd4XB9H6wMZS1If6TAsvqIuVjgho6_4suAFiCPJUE-ouOfbv2GlugPd7_MQH3tpWoJAM3BvDW5zW&zp=kWwr_7P-NrQ3BjSXBIF2i8UrCiyHhJX2lp0nTEofsxWQbsKR4LHO4aSqtZlpX9904otqyEHM6C1QUNaMswCh1CKghVjuPNAyt_tBQXf6KyNi_2SNm7kDR1Wdj5O8z943FTylPQFXWuUD-9EkfouWrgTkhodUIcqi3iIIG9fRhML3S8IEopjgUkQKeTc47n7xaJvVHYQLELH_Ts7LafAsMDkjZh_mqvSL7sePji1OrgKM6JDBV7wiEmAghwomPrQKbPpn0uSj9XjDl9sCPEXRjnVhVyKJsMCH0bDzTiFnQFbALaHEpT9NbmyUjZS3Ugd8RUBRlAYZqZlH_saqfI0Qj9rW4QdZnlfbIbk6XuANuVva6zpyaS6qtSgvPnr7wicbpaqFTsMid8heTUCLCgsUhxb16wVQaXZr73BFCc253TmCGpXln_HByk86CcuuHm_55Fq3LDJjo-ilTv23SQMwQgC0h9Q7SUKKkM_urbZxKhMeQCtcbImAMPCZ8X4mLcUJozz566JLGydUJJq006Bx68xK9x2Ft_URnR-GxJsDwMa8DC6QKmbHGLBlTuPEr4IcA8Fs58_Z1pxZn4l9pAB9HezNiFtww6DiLvj1PKBqqbdE7qlcb-GqH65L
+                  - 'img "Thumbnail image: You shouldn''t need to check 4 tools just to know if a project is on track." [ref=e253]'
+          - generic [ref=e255]:
+            - generic:
+              - textbox [ref=e265]:
+                - /placeholder: Join the conversation
+              - generic [ref=e271]:
+                - generic [ref=e273]:
+                  - generic [aria-hidden] [ref=e274]: "Sort by:"
+                  - button "Sort by Best" [ref=e279] [cursor=pointer]:
+                    - generic [ref=e280]: Best
+                - button "Search Comments Expand comment search" [ref=e288] [cursor=pointer]:
+                  - generic [ref=e289]: Search Comments
+                  - generic [ref=e296]: Expand comment search
+          - region "Comments" [ref=e299]:
+            - heading "Comments Section" [level=1] [ref=e300]
+            - article "Comment from Sad_Heart8932 1 month ago" [ref=e302]:
+              - generic "Sad_Heart8932's profile --- avatar Sad_Heart8932's profile 1mo ago" [ref=e303] [cursor=pointer]:
+                - link "Sad_Heart8932's profile --- avatar" [ref=e309]:
+                  - /url: https://www.reddit.com/user/Sad_Heart8932/
+                  - img "u/Sad_Heart8932 avatar" [ref=e312]
+                - generic [ref=e316]:
+                  - link "Sad_Heart8932's profile" [ref=e320]:
+                    - /url: https://www.reddit.com/user/Sad_Heart8932/
+                    - generic [ref=e321]: Sad_Heart8932
+                  - generic [aria-hidden] [ref=e323]: •
+                  - link [ref=e325]:
+                    - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd5cs19/
+                    - time [ref=e327]: 1mo ago
+              - generic [ref=e330]:
+                - paragraph [ref=e334]: I work at DMV in Northern California and all the reason a couple other gave are legit reasons. The exact phone number would give a litle more indication as to why but tge regular 800 number for CA DMV you can look online to see if its this number. Otherwise, you can call after hours just to see what recording is on there. If its another state, then its likely due to a ticket not taken care of or didnr show up to court. If its CA its something about your documents, or i would think if they thought you were chesting on the test, they usually question you and you get referred to Driver Safety Dept. Im sorry they didnt explain why, thats very annoying and just bad customer service.
+                - 'article "Comment thread level 1: Reply from Weird_Plantain_5086 1 month ago" [ref=e339]':
+                  - generic "Weird_Plantain_5086's profile --- avatar Weird_Plantain_5086's profile 1mo ago" [ref=e340] [cursor=pointer]:
+                    - link "Weird_Plantain_5086's profile --- avatar" [ref=e346]:
+                      - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                      - img "u/Weird_Plantain_5086 avatar" [ref=e349]
+                    - generic [ref=e353]:
+                      - link "Weird_Plantain_5086's profile" [ref=e357]:
+                        - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                        - generic [ref=e358]: Weird_Plantain_5086
+                      - generic "Comment distinguished as the original poster" [ref=e362]: OP
+                      - generic [aria-hidden] [ref=e363]: •
+                      - link [ref=e365]:
+                        - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd5d8k3/
+                        - time [ref=e367]: 1mo ago
+                  - generic [ref=e370]:
+                    - paragraph [ref=e374]: Thanks for that information. The number was starting with 916 assuming it’s referring to Sacramento I’ll call tomorrow and ask
+                    - link "More replies" [ref=e379] [cursor=pointer]:
+                      - /url: /r/DMV…8k3/?force-legacy-sct=1
+            - article "Comment from Bennghazi 1 month ago" [ref=e386]:
+              - 'generic "Bennghazi''s profile --- avatar Bennghazi''s profile 1mo ago Flair: California" [ref=e387] [cursor=pointer]':
+                - link "Bennghazi's profile --- avatar" [ref=e393]:
+                  - /url: https://www.reddit.com/user/Bennghazi/
+                - generic [ref=e402]:
+                  - generic [ref=e403]:
+                    - link "Bennghazi's profile" [ref=e407]:
+                      - /url: https://www.reddit.com/user/Bennghazi/
+                      - generic [ref=e408]: Bennghazi
+                    - generic [aria-hidden] [ref=e410]: •
+                    - link [ref=e412]:
+                      - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd4c71k/
+                      - time [ref=e414]: 1mo ago
+                  - 'generic "Flair: California" [ref=e418]': California
+              - generic [ref=e420]:
+                - paragraph [ref=e424]: Did you ask the lady why they were doing that?
+                - 'article "Comment thread level 1: Reply from Weird_Plantain_5086 1 month ago" [ref=e429]':
+                  - generic "Weird_Plantain_5086's profile --- avatar Weird_Plantain_5086's profile 1mo ago" [ref=e430] [cursor=pointer]:
+                    - link "Weird_Plantain_5086's profile --- avatar" [ref=e436]:
+                      - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                      - img "u/Weird_Plantain_5086 avatar" [ref=e439]
+                    - generic [ref=e443]:
+                      - link "Weird_Plantain_5086's profile" [ref=e447]:
+                        - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                        - generic [ref=e448]: Weird_Plantain_5086
+                      - generic "Comment distinguished as the original poster" [ref=e452]: OP
+                      - generic [aria-hidden] [ref=e453]: •
+                      - link [ref=e455]:
+                        - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd4dkec/
+                        - time [ref=e457]: 1mo ago
+                  - generic [ref=e460]:
+                    - paragraph [ref=e464]: I felt pretty rushed due to most people around me were being told testing is over for the day and it was close to closing time. I was thinking of calling the dmv tomorrow and asking some question
+                    - link "More replies" [ref=e469] [cursor=pointer]:
+                      - /url: /r/DMV…kec/?force-legacy-sct=1
+            - article "Comment from MadMike405555 1 month ago" [ref=e476]:
+              - 'generic "MadMike405555''s profile --- avatar MadMike405555''s profile 1mo ago Flair: California" [ref=e477] [cursor=pointer]':
+                - link "MadMike405555's profile --- avatar" [ref=e483]:
+                  - /url: https://www.reddit.com/user/MadMike405555/
+                  - img "u/MadMike405555 avatar" [ref=e486]
+                - generic [ref=e489]:
+                  - generic [ref=e490]:
+                    - link "MadMike405555's profile" [ref=e494]:
+                      - /url: https://www.reddit.com/user/MadMike405555/
+                      - generic [ref=e495]: MadMike405555
+                    - generic [aria-hidden] [ref=e497]: •
+                    - link [ref=e499]:
+                      - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd4cktf/
+                      - time [ref=e501]: 1mo ago
+                  - 'generic "Flair: California" [ref=e505]': California
+              - generic [ref=e507]:
+                - generic [ref=e510]:
+                  - paragraph [ref=e511]: "What # did they give you?"
+                  - paragraph [ref=e512]: There isn't enough details to tell you why from the post.
+                  - paragraph [ref=e513]: It's not "normal" though.
+                  - paragraph [ref=e514]: If I had to "guess" it would be ab60 (you didn't provide acceptable documents).
+                  - paragraph [ref=e515]: Or
+                  - paragraph [ref=e516]: Fraud
+                  - paragraph [ref=e517]: Or
+                  - paragraph [ref=e518]: Pdps (ticket in another state)
+                - 'article "Comment thread level 1: Reply from Weird_Plantain_5086 1 month ago" [ref=e523]':
+                  - generic "Weird_Plantain_5086's profile --- avatar Weird_Plantain_5086's profile 1mo ago" [ref=e524] [cursor=pointer]:
+                    - link "Weird_Plantain_5086's profile --- avatar" [ref=e530]:
+                      - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                      - img "u/Weird_Plantain_5086 avatar" [ref=e533]
+                    - generic [ref=e537]:
+                      - link "Weird_Plantain_5086's profile" [ref=e541]:
+                        - /url: https://www.reddit.com/user/Weird_Plantain_5086/
+                        - generic [ref=e542]: Weird_Plantain_5086
+                      - generic "Comment distinguished as the original poster" [ref=e546]: OP
+                      - generic [aria-hidden] [ref=e547]: •
+                      - link [ref=e549]:
+                        - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd4dewx/
+                        - time [ref=e551]: 1mo ago
+                  - generic [ref=e554]:
+                    - paragraph [ref=e558]: A paper It was marked as “IMPORTANT RETAIN THIS PHOTO RECEIPT UNTIL YOUR DL/ID APLICATION IS COMPLETE” then under it says “ NOT A LICENSE OR PERMIT. NOT A VERIFIED IDENTIFICATION” then a photo of me and the DL/ID number
+                    - link "More replies" [ref=e563] [cursor=pointer]:
+                      - /url: /r/DMV…ewx/?force-legacy-sct=1
+            - generic "AI writes your code, powers your features, and runs your agents. Can you trust it? Get runtime intelligence across every release, model, and agent." [ref=e570]:
+              - generic [ref=e571]:
+                - 'link "Advertisement: AI writes your code, powers your features, and runs your agents. Can you trust it? Get runtime intelligence across every release, model, and agent." [ref=e572] [cursor=pointer]':
+                  - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                - generic [ref=e573]:
+                  - generic [ref=e574]:
+                    - link "u/dynatrace" [ref=e577] [cursor=pointer]:
+                      - /url: /user/dynatrace/
+                      - img "u/dynatrace avatar" [ref=e580]
+                    - generic [ref=e582]: •
+                    - link "Ad" [ref=e584] [cursor=pointer]:
+                      - /url: /user/dynatrace/
+                    - link [ref=e586] [cursor=pointer]:
+                      - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                  - button "Open user actions" [ref=e592] [cursor=pointer]
+                - generic [ref=e598]:
+                  - generic [ref=e599]:
+                    - link "AI writes your code, powers your features, and runs your agents. Can you trust it? Get runtime intelligence across every release, model, and agent." [ref=e601] [cursor=pointer]:
+                      - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                    - generic [ref=e602]:
+                      - link [ref=e603] [cursor=pointer]:
+                        - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                      - generic [ref=e604]:
+                        - link "Learn More" [ref=e605] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                        - link "dynatrace.com" [ref=e609] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                  - link [ref=e612] [cursor=pointer]:
+                    - /url: https://alb.reddit.com/cr?za=gnDYqmuc1bmtfj-dOhCbRAAqjM00gUP5R7PTQJezqrWJJiv3_FHeFIEfgrPiWLRDQiFSywWUHRNbUOeupyR6Y-l1hdJddjqmWYlf0dSh1aVNUM7NU9dxVT9lOPNqhk08W8TNCfPBdXcD_BcIbncOTVIHiGwgvVqqYQcnMCV2wPUUvfOh7QumeG59GVLyraScuYiJO_DqiBylkEDwiXayl0643lsTcSbmYvzyBAjV8n1YPo1CZ-nnLQlM…Ndyo-1tkSN1EqKZptIa8slrOvn9eTOxNrnHL4OuQxjdd1j-_hRhgJzQYxPjer0U3fQpXYtup7WPAUPLxg1q-5ERCSRvoD4FuZHS4GR6jJaPOG2mLC_ErlK7uKw5EUrU69krM7iJ55vyOKHXfciddbS-JZocrZvHHZIGtX17nWI3LE9_cZrgEFYM4MICjCJ78guWi_bvtWK_w5Ppc2GB1KHDIwJBkMsOytK9JFRJ50PRHNWBtq_SyXB5dAaIE8qjmcTbpLo9LSrZQX76z-XeDLzQbbpyeghfiGNzGlvyQbAgfXJ690xr3-Lm9-BnCJjg21gcsGeJ4PXC-Kvbg3JLi9ZwA7pniOy1l_udvq4sFxljAc1e6afr0e1nepWbHNVIW7zn4Sk98hl5yKMVDUNiL4zdacuOgKLSR43RIXgPmM964IG6V23B_O92kL8VX3QWtimnV05JzbHkhOPACYx2puJcNfUpZWYNGbyraEt&zp=y6UMj3mF3pY9su1n1Oz_JqcP5ar87wNqlOy8XP-YHCGEbJxqT7KpHyaUHlLgPRA5Ubg0Fnv679ZIxpbbuk3cnMaAdkTCfeVG41FQKv2vCQyzePHLdSq80TTl4fr037BUfnxvY7zDZsy01QzLvJAiGmqg11WNlVA7DDgbcNy0zlYKOwP31-bfwV7LwQhtfKZyPo5FFBCJDT7XTww4SjFtKjHia03ht6EISjQmW05GG3BOEc05O_RkrfY8aUs4Jfha9RPj4zvHyu2vm-R4ShRyl3qmRshla5x2A_Z77SHItoPZLffiDpMq0RLeDWGJf5Di5PIRMoc3IsGIUP1NdEZDdEAWPfUKwv4MZh9oyrRmIjyA-tBwdS3g-KSu-tGu-XZgVd3HnB5bGhZZxYGSEIboNsuZJyxf39XCiTlHB9qDI_gUd41iiiX5N8ZrW04t0IvrZ9yLPk-5Mz-ft0P6rzqqRQdAao8xTrXa3mXrG4bPLk2MGdqmpR8u
+                    - 'img "Thumbnail image: AI writes your code, powers your features, and runs your agents. Can you trust it? Get runtime intelligence across every release, model, and agent." [ref=e613]'
+            - article "Comment from Fuzzy_Potential_8269 1 month ago" [ref=e615]:
+              - generic "Fuzzy_Potential_8269's profile --- avatar Fuzzy_Potential_8269's profile 1mo ago" [ref=e616] [cursor=pointer]:
+                - link "Fuzzy_Potential_8269's profile --- avatar" [ref=e622]:
+                  - /url: https://www.reddit.com/user/Fuzzy_Potential_8269/
+                - generic [ref=e632]:
+                  - link "Fuzzy_Potential_8269's profile" [ref=e636]:
+                    - /url: https://www.reddit.com/user/Fuzzy_Potential_8269/
+                    - generic [ref=e637]: Fuzzy_Potential_8269
+                  - generic [aria-hidden] [ref=e639]: •
+                  - link [ref=e641]:
+                    - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd4e3ki/
+                    - time [ref=e643]: 1mo ago
+              - paragraph [ref=e650]: You didn’t ask why you needed to call the number? Would need more information. Like about commenter said an issue with your driving record from out of state, but there wouldn’t be a waiting period. Or could be an issue with your birth/legal presence documents.
+            - article "Comment from PANotaryandTag 1 month ago" [ref=e654]:
+              - generic "PANotaryandTag's profile --- avatar PANotaryandTag's profile 1mo ago" [ref=e655] [cursor=pointer]:
+                - link "PANotaryandTag's profile --- avatar" [ref=e661]:
+                  - /url: https://www.reddit.com/user/PANotaryandTag/
+                  - img "u/PANotaryandTag avatar" [ref=e664]
+                - generic [ref=e668]:
+                  - link "PANotaryandTag's profile" [ref=e672]:
+                    - /url: https://www.reddit.com/user/PANotaryandTag/
+                    - generic [ref=e673]: PANotaryandTag
+                  - generic [aria-hidden] [ref=e675]: •
+                  - link [ref=e677]:
+                    - /url: https://www.reddit.com/r/DMV/comments/1wultuq/comment/pd8tb41/
+                    - time [ref=e679]: 1mo ago
+              - paragraph [ref=e686]: I think the easiest way to find out would be to call the number
+            - article "Comment from MikeysmilingK9 1 month ago" [ref=e690]:
+              - generic "MikeysmilingK9's profile --- avatar MikeysmilingK9's profile 1mo ago" [ref=e691] [cursor=pointer]:
+                - link "MikeysmilingK9's profile --- avatar" [ref=e697]:
+                  - /url: https://www.reddit.com/user/MikeysmilingK9/
+                - generic [ref=e707]:
+                  - link "MikeysmilingK9's profile" [ref=e711]:
+                    - /url: https://www.reddit.com/user/MikeysmilingK9/
+                    - generic [ref=e712]: MikeysmilingK9
+
+[...TRUNCATED - page too large]

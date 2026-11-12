@@ -1,0 +1,106 @@
+{
+  "accounts": [
+    {
+      "account_id": "schoolwaale01@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale01",
+      "user_data_directory": "chrome_profiles/schoolwaale01",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale02@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale02",
+      "user_data_directory": "chrome_profiles/schoolwaale02",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale04@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale04",
+      "user_data_directory": "chrome_profiles/schoolwaale04",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale06@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale06",
+      "user_data_directory": "chrome_profiles/schoolwaale06",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale08@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale08",
+      "user_data_directory": "chrome_profiles/schoolwaale08",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale11@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale11",
+      "user_data_directory": "chrome_profiles/schoolwaale11",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale12@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale12",
+      "user_data_directory": "chrome_profiles/schoolwaale12",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale13@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale13",
+      "user_data_directory": "chrome_profiles/schoolwaale13",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale14@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale14",
+      "user_data_directory": "chrome_profiles/schoolwaale14",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale15@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale15",
+      "user_data_directory": "chrome_profiles/schoolwaale15",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale19@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale19",
+      "user_data_directory": "chrome_profiles/schoolwaale19",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale20@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale20",
+      "user_data_directory": "chrome_profiles/schoolwaale20",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale21@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale21",
+      "user_data_directory": "chrome_profiles/schoolwaale21",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale22@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale22",
+      "user_data_directory": "chrome_profiles/schoolwaale22",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaalw22@gmail.com",
+      "chrome_profile_name": "Profile schoolwaalw22",
+      "user_data_directory": "chrome_profiles/schoolwaalw22",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale25@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale25",
+      "user_data_directory": "chrome_profiles/schoolwaale25",
+      "enabled": false
+    },
+    {
+      "account_id": "pankajtulshyan@gmail.com",
+      "chrome_profile_name": "Profile pankajtulshyan",
+      "user_data_directory": "chrome_profiles/pankajtulshyan",
+      "enabled": false
+    }
+  ]
+}

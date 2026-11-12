@@ -1,0 +1,140 @@
+(() => {
+  const expected = "Why did California DMV tell me to call a number during my license transfer?\n\nThat tracks with how California handles out-of-state moves. The knowledge test is a normal part of a transfer, and the phone call is usually the office reviewing your application and documents before they issue the card.\n\nBut a request to call a number is not enough to tell you why your particular application was flagged. Verify the phone number through the official California DMV contact page, and ask what specific review or document is outstanding. Do not assume it was just a routine call without seeing the notice.\n\nYou can only hold one valid license at a time, so expect to surrender the old one when the California license arrives. Keep the application or receipt number until your California licence arrives; if it does not show up in the time they quoted, call back with that number ready.\n\nCalifornia license transfer rules: https://www.shoro.ai/us/learners-permit/california/drivers-handbook";
+
+  // Deep recursive search helper traversing light DOM and all open Shadow DOMs
+  function getAllElementsDeep(root = document.body) {
+    const list = [];
+    const queue = [root];
+    while (queue.length > 0) {
+      const cur = queue.shift();
+      if (!cur) continue;
+      if (cur.nodeType === 1) list.push(cur);
+      if (cur.children) {
+        for (let i = 0; i < cur.children.length; i++) queue.push(cur.children[i]);
+      }
+      if (cur.shadowRoot) {
+        for (let i = 0; i < cur.shadowRoot.children.length; i++) queue.push(cur.shadowRoot.children[i]);
+      }
+    }
+    return list;
+  }
+
+  const all = getAllElementsDeep(document.body);
+
+  // 1. Locate 'Join the conversation' or comment-body-header trigger
+  let trigger = null;
+
+  for (const el of all) {
+    if (!el || typeof el.getAttribute !== 'function') continue;
+    const ph = (el.getAttribute('placeholder') || el.getAttribute('aria-placeholder') || '').toLowerCase();
+    const aria = (el.getAttribute('aria-label') || '').toLowerCase();
+    const tag = (el.tagName || '').toLowerCase();
+    if (ph.includes('join the conversation') || aria.includes('join the conversation') || tag === 'faceplate-textarea-input') {
+      trigger = el;
+      break;
+    }
+  }
+
+  if (!trigger) {
+    for (const el of all) {
+      if (!el) continue;
+      const txt = (el.textContent || '').trim().toLowerCase();
+      if (txt === 'join the conversation' || txt.startsWith('join the conversation')) {
+        if (el.children && el.children.length <= 2) {
+          trigger = el;
+          break;
+        } else if (!trigger) {
+          trigger = el;
+        }
+      }
+    }
+  }
+
+  if (!trigger) {
+    trigger = all.find(el =>
+      el && (
+        el.tagName === 'COMMENT-BODY-HEADER' ||
+        el.tagName === 'SHREDDIT-COMMENT-COMPOSER' ||
+        el.tagName === 'FACEPLATE-TEXTAREA-INPUT' ||
+        (el.className && typeof el.className === 'string' && el.className.includes('comment-body-header'))
+      )
+    );
+  }
+
+  if (!trigger) {
+    return JSON.stringify({ success: false, error: 'Comment editor not found.' });
+  }
+
+  // 2. Click on the trigger to activate the editor
+  try {
+    trigger.scrollIntoView({ behavior: 'instant', block: 'center' });
+    trigger.click();
+    if (typeof trigger.focus === 'function') trigger.focus();
+  } catch (e) {}
+
+  // 3. Find the content box (editable input area, ignoring recaptcha)
+  const currentAll = getAllElementsDeep(document.body);
+  let editor = currentAll.find(el => {
+    if (!el || typeof el.getAttribute !== 'function') return false;
+    const isEdit = el.getAttribute('contenteditable') === 'true' || el.contentEditable === 'true';
+    const isRecaptcha = (el.className || '').toString().includes('g-recaptcha');
+    return isEdit && !isRecaptcha;
+  });
+
+  if (!editor) {
+    editor = currentAll.find(el =>
+      el && !((el.className || '').toString().includes('g-recaptcha')) &&
+      (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && el.type === 'text'))
+    );
+  }
+
+  if (!editor && trigger && (trigger.tagName === 'TEXTAREA' || (trigger.getAttribute && trigger.getAttribute('contenteditable') === 'true'))) {
+    editor = trigger;
+  }
+
+  if (!editor) {
+    return JSON.stringify({ success: false, error: 'Comment editor could not be identified confidently.' });
+  }
+
+  // 4. Focus and copy-paste / insert reply into the content box
+  try {
+    editor.scrollIntoView({ behavior: 'instant', block: 'center' });
+    editor.focus();
+  } catch (e) {}
+
+  let pasted = false;
+  try {
+    const sel = window.getSelection();
+    const rng = document.createRange();
+    rng.selectNodeContents(editor);
+    sel.removeAllRanges();
+    sel.addRange(rng);
+    pasted = document.execCommand('insertText', false, expected);
+  } catch (e) {
+    pasted = false;
+  }
+
+  const currentVal = editor.value || editor.innerText || editor.textContent || '';
+  if (!pasted || !currentVal.includes(expected.substring(0, Math.min(20, expected.length)))) {
+    if (editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT') {
+      editor.value = expected;
+      editor.dispatchEvent(new Event('input', { bubbles: true }));
+      editor.dispatchEvent(new Event('change', { bubbles: true }));
+    } else {
+      editor.innerHTML = '<p class="first:mt-0 last:mb-0"><span data-lexical-text="true">' + expected + '</span></p>';
+      editor.dispatchEvent(new InputEvent('input', { bubbles: true, cancelable: true, data: expected }));
+      editor.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
+  // Read back for verification
+  const readBack = (editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT')
+    ? editor.value
+    : (editor.innerText || editor.textContent || '');
+
+  return JSON.stringify({
+    success: true,
+    verifiedText: readBack,
+    submitted: false,
+  });
+})();

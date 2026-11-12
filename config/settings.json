@@ -1,0 +1,12 @@
+{
+  "workbook_path": "data/Reddit Threads.xlsx",
+  "comment_sheet": "Driving DMV",
+  "post_sheet": "Posts",
+  "test_mode": true,
+  "daily_comment_cap": 5,
+  "review_task_pause_seconds": 30,
+  "display_timezone": "Asia/Kolkata",
+  "require_human_outcome_confirmation": true,
+  "automated_submission_enabled": false
+}
+
