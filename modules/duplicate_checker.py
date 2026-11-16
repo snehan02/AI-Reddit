@@ -2,7 +2,7 @@
 
 from pathlib import Path
 import sqlite3
-from typing import Optional, Tuple
+from typing import Tuple
 import logging
 
 from modules.task_builder import CommentTask, PostTask

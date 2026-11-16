@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Python packaging & builds
+build/
+dist/
+*.egg-info/
+
+# Streamlit local cache
+.streamlit/
+
+# Local Chrome profiles and browser cache (contains private session cookies)
+chrome_profiles/*/
+!chrome_profiles/.gitkeep
+
+# Application logs & temporary files
+logs/*.log
+*.log
+*atomic_tmp*
+data/*atomic_tmp*
+data/backups/
+
+# Backup scratch test directories
+backups/test_scratch/
+backups/live_screens/*.png
+backups/live_screens/*.jpg
+
+# OS generated files
+.DS_Store
+Thumbs.db

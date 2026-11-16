@@ -1,7 +1,6 @@
 """Validation rules for Reddit tasks and workbook fields."""
 
 import ipaddress
-import re
 from typing import Optional, Tuple
 from urllib.parse import urlsplit
 

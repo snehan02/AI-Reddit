@@ -101,6 +101,72 @@
       "chrome_profile_name": "Profile pankajtulshyan",
       "user_data_directory": "chrome_profiles/pankajtulshyan",
       "enabled": false
+    },
+    {
+      "account_id": "schoolwaale03@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale03",
+      "user_data_directory": "chrome_profiles/schoolwaale03",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale05@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale05",
+      "user_data_directory": "chrome_profiles/schoolwaale05",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale07@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale07",
+      "user_data_directory": "chrome_profiles/schoolwaale07",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale09@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale09",
+      "user_data_directory": "chrome_profiles/schoolwaale09",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale10@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale10",
+      "user_data_directory": "chrome_profiles/schoolwaale10",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale16@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale16",
+      "user_data_directory": "chrome_profiles/schoolwaale16",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale17@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale17",
+      "user_data_directory": "chrome_profiles/schoolwaale17",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale18@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale18",
+      "user_data_directory": "chrome_profiles/schoolwaale18",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale23@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale23",
+      "user_data_directory": "chrome_profiles/schoolwaale23",
+      "enabled": false
+    },
+    {
+      "account_id": "schoolwaale24@gmail.com",
+      "chrome_profile_name": "Profile schoolwaale24",
+      "user_data_directory": "chrome_profiles/schoolwaale24",
+      "enabled": false
+    },
+    {
+      "account_id": "shoro_test",
+      "chrome_profile_name": "Profile shoro_test",
+      "user_data_directory": "chrome_profiles/shoro_test",
+      "enabled": false
     }
   ]
 }

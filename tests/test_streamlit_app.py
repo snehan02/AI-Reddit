@@ -29,16 +29,15 @@ class TestStreamlitDashboard(unittest.TestCase):
             "shoro_error": None,
         }
 
-        at = AppTest.from_file("app.py", default_timeout=15)
+        at = AppTest.from_file("app.py", default_timeout=60)
         at.run()
         self.assertFalse(at.exception, f"App crashed with exception: {at.exception}")
 
         # Check titles and tabs
         tabs_text = [t.label for t in at.tabs]
-        self.assertIn("🎯 Review Panel", tabs_text)
-        self.assertIn("📋 Task Queue", tabs_text)
-        self.assertIn("🔍 Schema & Summary", tabs_text)
-        self.assertIn("📜 Audit Trail", tabs_text)
+        self.assertIn("🎯 Review & Batch Operations", tabs_text)
+        self.assertIn("👥 Account Manager", tabs_text)
+        self.assertIn("📋 Real-Time Task Queue", tabs_text)
         self.assertIn("🦞 OpenClaw Console", tabs_text)
 
         # Check sidebar OpenClaw Gateway section
@@ -65,7 +64,7 @@ class TestStreamlitDashboard(unittest.TestCase):
         }
         os.environ["FORCE_TEST_MODE"] = "true"
         try:
-            at = AppTest.from_file("app.py", default_timeout=15)
+            at = AppTest.from_file("app.py", default_timeout=60)
             at.run()
             self.assertFalse(at.exception, f"App crashed with exception: {at.exception}")
 

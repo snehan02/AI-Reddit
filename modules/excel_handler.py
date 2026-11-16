@@ -9,6 +9,7 @@ import shutil
 import uuid
 import zipfile
 from typing import Dict, Optional, Tuple
+from typing import Optional, Tuple
 from zoneinfo import ZoneInfo
 import openpyxl
 
@@ -90,9 +91,15 @@ class ExcelHandler:
     def update_task_status(
         self,
         worksheet_name: str,
-        excel_row: int,
-        new_status: str,
+        excel_row: Optional[int] = None,
+        new_status: Optional[str] = None,
         timestamp_str: Optional[str] = None,
+        account_name: Optional[str] = None,
+        live_url: Optional[str] = None,
+        row_number: Optional[int] = None,
+        status: Optional[str] = None,
+        timestamp: Optional[str] = None,
+        **kwargs,
     ) -> Tuple[bool, str]:
         """Update the existing Status column for a specified row.
         
@@ -108,12 +115,21 @@ class ExcelHandler:
         - Cleans up temporary files safely upon any error.
         - Preserves all existing worksheets, formatting, formulas, and unrelated cells.
         """
+        # Resolve flexible alias arguments
+        actual_row = excel_row if excel_row is not None else (row_number if row_number is not None else kwargs.get("excel_row"))
+        actual_status = new_status if new_status is not None else (status if status is not None else kwargs.get("new_status", "Draft"))
+        actual_timestamp = timestamp_str if timestamp_str is not None else (timestamp if timestamp is not None else kwargs.get("timestamp_str"))
+        actual_account = account_name if account_name is not None else kwargs.get("account_id")
+
         from config import is_force_test_mode_enabled
         if is_force_test_mode_enabled():
             return False, "Excel update aborted: FORCE_TEST_MODE environment safeguard is active."
 
         if not self.workbook_path.exists():
             return False, f"Workbook {self.workbook_path} not found"
+
+        if actual_row is None:
+            return False, "Row number not provided for update."
 
         # 1. Create incremental backup BEFORE every write
         backup_success, backup_info = self.create_timestamped_backup()
@@ -144,9 +160,9 @@ class ExcelHandler:
         max_col = sheet.max_column or 0
         max_row = sheet.max_row or 0
 
-        if excel_row < 2 or excel_row > max_row:
+        if actual_row < 2 or actual_row > max_row:
             wb.close()
-            return False, f"Invalid row number {excel_row} for sheet '{worksheet_name}' (max: {max_row})"
+            return False, f"Invalid row number {actual_row} for sheet '{worksheet_name}' (max: {max_row})"
 
         # Find Status column dynamically
         status_col_idx: Optional[int] = None
@@ -161,19 +177,37 @@ class ExcelHandler:
             return False, f"Could not find 'Status' column in worksheet '{worksheet_name}'. Write aborted."
 
         # Safely update the Status cell
-        sheet.cell(row=excel_row, column=status_col_idx, value=new_status)
+        sheet.cell(row=actual_row, column=status_col_idx, value=actual_status)
         logger.info(
             "Updated row %d in sheet '%s' (col %d 'Status') -> '%s'",
-            excel_row, worksheet_name, status_col_idx, new_status
+            actual_row, worksheet_name, status_col_idx, actual_status
         )
 
+        # Update Account posted column if provided and column exists
+        if actual_account:
+            for c in range(1, max_col + 1):
+                h_val = str(sheet.cell(row=1, column=c).value or "").strip().lower()
+                if "account posted" in h_val or h_val == "account":
+                    sheet.cell(row=actual_row, column=c, value=actual_account)
+                    logger.info("Updated row %d (col %d '%s') -> '%s'", actual_row, c, h_val, actual_account)
+                    break
+
+        # Update Last checked / Date column if timestamp provided
+        if actual_timestamp:
+            for c in range(1, max_col + 1):
+                h_val = str(sheet.cell(row=1, column=c).value or "").strip().lower()
+                if "last checked" in h_val:
+                    sheet.cell(row=actual_row, column=c, value=actual_timestamp)
+                    logger.info("Updated row %d Last checked (col %d) -> '%s'", actual_row, c, actual_timestamp)
+                    break
+
         # Handle Column N timestamp if requested
-        if timestamp_str:
+        if actual_timestamp:
             if max_col >= 14:
                 col_n_header = sheet.cell(row=1, column=14).value
                 if col_n_header and "timestamp" in str(col_n_header).lower():
-                    sheet.cell(row=excel_row, column=14, value=timestamp_str)
-                    logger.info("Updated Column N timestamp on row %d: %s", excel_row, timestamp_str)
+                    sheet.cell(row=actual_row, column=14, value=actual_timestamp)
+                    logger.info("Updated Column N timestamp on row %d: %s", actual_row, actual_timestamp)
                 else:
                     logger.warning(
                         "Column N header is '%s' (not verified timestamp). Skipping Column N write per PRD 6.5.",
@@ -210,6 +244,21 @@ class ExcelHandler:
             # Atomically replace the target workbook with the verified temporary workbook
             os.replace(temp_path, self.workbook_path)
             logger.info("Atomically updated workbook %s via temporary file %s", self.workbook_path, temp_path.name)
+
+            # Trigger Google Sheet update if webhook/syncer is configured
+            try:
+                from modules.google_sheets_syncer import GoogleSheetsSyncer
+                syncer = GoogleSheetsSyncer()
+                syncer.update_status_in_google_sheet(
+                    worksheet_name=worksheet_name,
+                    excel_row=excel_row,
+                    new_status=new_status,
+                    live_url=live_url,
+                    timestamp_str=timestamp_str,
+                )
+            except Exception as g_err:
+                logger.debug("Google Sheet auto-sync notice: %s", g_err)
+
             return True, f"Successfully updated row {excel_row} Status to '{new_status}' in '{worksheet_name}'"
 
         except Exception as exc:

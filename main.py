@@ -3,7 +3,6 @@
 import argparse
 import logging
 import sys
-from pathlib import Path
 
 from config import AppSettings
 from modules.logging_config import setup_application_logging
@@ -121,4 +120,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
 

@@ -2,10 +2,9 @@
 
 from datetime import datetime
 from pathlib import Path
-import json
 import logging
 import sqlite3
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 from modules.openclaw_client import sanitize_text
@@ -114,6 +113,34 @@ class AuditLogger:
                 skipped_tasks INTEGER DEFAULT 0,
                 failed_tasks INTEGER DEFAULT 0
             );
+            """)
+
+            # 5. prepared_items table for persistent batch drafts across restarts
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS prepared_items (
+                item_id TEXT PRIMARY KEY,
+                task_id TEXT,
+                account_id TEXT,
+                profile_name TEXT,
+                task_type TEXT NOT NULL,
+                worksheet TEXT NOT NULL,
+                excel_row INTEGER NOT NULL,
+                title TEXT,
+                content TEXT,
+                destination_url TEXT,
+                subreddit TEXT,
+                flair TEXT,
+                status TEXT NOT NULL DEFAULT 'Ready for Review',
+                prepared_at TEXT NOT NULL,
+                published_at TEXT,
+                error_message TEXT
+            );
+            """)
+            cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_prepared_status ON prepared_items(status);
+            """)
+            cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_prepared_account ON prepared_items(account_id);
             """)
             conn.commit()
 
@@ -229,4 +256,211 @@ class AuditLogger:
             """, (account_id, f"{today_prefix}%"))
             result = cursor.fetchone()
             return result[0] if result else 0
+
+    def save_prepared_item(
+        self,
+        item_id: str,
+        task_id: str,
+        account_id: str,
+        profile_name: str,
+        task_type: str,
+        worksheet: str,
+        excel_row: int,
+        title: Optional[str],
+        content: str,
+        destination_url: Optional[str] = "",
+        subreddit: Optional[str] = None,
+        flair: Optional[str] = None,
+        status: str = "Ready for Review",
+        prepared_at: Optional[str] = None,
+        published_at: Optional[str] = None,
+        error_message: Optional[str] = None,
+    ) -> None:
+        """Persist a prepared post or comment draft for operator review."""
+        now = prepared_at or get_current_timestamp(self.tz_name)
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            INSERT INTO prepared_items (
+                item_id, task_id, account_id, profile_name, task_type,
+                worksheet, excel_row, title, content, destination_url,
+                subreddit, flair, status, prepared_at, published_at, error_message
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(item_id) DO UPDATE SET
+                account_id = excluded.account_id,
+                profile_name = excluded.profile_name,
+                title = excluded.title,
+                content = excluded.content,
+                destination_url = excluded.destination_url,
+                subreddit = excluded.subreddit,
+                flair = excluded.flair,
+                status = excluded.status,
+                prepared_at = excluded.prepared_at,
+                published_at = excluded.published_at,
+                error_message = excluded.error_message;
+            """, (
+                item_id, task_id, account_id, profile_name, task_type,
+                worksheet, excel_row, title, content, destination_url,
+                subreddit, flair, status, now, published_at, error_message
+            ))
+            conn.commit()
+
+    def get_prepared_item(self, item_id: str) -> Optional[Dict[str, Any]]:
+        """Retrieve a single prepared item by item_id."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM prepared_items WHERE item_id = ?;", (item_id,))
+            row = cursor.fetchone()
+            return dict(row) if row else None
+
+    def list_prepared_items(
+        self,
+        status: Optional[str] = None,
+        account_id: Optional[str] = None,
+        task_type: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        """Retrieve prepared items with optional filters, sorted by prepared_at DESC."""
+        query = "SELECT * FROM prepared_items WHERE 1=1"
+        params: List[Any] = []
+        if status and status.lower() != "all":
+            if status.lower() in ("ready", "ready for review"):
+                query += " AND (status = 'Ready' OR status = 'Ready for Review')"
+            else:
+                query += " AND status = ?"
+                params.append(status)
+        if account_id and account_id.lower() != "all":
+            query += " AND account_id = ?"
+            params.append(account_id)
+        if task_type and task_type.lower() != "all":
+            query += " AND task_type = ?"
+            params.append(task_type)
+        query += " ORDER BY prepared_at DESC;"
+
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(query, params)
+            return [dict(row) for row in cursor.fetchall()]
+
+    def update_prepared_item_status(
+        self,
+        item_id: str,
+        status: str,
+        published_at: Optional[str] = None,
+        error_message: Optional[str] = None,
+    ) -> None:
+        """Update status of a prepared item upon review or publishing."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            if published_at:
+                cursor.execute("""
+                UPDATE prepared_items
+                SET status = ?, published_at = ?, error_message = ?
+                WHERE item_id = ?;
+                """, (status, published_at, error_message, item_id))
+            else:
+                cursor.execute("""
+                UPDATE prepared_items
+                SET status = ?, error_message = ?
+                WHERE item_id = ?;
+                """, (status, error_message, item_id))
+            conn.commit()
+
+    def get_last_published_timestamp(self, account_id: str) -> Optional[str]:
+        """Get the latest published_at ISO timestamp for an account."""
+        if not account_id:
+            return None
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            SELECT MAX(published_at)
+            FROM prepared_items
+            WHERE account_id = ? AND status = 'Complete' AND published_at IS NOT NULL;
+            """, (account_id,))
+            row = cursor.fetchone()
+            if row and row[0]:
+                return row[0]
+            # Fallback to tasks table updated_at where task_status is a genuine publication
+            cursor.execute("""
+            SELECT MAX(updated_at)
+            FROM tasks
+            WHERE account_id = ? 
+              AND task_status NOT LIKE 'Skipped%'
+              AND (task_status = 'Complete' OR task_status LIKE 'Complete%' OR task_status LIKE 'Completed%');
+            """, (account_id,))
+            row2 = cursor.fetchone()
+            return row2[0] if row2 and row2[0] else None
+
+    def check_eight_hour_gap(self, account_id: str, min_gap_hours: float = 8.0) -> Tuple[bool, str]:
+        """Check if at least min_gap_hours (default 8) have elapsed since last publication.
+        
+        Drafts and pending preparations do NOT trigger this limit; only completed publications do.
+        """
+        last_pub_str = self.get_last_published_timestamp(account_id)
+        if not last_pub_str:
+            return True, "No prior publications recorded for this account. Eligible to publish."
+
+        try:
+            # Handle ISO formats
+            clean_str = last_pub_str.replace("Z", "+00:00")
+            last_dt = datetime.fromisoformat(clean_str)
+            if last_dt.tzinfo is None:
+                last_dt = last_dt.replace(tzinfo=ZoneInfo(self.tz_name))
+            now_dt = datetime.now(ZoneInfo(self.tz_name))
+            elapsed = (now_dt - last_dt).total_seconds() / 3600.0
+            if elapsed < min_gap_hours:
+                rem_mins = int((min_gap_hours - elapsed) * 60)
+                next_eligible = last_dt.timestamp() + (min_gap_hours * 3600)
+                next_eligible_dt = datetime.fromtimestamp(next_eligible, tz=ZoneInfo(self.tz_name))
+                return False, (
+                    f"8-Hour Minimum Gap Rule: Account '{account_id}' published {elapsed:.1f}h ago. "
+                    f"Must wait {rem_mins} more minutes. Next eligible publication time: "
+                    f"{next_eligible_dt.strftime('%Y-%m-%d %H:%M:%S')}."
+                )
+            return True, f"Eligible: {elapsed:.1f} hours elapsed since last publication."
+        except Exception as e:
+            logger.warning("Could not parse last published timestamp '%s': %s", last_pub_str, e)
+            return True, "Timestamp parse fallback: eligible to publish."
+
+    def count_account_published_total(self, account_id: str) -> int:
+        """Count total published posts/comments for an account."""
+        if not account_id:
+            return 0
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            SELECT COUNT(item_id)
+            FROM prepared_items
+            WHERE account_id = ? AND status = 'Complete';
+            """, (account_id,))
+            res = cursor.fetchone()
+            return res[0] if res else 0
+
+    def count_account_published_today(self, account_id: str) -> int:
+        """Count published posts/comments for an account today in local timezone."""
+        if not account_id:
+            return 0
+        now_dt = datetime.now(ZoneInfo(self.tz_name))
+        today_prefix = now_dt.strftime("%Y-%m-%d")
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            SELECT COUNT(item_id)
+            FROM prepared_items
+            WHERE account_id = ? AND status = 'Complete' AND (published_at LIKE ? OR prepared_at LIKE ?);
+            """, (account_id, f"{today_prefix}%", f"{today_prefix}%"))
+            res = cursor.fetchone()
+            count = res[0] if res else 0
+
+            cursor.execute("""
+            SELECT COUNT(task_id)
+            FROM tasks
+            WHERE account_id = ? 
+              AND (task_status = 'Complete' OR task_status LIKE 'Complete%' OR task_status LIKE 'Completed%')
+              AND updated_at LIKE ?;
+            """, (account_id, f"{today_prefix}%"))
+            res2 = cursor.fetchone()
+            tasks_count = res2[0] if res2 else 0
+            return max(count, tasks_count)
+
+
 

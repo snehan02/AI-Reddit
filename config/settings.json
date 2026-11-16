@@ -3,10 +3,18 @@
   "comment_sheet": "Driving DMV",
   "post_sheet": "Posts",
   "test_mode": true,
-  "daily_comment_cap": 5,
+  "daily_comment_cap": 2,
+  "posts_per_account": 2,
+  "min_post_interval_hours": 8.0,
   "review_task_pause_seconds": 30,
   "display_timezone": "Asia/Kolkata",
   "require_human_outcome_confirmation": true,
-  "automated_submission_enabled": false
+  "automated_submission_enabled": false,
+  "google_spreadsheet_id": "1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4",
+  "google_sheets_webhook_url": "",
+  "database_path": "database/execution_state.db",
+  "backup_directory": "backups",
+  "log_file": "logs/application.log",
+  "log_max_bytes": 5242880,
+  "log_backup_count": 5
 }
-

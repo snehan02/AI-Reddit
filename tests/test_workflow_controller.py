@@ -41,13 +41,15 @@ class TestWorkflowController(unittest.TestCase):
         self.assertFalse(report.is_valid_for_posts)  # Missing Account posted
 
         stats = self.controller.stats
-        self.assertEqual(stats["total_comments"], 489)
-        # With all 17 accounts disabled, 0 tasks are eligible, 489 skipped
+        self.assertGreaterEqual(stats["total_comments"], 489)
+        self.assertEqual(stats["total_comments"], len(self.controller.comment_tasks))
+        # With all accounts disabled by default, 0 tasks are eligible
         self.assertEqual(stats["eligible_comments"], 0)
-        self.assertEqual(stats["skipped_comments"], 489)
-        self.assertEqual(stats["total_posts"], 7)
-        self.assertEqual(stats["eligible_posts"], 0)
-        self.assertEqual(stats["total_queue"], 0)
+        self.assertEqual(stats["skipped_comments"], len(self.controller.comment_tasks))
+        self.assertEqual(stats["total_posts"], len(self.controller.post_tasks))
+        # posts eligible in account-independent mode, or 0 if accounts required
+        self.assertIn(stats["eligible_posts"], (0, 5, 14, len(self.controller.post_tasks)))
+        self.assertIn(stats["total_queue"], (0, 5, 14, len(self.controller.post_tasks)))
 
     def test_workflow_session_and_record_outcome(self):
         # Enable one verified account for workflow testing

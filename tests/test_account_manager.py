@@ -21,8 +21,8 @@ class TestAccountManager(unittest.TestCase):
 
     def test_load_default_accounts(self):
         manager = AccountManager("config/accounts.json")
-        self.assertEqual(len(manager.accounts), 17)
-        # All 17 accounts must remain disabled until explicit approval is confirmed
+        self.assertGreaterEqual(len(manager.accounts), 20)
+        # All accounts must remain disabled until explicit approval is confirmed
         enabled_accs = [a for a in manager.accounts.values() if a.enabled]
         self.assertEqual(len(enabled_accs), 0)
 
@@ -33,9 +33,9 @@ class TestAccountManager(unittest.TestCase):
         self.assertIsNone(profile)
         self.assertIn("disabled", err)
 
-        # All 17 accounts disabled
+        # All accounts disabled by default
         disabled_accs = [a for a in manager.accounts.values() if not a.enabled]
-        self.assertEqual(len(disabled_accs), 17)
+        self.assertEqual(len(disabled_accs), len(manager.accounts))
         self.assertIn("schoolwaale02@gmail.com", manager.accounts)
         self.assertFalse(manager.accounts["schoolwaale02@gmail.com"].enabled)
         prof_dis, err_dis = manager.resolve_account("schoolwaale02@gmail.com")

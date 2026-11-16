@@ -17,8 +17,8 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import time
 from typing import Any, Dict, List, Optional, Tuple
-from urllib.parse import urlparse
 
 logger = logging.getLogger(__name__)
 
@@ -143,6 +143,52 @@ class OpenClawClient:
             return f"Invalid destination URL: {reason}"
         return None
 
+    def is_gateway_healthy(self, port: int = 18789) -> bool:
+        """Check if OpenClaw Gateway HTTP endpoint is responding on loopback."""
+        import urllib.request
+        try:
+            req = urllib.request.Request(f"http://127.0.0.1:{port}/health")
+            with urllib.request.urlopen(req, timeout=1.5) as resp:
+                return resp.status == 200
+        except Exception:
+            return False
+
+    def ensure_gateway_running(self, port: int = 18789, force_restart: bool = False) -> bool:
+        """Ensure OpenClaw Gateway daemon is actively running on port 18789."""
+        if not force_restart and self.is_gateway_healthy(port):
+            return True
+
+        if not self.cli_path:
+            return False
+
+        logger.info("OpenClaw gateway on port %d is unreachable. Auto-spawning gateway daemon...", port)
+        node_exe = shutil.which("node") or "node"
+        if self.cli_path.endswith(".mjs"):
+            cmd = [node_exe, self.cli_path, "gateway", "run", "--port", str(port), "--bind", "loopback"]
+        else:
+            cmd = [self.cli_path, "gateway", "run", "--port", str(port), "--bind", "loopback"]
+
+        creationflags = 0
+        if os.name == "nt":
+            creationflags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS
+
+        try:
+            subprocess.Popen(
+                cmd,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=creationflags,
+            )
+            for _ in range(16):
+                time.sleep(0.5)
+                if self.is_gateway_healthy(port):
+                    logger.info("OpenClaw gateway auto-spawned and verified online on port %d.", port)
+                    return True
+        except Exception as e:
+            logger.warning("Failed to auto-spawn OpenClaw gateway daemon: %s", e)
+
+        return self.is_gateway_healthy(port)
+
     def _execute(self, args: List[str], timeout: Optional[int] = None) -> OpenClawResponse:
         """Execute OpenClaw CLI command using subprocess with shell=False.
         
@@ -159,6 +205,9 @@ class OpenClawClient:
                 error="OpenClaw CLI executable not found on system PATH.",
                 exit_code=-1,
             )
+
+        if args and args[0] in ["browser", "health", "tabs"]:
+            self.ensure_gateway_running()
 
         if self.cli_path and self.cli_path.endswith(".mjs"):
             node_exe = shutil.which("node") or "node"
@@ -195,7 +244,16 @@ class OpenClawClient:
             else:
                 err_msg = stderr if stderr else stdout
                 lower_err = err_msg.lower()
-                if "browser request timed out" in lower_err:
+                if "couldn't connect to openclaw" in lower_err and not getattr(self, "_is_retrying_gateway", False):
+                    logger.warning("Gateway connection refused. Auto-spawning gateway daemon and retrying command...")
+                    self._is_retrying_gateway = True
+                    try:
+                        if self.ensure_gateway_running(force_restart=True):
+                            time.sleep(1.0)
+                            return self._execute(args, timeout=timeout)
+                    finally:
+                        self._is_retrying_gateway = False
+                elif "browser request timed out" in lower_err:
                     err_msg = (
                         "Browser request timed out. The browser session may be unresponsive "
                         "(e.g., after system sleep or a crashed tab). Please click 'Stop Browser' "
@@ -447,6 +505,17 @@ class OpenClawClient:
             resp.data = tabs
         return resp
 
+    def close_tab(self, profile_name: str, target_id: Optional[str] = None) -> OpenClawResponse:
+        """Close a specific browser tab in the profile session."""
+        prof_err = self._validate_profile(profile_name)
+        if prof_err:
+            return OpenClawResponse(success=False, error=prof_err, exit_code=-1)
+
+        args = ["browser", "close", "--browser-profile", profile_name.strip()]
+        if target_id and str(target_id).strip():
+            args.extend([str(target_id).strip()])
+        return self._execute(args, timeout=30)
+
     def get_page_snapshot(
         self,
         profile_name: str,
@@ -464,7 +533,7 @@ class OpenClawClient:
             "--format", format_type,
             "--limit", "500",
         ]
-        if target_id and str(target_id).strip() and not re.match(r"^t\d+$", str(target_id).strip()):
+        if target_id and str(target_id).strip():
             args.extend(["--target-id", str(target_id).strip()])
 
         resp = self._execute(args, timeout=120)
@@ -711,7 +780,7 @@ class OpenClawClient:
         args = ["browser", "evaluate", "--fn", str(script), "--browser-profile", profile_name.strip()]
         if ref and str(ref).strip():
             args.extend(["--ref", str(ref).strip()])
-        if target_id and str(target_id).strip() and not re.match(r"^t\d+$", str(target_id).strip()):
+        if target_id and str(target_id).strip():
             args.extend(["--target-id", str(target_id).strip()])
         return self._execute(args, timeout=timeout or 120)
 
@@ -760,6 +829,24 @@ class OpenClawClient:
         args = ["browser", "click", str(ref).strip(), "--browser-profile", profile_name.strip()]
         if target_id and str(target_id).strip():
             args.extend(["--target-id", str(target_id).strip()])
+        return self._execute(args, timeout=30)
+
+    def _click_coords(
+        self,
+        profile_name: str,
+        x: int,
+        y: int,
+    ) -> OpenClawResponse:
+        """Click native viewport coordinates with real CDP pointer events."""
+        prof_err = self._validate_profile(profile_name)
+        if prof_err:
+            return OpenClawResponse(success=False, error=prof_err, exit_code=-1)
+
+        args = [
+            "browser", "click-coords",
+            str(int(x)), str(int(y)),
+            "--browser-profile", profile_name.strip(),
+        ]
         return self._execute(args, timeout=30)
 
     def _type_ref(

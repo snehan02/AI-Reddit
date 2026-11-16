@@ -1,9 +1,10 @@
 """Task data models and builders for comments and posts."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import hashlib
-from typing import Optional, Dict, Any
 import logging
+import re
+from typing import Optional, Dict, Any
 
 logger = logging.getLogger(__name__)
 
@@ -112,9 +113,12 @@ class PostTask:
             return "https://www.reddit.com/submit"
         if sub.startswith("http://") or sub.startswith("https://"):
             return sub
-        if sub.startswith("r/"):
-            return f"https://www.reddit.com/{sub}/submit"
-        return f"https://www.reddit.com/r/{sub}/submit"
+        clean_sub = re.sub(r"^/?(r/)+", "", sub, flags=re.IGNORECASE).strip("/")
+        return f"https://www.reddit.com/r/{clean_sub}/submit"
+
+    @property
+    def assigned_account(self) -> Optional[str]:
+        return self.account_id
 
     def __post_init__(self):
         if not self.task_id and self.worksheet and self.excel_row:

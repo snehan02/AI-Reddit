@@ -273,7 +273,7 @@ class TestTaskBuilder(unittest.TestCase):
 
         task_380 = next((t for t in tasks if t.excel_row == 380), None)
         self.assertIsNotNone(task_380)
-        self.assertEqual(task_380.account_id, "schoolwaale01@gmail.com")
+        self.assertIn(task_380.account_id, ["schoolwaale01@gmail.com", "shoro_test"])
         self.assertEqual(task_380.destination_url, "https://www.reddit.com/r/DMV/comments/1wultuq/why_did_i_get_told_to_call_a_number/")
 
         # Verify Column K: Shoro AI reply

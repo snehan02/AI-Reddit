@@ -5,7 +5,8 @@ from pathlib import Path
 import json
 import logging
 import os
-from typing import Dict, List, Optional, Tuple
+import re
+from typing import Any, Dict, List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -308,9 +309,95 @@ class AccountManager:
         if existing_key and existing_key != clean_acc_id:
             del self.accounts[existing_key]
 
+        # Ensure the physical profile directory exists on disk so Chrome sessions are permanently saved
+        target_path = Path(clean_data_dir)
+        if not target_path.is_absolute():
+            target_path = Path(os.getcwd()) / target_path
+        try:
+            target_path.mkdir(parents=True, exist_ok=True)
+        except Exception as dir_exc:
+            logger.warning("Could not pre-create directory %s: %s", target_path, dir_exc)
+
         self.accounts[profile.account_id] = profile
         self.save()
 
     def list_accounts(self) -> List[AccountProfile]:
         """Return all mapped account profiles."""
         return list(self.accounts.values())
+
+    def remove_account(self, account_id: str) -> bool:
+        """Remove an account by ID and persist changes."""
+        if not account_id:
+            return False
+        clean_id = str(account_id).strip()
+        found_key = None
+        for k in self.accounts.keys():
+            if k.lower() == clean_id.lower():
+                found_key = k
+                break
+        if found_key:
+            del self.accounts[found_key]
+            self.save()
+            logger.info("Removed account profile: %s", found_key)
+            return True
+        return False
+
+    def get_profile_dir(self, account_id: str) -> Path:
+        """Return the resolved Path for an account's user data directory."""
+        clean_id = str(account_id or "").strip()
+        profile = self.accounts.get(clean_id) or next(
+            (p for k, p in self.accounts.items() if k.lower() == clean_id.lower() or p.chrome_profile_name.lower() == clean_id.lower()),
+            None
+        )
+        if profile and profile.user_data_directory:
+            p = Path(profile.user_data_directory)
+            if not p.is_absolute():
+                p = Path(os.getcwd()) / p
+            return p
+        clean = re.sub(r'[^a-zA-Z0-9_-]', '_', clean_id)
+        return Path(os.getcwd()) / "chrome_profiles" / clean
+
+    def check_session_status(self, account_id: str) -> Dict[str, Any]:
+        """Check persistent session status for an account."""
+        profile = self.accounts.get(account_id) or next(
+            (p for k, p in self.accounts.items() if k.lower() == str(account_id).strip().lower()), None
+        )
+        if not profile:
+            return {
+                "account_id": account_id,
+                "configured": False,
+                "enabled": False,
+                "profile_dir": None,
+                "session_status": "Not Configured",
+                "has_cookies": False,
+            }
+        p_dir = Path(profile.user_data_directory)
+        if not p_dir.is_absolute():
+            p_dir = Path(os.getcwd()) / p_dir
+
+        dir_exists = p_dir.exists() and p_dir.is_dir()
+        has_cookies = False
+        if dir_exists:
+            # Check common Chrome cookie locations (Network/Cookies or Default/Network/Cookies)
+            cookie_candidates = [
+                p_dir / "Default" / "Network" / "Cookies",
+                p_dir / "Default" / "Network" / "Cookies-journal",
+                p_dir / "Default" / "Cookies",
+                p_dir / "Default" / "Cookies-journal",
+                p_dir / "Network" / "Cookies",
+                p_dir / "Cookies",
+            ]
+            has_cookies = any(c.exists() and c.stat().st_size > 0 for c in cookie_candidates)
+
+        status_label = "Logged In / Active" if (dir_exists and has_cookies) else ("Profile Created" if dir_exists else "No Session")
+        return {
+            "account_id": profile.account_id,
+            "configured": True,
+            "enabled": profile.enabled,
+            "profile_name": profile.chrome_profile_name,
+            "profile_dir": str(p_dir),
+            "session_status": status_label,
+            "has_cookies": has_cookies,
+            "dir_exists": dir_exists,
+        }
+

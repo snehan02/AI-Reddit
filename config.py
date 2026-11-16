@@ -1,6 +1,6 @@
 """Configuration module for Shoro AI Reddit Operations."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 import json
 import logging
@@ -26,10 +26,14 @@ class AppSettings:
     post_sheet: str = "Posts"
     test_mode: bool = True
     daily_comment_cap: int = 5
+    posts_per_account: int = 5
+    min_post_interval_hours: float = 8.0
     review_task_pause_seconds: int = 30
     display_timezone: str = "Asia/Kolkata"
     require_human_outcome_confirmation: bool = True
     automated_submission_enabled: bool = False  # Strictly False in release 1
+    google_spreadsheet_id: str = "1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4"
+    google_sheets_webhook_url: str = ""
     database_path: str = "database/execution_state.db"
     backup_directory: str = "backups"
     log_file: str = "logs/application.log"

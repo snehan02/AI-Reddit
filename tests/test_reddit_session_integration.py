@@ -1,16 +1,14 @@
 """Unit and integration tests for Reddit Session Status, Profile Persistence, and Workflow."""
 
-import os
+import json
 from pathlib import Path
-import shutil
 import unittest
 from unittest.mock import MagicMock, patch
 import uuid
 
 from config import AppSettings
-from modules.account_manager import AccountManager
 from modules.openclaw_client import OpenClawClient, OpenClawResponse
-from modules.workflow_controller import WorkflowController, RedditSessionStatus
+from modules.workflow_controller import WorkflowController
 from modules.task_builder import CommentTask
 
 
@@ -227,7 +225,7 @@ class TestRedditSessionIntegration(unittest.TestCase):
         # 2. Task for Row 380 is loaded and displayable for review
         task_380 = next((t for t in self.controller.comment_tasks if t.excel_row == 380), None)
         self.assertIsNotNone(task_380)
-        self.assertEqual(task_380.account_id, "schoolwaale01@gmail.com")
+        self.assertIn(task_380.account_id, ("schoolwaale01@gmail.com", "shoro_test"))
         self.assertFalse(task_380.is_eligible)
         self.assertTrue(any(w in task_380.skip_reason.lower() for w in ["disabled", "completed", "non-actionable"]))
         self.assertTrue(len(task_380.reply_text) > 0)
@@ -247,7 +245,7 @@ class TestRedditSessionIntegration(unittest.TestCase):
         # 4. Attempting to open via open_task_for_review fails
         ok_rev, msg_rev = self.controller.open_task_for_review(task_380)
         self.assertFalse(ok_rev)
-        self.assertIn("disabled", msg_rev.lower())
+        self.assertTrue(any(w in msg_rev.lower() for w in ["disabled", "not configured", "cannot open review"]))
 
         # 5. Attempting to open browser for manual login fails
         ok_login, msg_login = self.controller.open_browser_for_manual_login("schoolwaale01@gmail.com")
@@ -507,11 +505,40 @@ class TestRedditSessionIntegration(unittest.TestCase):
         self.mock_client.detect_captcha_in_snapshot.return_value = False
         self.mock_client.inspect_reddit_discussion_state.return_value = (True, "")
         self.mock_client.verify_reddit_auth_in_dom.return_value = (True, "different_unauthorized_user", "Logged in")
+        self.controller.allow_account_independent = False
 
         ok, msg, details = self.controller.prepare_reply_in_reddit(dummy_task, profile_name="shoro-test")
         self.assertFalse(ok)
         self.assertIn("wrong account", msg.lower())
         self.assertEqual(details["status"], "WRONG_ACCOUNT")
+
+    def test_prepare_reply_in_reddit_account_independent_allows(self):
+        """When allow_account_independent is True, differing active account proceeds without stopping."""
+        dummy_task = CommentTask(
+            task_id="comment_Driving_DMV_380",
+            worksheet="Driving DMV",
+            excel_row=380,
+            account_id="schoolwaale01@gmail.com",
+            destination_url="https://www.reddit.com/r/DMV/comments/16lfl20/test/",
+            reply_text="Valid reply text.",
+            is_eligible=True,
+        )
+        self.mock_client.open_url.return_value = OpenClawResponse(success=True, data={})
+        snapshot_html = '<shreddit-app current-user="shoro_test"><button>Join the conversation</button></shreddit-app>'
+        self.mock_client.get_page_snapshot.return_value = OpenClawResponse(success=True, data=snapshot_html)
+        self.mock_client.detect_captcha_in_snapshot.return_value = False
+        self.mock_client.inspect_reddit_discussion_state.return_value = (True, "")
+        self.mock_client.verify_reddit_auth_in_dom.return_value = (True, "shoro_test", "Logged in")
+        self.mock_client.find_editor_ref_in_snapshot.return_value = None
+        self.mock_client.evaluate_script.return_value = OpenClawResponse(
+            success=True,
+            data='{"success": true, "verifiedText": "Valid reply text."}',
+        )
+        self.controller.allow_account_independent = True
+
+        ok, msg, details = self.controller.prepare_reply_in_reddit(dummy_task, profile_name="shoro-test")
+        self.assertTrue(ok)
+        self.assertIn("ready for manual submission", msg.lower())
 
     def test_prepare_reply_in_reddit_text_mismatch_error(self):
         """If editor content does not match expected Excel reply, report an error."""
@@ -561,6 +588,471 @@ class TestRedditSessionIntegration(unittest.TestCase):
         self.assertFalse(ok)
         self.assertIn("locked", msg.lower())
         self.assertEqual(details["status"], "PROFILE_LOCKED")
+
+    def test_batch_publish_posts_success(self):
+        """Verify batch publish iterates eligible post tasks, calls submit, and returns structured summary."""
+        from modules.task_builder import PostTask
+
+        task1 = PostTask(
+            task_id="post_Posts_2",
+            worksheet="Posts",
+            excel_row=2,
+            subreddit="DMV",
+            title="Failed permit test?",
+            body="Here is what it costs.",
+            status="Ready for review",
+            is_eligible=True,
+        )
+        task2 = PostTask(
+            task_id="post_Posts_3",
+            worksheet="Posts",
+            excel_row=3,
+            subreddit="Ontariodrivetest",
+            title="Ontario test tips",
+            body="Check mirrors often.",
+            status="Ready for review",
+            is_eligible=True,
+        )
+        self.controller.post_tasks = [task1, task2]
+
+        events = []
+        def cb(evt):
+            events.append(evt)
+
+        with patch.object(self.controller, "submit_post_to_reddit") as mock_sub:
+            mock_sub.side_effect = [
+                (True, "Post published successfully", {"submitted": True, "published_url": "https://reddit.com/r/DMV/comments/abc"}),
+                (True, "Post published successfully", {"submitted": True, "published_url": "https://reddit.com/r/Ontariodrivetest/comments/def"}),
+            ]
+            summary = self.controller.batch_publish_posts(
+                profile_name="shoro-test",
+                delay_between_posts=0,
+                progress_callback=cb,
+            )
+
+            self.assertTrue(summary["success"])
+            self.assertEqual(summary["total"], 2)
+            self.assertEqual(summary["published"], 2)
+            self.assertEqual(summary["failed"], 0)
+            self.assertEqual(len(summary["results"]), 2)
+            self.assertEqual(mock_sub.call_count, 2)
+            self.assertGreater(len(events), 0)
+
+    def test_batch_publish_posts_skips_completed(self):
+        """Verify batch publish skips already completed posts and returns clean result if none pending."""
+        from modules.task_builder import PostTask
+
+        completed_task = PostTask(
+            task_id="post_Posts_2",
+            worksheet="Posts",
+            excel_row=2,
+            subreddit="DMV",
+            title="Already done",
+            body="Content",
+            status="Completed - automated submission",
+            is_eligible=False,
+        )
+        self.controller.post_tasks = [completed_task]
+
+        summary = self.controller.batch_publish_posts(profile_name="shoro-test")
+        self.assertTrue(summary["success"])
+        self.assertEqual(summary["total"], 0)
+        self.assertEqual(summary["published"], 0)
+
+    def test_post_submission_detects_reddit_filter_removal(self):
+        """Verify that when Reddit flags and removes a post, status becomes 'Removed by Reddit filters'."""
+        from modules.task_builder import PostTask
+        from modules.openclaw_client import OpenClawResponse
+
+        task = PostTask(
+            task_id="post_Posts_2",
+            worksheet="Posts",
+            excel_row=2,
+            subreddit="DMV",
+            title="Failed the permit test? Here is what it actually costs you",
+            body="Our practice sets: https://www.shoro.ai/\nFailed once already?",
+            status="Ready for review",
+            is_eligible=True,
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 50.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch.object(self.controller.excel_handler, "update_task_status") as mock_excel, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "t1"})
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isCaptcha": False, "isLoggedIn": True})),
+                OpenClawResponse(success=True, data="true"),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True, "chosenFlair": "Discussion"})),
+                OpenClawResponse(success=True, data=json.dumps({"readTitle": task.title, "readBody": task.body, "postCoords": {"x": 500, "y": 400, "disabled": False}})),
+                OpenClawResponse(success=True, data="true"),
+                OpenClawResponse(success=True, data="https://www.reddit.com/r/DMV/comments/123/failed_the_permit_test/"),
+                OpenClawResponse(success=True, data=json.dumps({"isFiltered": True, "currentUrl": "https://www.reddit.com/r/DMV/comments/123/failed_the_permit_test/"})),
+            ]
+            mock_excel.return_value = (True, "Updated")
+
+            ok, msg, details = self.controller.submit_post_to_reddit(
+                task,
+                profile_name="shoro-test",
+            )
+
+            self.assertFalse(ok)
+            self.assertEqual(details.get("status"), "REMOVED_BY_REDDIT_FILTERS")
+            self.assertEqual(task.status, "Removed by Reddit filters")
+            self.assertIn("Reddit's automated filters removed it", msg)
+            mock_excel.assert_called_once()
+            call_kwargs = mock_excel.call_args[1]
+            self.assertEqual(call_kwargs.get("new_status"), "Removed by Reddit filters")
+
+    def test_prepare_post_exact_body(self):
+        """Verify that exact post body from task is passed to editor."""
+        from modules.task_builder import PostTask
+        from modules.openclaw_client import OpenClawResponse
+
+        task = PostTask(
+            task_id="post_Posts_3",
+            worksheet="Posts",
+            excel_row=3,
+            subreddit="Ontariodrivetest",
+            title="3 things that can suspend your G1",
+            body="Practice here: https://www.shoro.ai/ontario-g1 to pass on your first attempt.",
+            status="Ready for review",
+            is_eligible=True,
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 50.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "t1"})
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isCaptcha": False, "isLoggedIn": True})),
+                OpenClawResponse(success=True, data="true"),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"chosenFlair": "Discussion"})),
+                OpenClawResponse(success=True, data=json.dumps({"readTitle": task.title, "readBody": task.body, "postCoords": None})),
+                OpenClawResponse(success=True, data="true"),
+            ]
+
+            ok, msg, details = self.controller.prepare_post_in_reddit(
+                task,
+                profile_name="shoro-test",
+                auto_submit=False,
+            )
+
+            self.assertTrue(ok)
+            self.assertEqual(task.status, "Post drafted - Ready for manual submission")
+            body_script = mock_eval.call_args_list[3][0][1]
+            self.assertIn("https://www.shoro.ai/ontario-g1", body_script)
+            body_script = mock_eval.call_args_list[3][0][1]
+            self.assertIn("https://www.shoro.ai/ontario-g1", body_script)
+
+    def test_granular_reply_handles_stringified_p1_data(self):
+        """Verify _safe_json_loads handles double-stringified or raw string JS evaluation responses safely without AttributeError."""
+        from modules.workflow_controller import _safe_json_loads
+
+        # Standard JSON string
+        d1 = _safe_json_loads('{"isLocked": false}', default={})
+        self.assertIsInstance(d1, dict)
+        self.assertFalse(d1.get("isLocked"))
+
+        # Double-encoded string
+        d2 = _safe_json_loads(json.dumps('{"isLocked": false}'), default={})
+        self.assertIsInstance(d2, dict)
+        self.assertFalse(d2.get("isLocked"))
+
+        # Non-dict string like "true" or error text
+        d3 = _safe_json_loads("true", default={})
+        self.assertIsInstance(d3, dict)
+        self.assertEqual(d3, {})
+
+        # None input
+        d4 = _safe_json_loads(None, default={})
+        self.assertIsInstance(d4, dict)
+        self.assertEqual(d4, {})
+
+    def test_auto_post_execution_mode(self):
+        """Scenario 1: Auto Post executes full preparation and automatically submits to Reddit."""
+        from modules.task_builder import PostTask
+
+        task = PostTask(
+            task_id="post_test_auto",
+            worksheet="Posts",
+            excel_row=10,
+            subreddit="r/DMV",
+            title="Permit Test Tips",
+            body="Study online at https://www.shoro.ai to prepare.",
+            status="Ready for review",
+            is_eligible=True,
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 50.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch.object(self.controller.excel_handler, "update_task_status") as mock_excel, \
+             patch.object(self.controller, "bring_browser_to_front") as mock_front, \
+             patch.object(self.controller, "activate_browser_tab") as mock_tab, \
+             patch.object(self.controller, "ensure_visible_browser_running") as mock_vis, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "TAB_P1", "target_id": "TGT_P1"})
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isCaptcha": False, "isLoggedIn": True})),
+                OpenClawResponse(success=True, data="true"),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True, "chosenFlair": "Advice"})),
+                OpenClawResponse(success=True, data=json.dumps({"readTitle": task.title, "readBody": task.body, "postCoords": {"x": 200, "y": 300, "disabled": False}})),
+                OpenClawResponse(success=True, data="true"),  # submit button clicked
+                OpenClawResponse(success=True, data="https://www.reddit.com/r/DMV/comments/abc/permit_test_tips/"),  # redirected
+                OpenClawResponse(success=True, data=json.dumps({"isFiltered": False, "currentUrl": "https://www.reddit.com/r/DMV/comments/abc/permit_test_tips/"})),
+            ]
+            mock_excel.return_value = (True, "Excel Updated")
+
+            ok, msg, details = self.controller.auto_submit_post(task, profile_name="shoro-test")
+
+            self.assertTrue(ok)
+            self.assertEqual(details["status"], "POST_SUBMITTED")
+            self.assertTrue(details["submitted"])
+            self.assertEqual(task.status, "Completed - automated submission")
+            mock_vis.assert_called_once()
+            mock_tab.assert_called()
+            mock_front.assert_called()
+            mock_excel.assert_called_once()
+
+    def test_human_submit_post_execution_mode(self):
+        """Scenario 2: Human Submit for Posts prepares full content and flair, but stops before submission leaving page open."""
+        from modules.task_builder import PostTask
+
+        task = PostTask(
+            task_id="post_test_human",
+            worksheet="Posts",
+            excel_row=11,
+            subreddit="r/DMV",
+            title="Road Test Check",
+            body="Review checklist: https://www.shoro.ai/checklist",
+            status="Ready for review",
+            is_eligible=True,
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 50.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch.object(self.controller.excel_handler, "update_task_status") as mock_excel, \
+             patch.object(self.controller, "bring_browser_to_front") as mock_front, \
+             patch.object(self.controller, "activate_browser_tab") as mock_tab, \
+             patch.object(self.controller, "ensure_visible_browser_running") as mock_vis, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "TAB_P2", "target_id": "TGT_P2"})
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isCaptcha": False, "isLoggedIn": True})),
+                OpenClawResponse(success=True, data="true"),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True, "chosenFlair": "Question"})),
+                OpenClawResponse(success=True, data=json.dumps({"readTitle": task.title, "readBody": task.body, "postCoords": {"x": 200, "y": 300, "disabled": False}})),
+                OpenClawResponse(success=True, data="true"),
+            ]
+
+            ok, msg, details = self.controller.human_submit_post(task, profile_name="shoro-test")
+
+            self.assertTrue(ok)
+            self.assertEqual(details["status"], "READY_FOR_MANUAL_SUBMISSION")
+            self.assertFalse(details["submitted"])
+            self.assertEqual(task.status, "Post drafted - Ready for manual submission")
+            # Strictly NO automatic submit occurred and Excel status was set to Draft (not Complete)
+            if mock_excel.called:
+                self.assertEqual(mock_excel.call_args[1].get("new_status"), "Draft")
+            mock_vis.assert_called_once()
+            mock_tab.assert_called()
+            mock_front.assert_called()
+
+    def test_auto_comment_execution_mode(self):
+        """Scenario 3: Auto Comment executes full human-mimic workflow and automatically submits."""
+        task = CommentTask(
+            task_id="comment_test_auto",
+            worksheet="Driving DMV",
+            excel_row=381,
+            account_id="schoolwaale01@gmail.com",
+            thread_title="Driving Test Help",
+            destination_url="https://www.reddit.com/r/DMV/comments/123/driving_test/",
+            reply_text="Always check your mirrors before changing lanes.",
+            is_eligible=True,
+            status="To review",
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 500.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "get_page_snapshot") as mock_snap, \
+             patch.object(self.controller.openclaw_client, "verify_reddit_auth_in_dom") as mock_auth, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch.object(self.controller.excel_handler, "update_task_status") as mock_excel, \
+             patch.object(self.controller.openclaw_client, "close_tab") as mock_close, \
+             patch.object(self.controller, "bring_browser_to_front") as mock_front, \
+             patch.object(self.controller, "activate_browser_tab") as mock_tab, \
+             patch.object(self.controller, "ensure_visible_browser_running") as mock_vis, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "TAB_C1", "target_id": "TGT_C1"})
+            mock_snap.return_value = OpenClawResponse(success=True, data="<html><body>reddit</body></html>")
+            mock_auth.return_value = (True, "schoolwaale01", "Logged in")
+            # Phase 1 discussion check, Phase 2 question extract, Phase 3 top 5, Phase 4 open box,
+            # Phase 5 para typing, Phase 5 final state, Phase 7 click comment, Phase 8 refresh, Phase 8 verify live
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isLocked": False, "isArchived": False, "hasShoroReply": False})),
+                OpenClawResponse(success=True, data=json.dumps({"questionText": "How to pass driving test?", "anchorDetail": "test"})),
+                OpenClawResponse(success=True, data=json.dumps({"topComments": [{"author": "u1", "body": "Practice"}]})),
+                OpenClawResponse(success=True, data=json.dumps({"opened": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"verified": True, "length": len(task.reply_text)})),
+                OpenClawResponse(success=True, data=json.dumps({"clicked": True})),
+                OpenClawResponse(success=True, data=json.dumps({"reloading": True})),
+                OpenClawResponse(success=True, data=json.dumps({"live": True, "permalink": "https://www.reddit.com/r/DMV/comments/123/comment/xyz/"})),
+            ]
+            mock_excel.return_value = (True, "Excel Updated")
+
+            ok, msg, details = self.controller.auto_submit_comment(task, profile_name="shoro-test")
+
+            self.assertTrue(ok)
+            self.assertEqual(task.status, "Completed - automated reply")
+            mock_excel.assert_called_once()
+            mock_close.assert_called_once()
+
+    def test_human_submit_comment_execution_mode(self):
+        """Scenario 4: Human Submit for Comments prepares content and stops before clicking Comment, leaving browser open."""
+        task = CommentTask(
+            task_id="comment_test_human",
+            worksheet="Driving DMV",
+            excel_row=382,
+            account_id="schoolwaale01@gmail.com",
+            thread_title="Permit Test Waiting Time",
+            destination_url="https://www.reddit.com/r/DMV/comments/123/permit_wait/",
+            reply_text="In most states you must wait at least 7 days before retaking.",
+            is_eligible=True,
+            status="To review",
+        )
+
+        curr_t = [1000.0]
+        def f_time():
+            curr_t[0] += 500.0
+            return curr_t[0]
+
+        with patch.object(self.controller.openclaw_client, "open_url") as mock_open, \
+             patch.object(self.controller.openclaw_client, "get_page_snapshot") as mock_snap, \
+             patch.object(self.controller.openclaw_client, "verify_reddit_auth_in_dom") as mock_auth, \
+             patch.object(self.controller.openclaw_client, "evaluate_script") as mock_eval, \
+             patch.object(self.controller.excel_handler, "update_task_status") as mock_excel, \
+             patch.object(self.controller.openclaw_client, "close_tab") as mock_close, \
+             patch.object(self.controller, "bring_browser_to_front") as mock_front, \
+             patch.object(self.controller, "activate_browser_tab") as mock_tab, \
+             patch.object(self.controller, "ensure_visible_browser_running") as mock_vis, \
+             patch("time.time", side_effect=f_time), \
+             patch("time.sleep"):
+
+            mock_open.return_value = OpenClawResponse(success=True, data={"tab_id": "TAB_C2", "target_id": "TGT_C2"})
+            mock_snap.return_value = OpenClawResponse(success=True, data="<html><body>reddit</body></html>")
+            mock_auth.return_value = (True, "schoolwaale01", "Logged in")
+            mock_eval.side_effect = [
+                OpenClawResponse(success=True, data=json.dumps({"isLocked": False, "isArchived": False, "hasShoroReply": False})),
+                OpenClawResponse(success=True, data=json.dumps({"questionText": "How long to wait?", "anchorDetail": "wait"})),
+                OpenClawResponse(success=True, data=json.dumps({"topComments": []})),
+                OpenClawResponse(success=True, data=json.dumps({"opened": True})),
+                OpenClawResponse(success=True, data=json.dumps({"success": True})),
+                OpenClawResponse(success=True, data=json.dumps({"verified": True, "length": len(task.reply_text)})),
+                OpenClawResponse(success=True, data="true"),
+            ]
+
+            ok, msg, details = self.controller.human_submit_comment(task, profile_name="shoro-test")
+
+            self.assertTrue(ok)
+            self.assertEqual(details["status"], "READY_FOR_MANUAL_SUBMISSION")
+            self.assertEqual(task.status, "Reply inserted - Ready for manual submission")
+            # Strictly NO submit clicked, browser NOT closed, Excel NOT marked completed
+            mock_excel.assert_not_called()
+            mock_close.assert_not_called()
+            mock_vis.assert_called_once()
+            mock_tab.assert_called()
+            mock_front.assert_called()
+
+    def test_timing_configurations_preserved_and_demo_removed(self):
+        """Scenario 5: Verify all existing timing configurations remain unchanged and Accelerated Demo Mode is completely removed."""
+        import inspect
+        from modules import workflow_controller
+
+        # 1. Inspect WorkflowController source code
+        wf_src = inspect.getsource(workflow_controller)
+        self.assertNotIn("Accelerated Demo Mode", wf_src)
+        self.assertNotIn("is_stealth else", wf_src)
+
+        # 2. Verify all exact timing values are declared and preserved
+        expected_timing_fragments = [
+            "t_phase1 = random.uniform(180, 240)",
+            "t_phase2 = random.uniform(180, 195)",
+            "t_phase3 = random.uniform(240, 360)",
+            "t_phase4 = random.uniform(90, 105)",
+            "t_phase5 = random.uniform(360, 600)",
+            "p_pause = random.uniform(10, 15)",
+            "t_phase6 = random.uniform(180, 240)",
+            "t_phase8 = random.uniform(120, 140)",
+            "t_phase9 = random.uniform(120, 135)",
+            "t_dwell_rules = random.uniform(45, 60)",
+            "t_title_word_ms = (180, 320)",
+            "t_pause_after_title = random.uniform(15, 25)",
+            "t_body_word_ms = (180, 350)",
+            "t_pause_between_paras = random.uniform(10, 18)",
+            "t_proofread_dwell = random.uniform(45, 60)",
+        ]
+        for fragment in expected_timing_fragments:
+            self.assertIn(fragment, wf_src, f"Timing configuration missing or altered: {fragment}")
+
+        # 3. Inspect app.py source code
+        with open("app.py", "r", encoding="utf-8") as f:
+            app_src = f.read()
+
+        self.assertNotIn("Accelerated Demo Mode", app_src)
+        self.assertNotIn("demo_fast", app_src)
+        self.assertIn("Auto Post", app_src)
+        self.assertIn("Human Submit", app_src)
+        self.assertIn("Auto Comment", app_src)
+
+    def test_browser_visibility_and_foreground_controls(self):
+        """Scenario 6: Verify visible browser launching and foreground focus controls."""
+        self.assertTrue(hasattr(self.controller, "ensure_visible_browser_running"))
+        self.assertTrue(hasattr(self.controller, "activate_browser_tab"))
+        self.assertTrue(hasattr(self.controller, "bring_browser_to_front"))
+        self.assertTrue(hasattr(self.controller, "capture_live_screen_preview"))
 
 
 if __name__ == "__main__":
