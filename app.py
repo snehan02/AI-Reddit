@@ -10,6 +10,7 @@ Strict compliance:
 - Gateway bound to localhost (127.0.0.1:18789).
 """
 
+import inspect
 import os
 import re
 import time
@@ -34,13 +35,13 @@ st.set_page_config(
 
 
 def get_controller() -> WorkflowController:
-    if "controller" not in st.session_state:
-        settings = AppSettings.load()
-        ctrl = WorkflowController(settings)
-        ctrl.initialize()
-        ctrl.allow_account_independent = True
-        st.session_state.controller = ctrl
-    return st.session_state.controller
+    """Instantiate and return a fresh WorkflowController instance."""
+    settings = AppSettings.load()
+    ctrl = WorkflowController(settings)
+    ctrl.initialize()
+    ctrl.allow_account_independent = True
+    st.session_state.controller = ctrl
+    return ctrl
 
 
 controller = get_controller()
@@ -98,14 +99,29 @@ with st.sidebar:
         min_value=1,
         max_value=20,
         value=getattr(settings, "posts_per_account", 5),
-        help="Configurable limit for maximum posts/actions prepared or published per account in a batch run. Enforces an 8-hour gap between posts.",
+        help="Configurable limit for maximum posts/actions prepared or published per account in a batch run.",
     )
     if posts_per_acc != getattr(settings, "posts_per_account", 5):
         settings.posts_per_account = posts_per_acc
         settings.daily_comment_cap = posts_per_acc
         controller.state_manager.daily_cap = posts_per_acc
         settings.save()
-    st.caption("💡 **Why:** Account-level limit & anti-ban protection. | **Use:** Enforces max submissions per account and an 8-hour gap between posts.")
+
+    curr_interval = float(getattr(settings, "min_post_interval_hours", 8.0))
+    post_interval_hours = st.number_input(
+        "Publication Interval (Hours)",
+        min_value=0.5,
+        max_value=72.0,
+        value=curr_interval,
+        step=0.5,
+        help="Configurable minimum cooldown period (in hours) between consecutive publications for any single account.",
+    )
+    if post_interval_hours != curr_interval:
+        settings.min_post_interval_hours = float(post_interval_hours)
+        settings.save()
+
+    gap_str = f"{int(settings.min_post_interval_hours)}" if settings.min_post_interval_hours == int(settings.min_post_interval_hours) else f"{settings.min_post_interval_hours:.1f}"
+    st.caption(f"💡 **Why:** Account-level limit & anti-ban protection. | **Use:** Enforces max submissions per account and a {gap_str}-hour gap between posts.")
 
     st.markdown("---")
     st.markdown("### 📊 Google Sheets Sync")
@@ -304,7 +320,7 @@ with tab_ops:
             st.caption("💡 **Why:** Choose between human approval vs direct publishing. | **Use:** 'Human Submit' leaves post/comment in editor ready to click; 'Auto' posts directly.")
 
         with col_bm2:
-            col_blim, col_bcooldown, col_bsync = st.columns(3)
+            col_blim, col_binterval, col_bcooldown, col_bsync = st.columns([1.1, 1.1, 1.1, 1.0])
             with col_blim:
                 post_limit = st.number_input(
                     "Posts Per Account:",
@@ -313,6 +329,18 @@ with tab_ops:
                     value=getattr(settings, "posts_per_account", 5),
                     help="Maximum items each account will draft or submit in this batch.",
                 )
+            with col_binterval:
+                batch_interval_val = st.number_input(
+                    "Interval (Hours):",
+                    min_value=0.5,
+                    max_value=72.0,
+                    value=float(getattr(settings, "min_post_interval_hours", 8.0)),
+                    step=0.5,
+                    help="Minimum publication interval / cooldown (hours) between actions for the same account.",
+                )
+                if batch_interval_val != getattr(settings, "min_post_interval_hours", 8.0):
+                    settings.min_post_interval_hours = float(batch_interval_val)
+                    settings.save()
             with col_bcooldown:
                 batch_cooldown_val = st.number_input(
                     "Anti-ban Cooldown (s):",
@@ -364,14 +392,32 @@ with tab_ops:
                 elif "Posts" in automation_mode:
                     wf_type = "post"
 
-                res = controller.execute_batch_preparation(
-                    account_ids=chosen_accounts,
-                    mode=mode_val,
-                    post_limit_per_account=int(post_limit),
-                    sync_gsheets=sync_gsheets_first,
-                    progress_callback=batch_cb,
-                    workflow_type=wf_type,
-                )
+                controller.settings.min_post_interval_hours = float(batch_interval_val)
+                controller.settings.save()
+
+                batch_args = {
+                    "account_ids": chosen_accounts,
+                    "mode": mode_val,
+                    "post_limit_per_account": int(post_limit),
+                    "sync_gsheets": sync_gsheets_first,
+                    "progress_callback": batch_cb,
+                    "workflow_type": wf_type,
+                }
+                try:
+                    sig = inspect.signature(controller.execute_batch_preparation)
+                    if "min_post_interval_hours" in sig.parameters or any(p.kind == inspect.Parameter.VAR_KEYWORD for p in sig.parameters.values()):
+                        batch_args["min_post_interval_hours"] = float(batch_interval_val)
+                except Exception:
+                    pass
+
+                try:
+                    res = controller.execute_batch_preparation(**batch_args)
+                except TypeError as te:
+                    if "min_post_interval_hours" in str(te):
+                        batch_args.pop("min_post_interval_hours", None)
+                        res = controller.execute_batch_preparation(**batch_args)
+                    else:
+                        raise te
                 if res.get("success"):
                     status_box.update(label="✅ " + res.get("message", ""), state="complete", expanded=True)
                     st.success(f"🎉 **{res.get('message')}**")
@@ -461,12 +507,14 @@ with tab_ops:
                     st.caption("💡 **Why:** Opens Chrome. | **Use:** Inspect thread and manually click submit.")
 
                     if it_status != "Complete":
-                        # Check 8-hour gap
-                        can_pub, gap_msg = controller.audit_logger.check_eight_hour_gap(it_acc, min_gap_hours=getattr(settings, "min_post_interval_hours", 8.0))
+                        # Check publication interval gap
+                        min_gap = float(getattr(settings, "min_post_interval_hours", 8.0))
+                        can_pub, gap_msg = controller.audit_logger.check_eight_hour_gap(it_acc, min_gap_hours=min_gap)
                         if not can_pub:
                             st.caption(f"⚠️ {gap_msg}")
 
-                        if st.button("✅ Verify & Mark Complete", key=f"btn_comp_{it_id}", type="primary", use_container_width=True, help="Confirms human submission, updates DB, records publication timestamp for 8h gap rule, and syncs status to Excel and Google Sheet."):
+                        gap_str = f"{int(min_gap)}" if min_gap == int(min_gap) else f"{min_gap:.1f}"
+                        if st.button("✅ Verify & Mark Complete", key=f"btn_comp_{it_id}", type="primary", use_container_width=True, help=f"Confirms human submission, updates DB, records publication timestamp for {gap_str}h gap rule, and syncs status to Excel and Google Sheet."):
                             with st.spinner("Confirming submission and syncing..."):
                                 ok, msg = controller.verify_and_mark_complete(it_id)
                                 if ok:

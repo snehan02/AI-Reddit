@@ -5,7 +5,7 @@
   "test_mode": true,
   "daily_comment_cap": 2,
   "posts_per_account": 2,
-  "min_post_interval_hours": 8.0,
+  "min_post_interval_hours": 5.0,
   "review_task_pause_seconds": 30,
   "display_timezone": "Asia/Kolkata",
   "require_human_outcome_confirmation": true,

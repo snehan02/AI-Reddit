@@ -411,8 +411,9 @@ class AuditLogger:
                 rem_mins = int((min_gap_hours - elapsed) * 60)
                 next_eligible = last_dt.timestamp() + (min_gap_hours * 3600)
                 next_eligible_dt = datetime.fromtimestamp(next_eligible, tz=ZoneInfo(self.tz_name))
+                gap_label = f"{int(min_gap_hours)}-Hour" if min_gap_hours == int(min_gap_hours) else f"{min_gap_hours:.1f}-Hour"
                 return False, (
-                    f"8-Hour Minimum Gap Rule: Account '{account_id}' published {elapsed:.1f}h ago. "
+                    f"{gap_label} Minimum Gap Rule: Account '{account_id}' published {elapsed:.1f}h ago. "
                     f"Must wait {rem_mins} more minutes. Next eligible publication time: "
                     f"{next_eligible_dt.strftime('%Y-%m-%d %H:%M:%S')}."
                 )
@@ -420,6 +421,11 @@ class AuditLogger:
         except Exception as e:
             logger.warning("Could not parse last published timestamp '%s': %s", last_pub_str, e)
             return True, "Timestamp parse fallback: eligible to publish."
+
+    def check_publication_gap(self, account_id: str, min_gap_hours: Optional[float] = None) -> Tuple[bool, str]:
+        """Check if at least min_gap_hours have elapsed since last publication."""
+        gap = 8.0 if min_gap_hours is None else float(min_gap_hours)
+        return self.check_eight_hour_gap(account_id, min_gap_hours=gap)
 
     def count_account_published_total(self, account_id: str) -> int:
         """Count total published posts/comments for an account."""

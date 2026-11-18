@@ -206,6 +206,18 @@ class OpenClawClient:
                 exit_code=-1,
             )
 
+        # Map any requested browser profile to the canonical OpenClaw CDP profile name
+        normalized_args = list(args)
+        for i, a in enumerate(normalized_args):
+            if a == "--browser-profile" and i + 1 < len(normalized_args):
+                prof_val = normalized_args[i + 1].strip()
+                if prof_val.lower() in ("openclaw", "user", "chrome"):
+                    normalized_args[i + 1] = prof_val.lower()
+                else:
+                    # Every account profile connecting to Chrome via CDP port 18801 maps to OpenClaw's shoro-test profile
+                    normalized_args[i + 1] = "shoro-test"
+        args = normalized_args
+
         if args and args[0] in ["browser", "health", "tabs"]:
             self.ensure_gateway_running()
 
@@ -536,7 +548,7 @@ class OpenClawClient:
         if target_id and str(target_id).strip():
             args.extend(["--target-id", str(target_id).strip()])
 
-        resp = self._execute(args, timeout=120)
+        resp = self._execute(args, timeout=15)
         if resp.success and resp.data:
             resp.data = sanitize_dom_snapshot(str(resp.data))
         return resp
@@ -558,7 +570,7 @@ class OpenClawClient:
             "--browser-profile", profile_name.strip(),
         ])
 
-        resp = self._execute(args, timeout=120)
+        resp = self._execute(args, timeout=15)
         if resp.success and resp.data:
             screenshot_path = str(resp.data).strip()
             resp.data = {
@@ -711,7 +723,7 @@ class OpenClawClient:
 
         text = snapshot_text.lower()
 
-        # Logged-out indicators:
+        # 1. Logged-out indicators: If login/signup buttons or signup modal are present, user is NOT logged in.
         has_login_button = (
             'data-testid="login-button"' in text
             or 'href="/login"' in text
@@ -723,9 +735,22 @@ class OpenClawClient:
             or 'link "log in"' in text
             or 'button "sign up"' in text
             or 'link "sign up"' in text
+            or 'button: log in' in text
+            or 'button: sign up' in text
+            or 'heading "sign up"' in text
+            or 'heading "log in"' in text
+            or 'dialog "sign up"' in text
+            or 'dialog "log in"' in text
+            or 'continue with phone number' in text
+            or 'continue with google' in text
+            or 'continue with apple' in text
+            or 'already a redditor? log in' in text
         )
 
-        # Check for user markers specifically on the logged-in user element (never post authors or commenters)
+        if has_login_button:
+            return False, None, "Unauthenticated: Reddit login prompt / button / sign up modal detected on page."
+
+        # 2. Check for user markers specifically on the logged-in user element (never post authors or commenters)
         user_match = re.search(r'current-user=["\']([^"\']+)["\']', snapshot_text, re.IGNORECASE)
         if not user_match:
             user_match = re.search(r'aria-label=["\']user account:\s*([^"\']+)["\']', snapshot_text, re.IGNORECASE)
@@ -735,22 +760,19 @@ class OpenClawClient:
             if uname and uname.lower() not in ("login", "signup", "register", "submit", "settings", "notifications"):
                 return True, uname, f"Verified active Reddit session for user '{uname}'"
 
-        # User menu dropdown or authenticated top-bar indicators (strictly impossible when logged out)
+        # 3. User menu dropdown or authenticated top-bar indicators (strictly impossible when logged out)
+        # Note: Never use generic 'user avatar' here, as other commenters in the thread also have avatars!
         has_user_dropdown = (
             'data-testid="user-dropdown"' in text
             or 'id="user_dropdown_id"' in text
             or 'aria-label="open user menu"' in text
             or 'class="header-user-dropdown"' in text
             or 'expand user menu' in text
-            or 'user avatar' in text
             or ('open chat' in text and 'create' in text)
             or ('open inbox' in text and 'open chat' in text)
         )
         if has_user_dropdown:
             return True, None, "Verified active Reddit session (user dropdown menu present)"
-
-        if has_login_button:
-            return False, None, "Unauthenticated: Reddit login prompt / button detected on page."
 
         return False, None, "Unverified: Page does not contain active Reddit authentication indicators."
 
@@ -942,35 +964,56 @@ class OpenClawClient:
         if not snapshot_text or not isinstance(snapshot_text, str):
             return None
 
+        invalid_ref_words = {
+            "disabled", "enabled", "button", "textbox", "hidden", "expanded",
+            "collapsed", "readonly", "required", "true", "false", "selected",
+            "checked", "active", "focus", "visited", "link", "input", "img",
+            "heading", "region", "dialog", "presentation", "tab", "tabpanel",
+            "placeholder", "value", "type", "name", "id", "class", "style",
+            "role", "aria", "label", "text", "comment", "submit"
+        }
+
+        def extract_ref(text_line: str) -> Optional[str]:
+            # 1. Look for explicit bracketed ref: [ref 42], [ref: 42], [ref=e12]
+            m = re.search(r'\[ref[=:\s]+([a-zA-Z0-9_\-]+)\]', text_line, re.IGNORECASE)
+            if m:
+                val = m.group(1).strip()
+                if val.lower() not in invalid_ref_words:
+                    return val
+
+            # 2. Look for word ref: ref: 42, ref=e12, ref 42
+            m = re.search(r'\bref[:=\s]+([a-zA-Z0-9_\-]+)\b', text_line, re.IGNORECASE)
+            if m:
+                val = m.group(1).strip()
+                if val.lower() not in invalid_ref_words:
+                    return val
+
+            # 3. Look for bracketed numeric ref only: [42], [105] (never words like [disabled])
+            m = re.search(r'\[(\d+)\]', text_line)
+            if m:
+                return m.group(1).strip()
+
+            return None
+
         lines = snapshot_text.splitlines()
         for i, line in enumerate(lines):
             lower = line.lower()
             if "join the conversation" in lower or "add a comment" in lower or "shreddit-comment-composer" in lower:
                 # 1. Look for ref directly on the current line
-                match = re.search(r'\[(?:ref[=:\s]*)?([a-zA-Z0-9_\-]+)\]', line, re.IGNORECASE)
-                if not match:
-                    match = re.search(r'\bref[:=]\s*([a-zA-Z0-9_\-]+)', line, re.IGNORECASE)
-                if not match:
-                    match = re.search(r'\bref\s+([a-zA-Z0-9_\-]+)', line, re.IGNORECASE)
-                if match:
-                    return match.group(1).strip()
+                cand = extract_ref(line)
+                if cand:
+                    return cand
 
                 # 2. Check immediately preceding lines (i-1 down to i-3) for textbox or parent ref
                 for prev_idx in range(i - 1, max(-1, i - 4), -1):
-                    prev_line = lines[prev_idx]
-                    m_prev = re.search(r'\[(?:ref[=:\s]*)?([a-zA-Z0-9_\-]+)\]', prev_line, re.IGNORECASE)
-                    if not m_prev:
-                        m_prev = re.search(r'\bref[:=]\s*([a-zA-Z0-9_\-]+)', prev_line, re.IGNORECASE)
-                    if m_prev:
-                        return m_prev.group(1).strip()
+                    cand = extract_ref(lines[prev_idx])
+                    if cand:
+                        return cand
 
                 # 3. Check next lines (i+1 to i+2)
                 for next_idx in range(i + 1, min(len(lines), i + 3)):
-                    next_line = lines[next_idx]
-                    m_next = re.search(r'\[(?:ref[=:\s]*)?([a-zA-Z0-9_\-]+)\]', next_line, re.IGNORECASE)
-                    if not m_next:
-                        m_next = re.search(r'\bref[:=]\s*([a-zA-Z0-9_\-]+)', next_line, re.IGNORECASE)
-                    if m_next:
-                        return m_next.group(1).strip()
+                    cand = extract_ref(lines[next_idx])
+                    if cand:
+                        return cand
 
         return None

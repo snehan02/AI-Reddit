@@ -657,6 +657,11 @@ class TestOpenClawClientUnit(unittest.TestCase):
         self.assertEqual(OpenClawClient.find_editor_ref_in_snapshot(snapshot2), "99")
         snapshot3 = "- paragraph: Just normal text"
         self.assertIsNone(OpenClawClient.find_editor_ref_in_snapshot(snapshot3))
+        # Ensure reserved words like [disabled] are never parsed as element refs
+        snapshot4 = "- button \"Join the conversation\" [disabled]"
+        self.assertIsNone(OpenClawClient.find_editor_ref_in_snapshot(snapshot4))
+        snapshot5 = "- button [ref=e14] \"Join the conversation\" [disabled]"
+        self.assertEqual(OpenClawClient.find_editor_ref_in_snapshot(snapshot5), "e14")
 
 
 class TestOpenClawIntegration(unittest.TestCase):

@@ -307,6 +307,47 @@ class TestAccountManagerAndBatch(unittest.TestCase):
             self.assertGreaterEqual(len(drafts), 1)
             self.assertEqual(drafts[0]["account_id"], acc_working)
 
+    def test_configurable_publication_interval_gap(self):
+        """Verify dynamic publication interval gap instead of hard-coded 8 hours."""
+        acc = "schoolwaale03@gmail.com"
+        tz = ZoneInfo(self.audit_logger.tz_name)
+
+        # Mark an item as complete published 5 hours ago
+        five_hours_ago = (datetime.now(tz) - timedelta(hours=5)).isoformat()
+        self.audit_logger.save_prepared_item(
+            item_id="config_gap_test",
+            task_id="task_gap_test",
+            account_id=acc,
+            profile_name="Profile schoolwaale03",
+            task_type="post",
+            worksheet="Posts",
+            excel_row=50,
+            title="Interval test",
+            content="Testing configurable gap",
+            destination_url="https://www.reddit.com/r/test",
+            status="Complete",
+        )
+        self.audit_logger.update_prepared_item_status(
+            item_id="config_gap_test",
+            status="Complete",
+            published_at=five_hours_ago,
+        )
+
+        # With 8-hour gap (default): 5 hours elapsed is BLOCKED
+        eligible_8h, reason_8h = self.audit_logger.check_eight_hour_gap(acc, min_gap_hours=8.0)
+        self.assertFalse(eligible_8h)
+        self.assertIn("8-Hour Minimum Gap Rule", reason_8h)
+
+        # With 4-hour gap: 5 hours elapsed is ALLOWED (eligible)
+        eligible_4h, reason_4h = self.audit_logger.check_eight_hour_gap(acc, min_gap_hours=4.0)
+        self.assertTrue(eligible_4h)
+        self.assertIn("Eligible", reason_4h)
+
+        # With 12-hour gap: 5 hours elapsed is BLOCKED
+        eligible_12h, reason_12h = self.audit_logger.check_publication_gap(acc, min_gap_hours=12.0)
+        self.assertFalse(eligible_12h)
+        self.assertIn("12-Hour Minimum Gap Rule", reason_12h)
+
 
 if __name__ == "__main__":
     unittest.main()
