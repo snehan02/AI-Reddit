@@ -4,13 +4,13 @@
       "account_id": "schoolwaale01@gmail.com",
       "chrome_profile_name": "Profile schoolwaale01",
       "user_data_directory": "chrome_profiles/schoolwaale01",
-      "enabled": false
+      "enabled": true
     },
     {
       "account_id": "schoolwaale02@gmail.com",
       "chrome_profile_name": "Profile schoolwaale02",
       "user_data_directory": "chrome_profiles/schoolwaale02",
-      "enabled": false
+      "enabled": true
     },
     {
       "account_id": "schoolwaale04@gmail.com",
@@ -28,7 +28,7 @@
       "account_id": "schoolwaale08@gmail.com",
       "chrome_profile_name": "Profile schoolwaale08",
       "user_data_directory": "chrome_profiles/schoolwaale08",
-      "enabled": false
+      "enabled": true
     },
     {
       "account_id": "schoolwaale11@gmail.com",
@@ -160,13 +160,13 @@
       "account_id": "schoolwaale24@gmail.com",
       "chrome_profile_name": "Profile schoolwaale24",
       "user_data_directory": "chrome_profiles/schoolwaale24",
-      "enabled": false
+      "enabled": true
     },
     {
       "account_id": "shoro_test",
       "chrome_profile_name": "Profile shoro_test",
       "user_data_directory": "chrome_profiles/shoro_test",
-      "enabled": false
+      "enabled": true
     }
   ]
 }

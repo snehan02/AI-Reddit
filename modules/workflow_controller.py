@@ -3748,7 +3748,20 @@ class WorkflowController:
 
             viable_accounts = [a for a in clean_accounts if a not in failed_auth_accounts]
             if not viable_accounts:
-                logger.info("No viable logged-in or working accounts remain in the batch pool.")
+                halt_msg = (
+                    f"⚠️ Batch stopped: No viable logged-in accounts remain in the pool "
+                    f"({', '.join(failed_auth_accounts)} not logged in or encountered session errors). "
+                    f"Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'."
+                )
+                logger.warning(halt_msg)
+                if progress_callback:
+                    progress_callback({
+                        "type": "item_error",
+                        "current": len(prepared_items) + len(errors),
+                        "total": total_to_process,
+                        "message": halt_msg,
+                    })
+                errors.append(halt_msg)
                 break
 
             if all(account_prepared_counts.get(a, 0) >= post_limit_per_account for a in viable_accounts):

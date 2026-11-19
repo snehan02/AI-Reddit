@@ -418,14 +418,19 @@ with tab_ops:
                         res = controller.execute_batch_preparation(**batch_args)
                     else:
                         raise te
-                if res.get("success"):
+                if res.get("success") and res.get("total_prepared", 0) > 0:
                     status_box.update(label="✅ " + res.get("message", ""), state="complete", expanded=True)
                     st.success(f"🎉 **{res.get('message')}**")
+                elif res.get("total_prepared", 0) == 0:
+                    status_box.update(label="⚠️ Completed – 0 items prepared", state="error", expanded=True)
+                    st.warning(f"⚠️ **{res.get('message')}**")
+                    if res.get("errors"):
+                        for err in res.get("errors"):
+                            st.error(f"❌ {err}")
                 else:
                     status_box.update(label="⚠️ Completed with warnings", state="error", expanded=True)
                     st.warning(res.get("message"))
-                time.sleep(1)
-                st.rerun()
+                st.session_state["last_batch_result"] = res
 
     st.markdown("---")
     st.markdown("### 📋 Prepared Content & Review Queue (Drafts & Submissions)")

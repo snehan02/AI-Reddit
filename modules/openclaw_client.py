@@ -179,7 +179,7 @@ class OpenClawClient:
                 stderr=subprocess.DEVNULL,
                 creationflags=creationflags,
             )
-            for _ in range(16):
+            for _ in range(25):
                 time.sleep(0.5)
                 if self.is_gateway_healthy(port):
                     logger.info("OpenClaw gateway auto-spawned and verified online on port %d.", port)
