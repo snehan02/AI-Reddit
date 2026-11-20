@@ -305,7 +305,7 @@ class TestAccountManagerAndBatch(unittest.TestCase):
             if not drafts:
                 drafts = self.audit_logger.list_prepared_items(status="Ready for Review")
             self.assertGreaterEqual(len(drafts), 1)
-            self.assertEqual(drafts[0]["account_id"], acc_working)
+            self.assertTrue(any(d["account_id"] == acc_working for d in drafts))
 
     def test_configurable_publication_interval_gap(self):
         """Verify dynamic publication interval gap instead of hard-coded 8 hours."""

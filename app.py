@@ -538,7 +538,7 @@ with tab_ops:
         is_comment_mode = "Comment" in automation_mode
 
         if is_comment_mode:
-            selectable_tasks = [t for t in controller.comment_tasks if t.destination_url]
+            selectable_tasks = sorted([t for t in controller.comment_tasks if t.destination_url], key=lambda x: getattr(x, "excel_row", 0), reverse=True)
             if not selectable_tasks:
                 st.warning("No comment tasks found with valid URLs in Driving DMV worksheet.")
                 selected_task = None

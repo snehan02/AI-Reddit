@@ -179,8 +179,9 @@ class WorkflowController:
                     task_status=post.status,
                 )
 
-        # Build combined active queue
-        self.task_queue = [t for t in self.comment_tasks + self.post_tasks if t.is_eligible]
+        # Build combined active queue: comments prioritized from bottom to top of Excel (highest row first)
+        reversed_comments = sorted(self.comment_tasks, key=lambda x: getattr(x, "excel_row", 0), reverse=True)
+        self.task_queue = [t for t in reversed_comments + self.post_tasks if t.is_eligible]
 
         # Calculate statistics
         eligible_comments = sum(1 for t in self.comment_tasks if t.is_eligible)
@@ -1966,6 +1967,17 @@ class WorkflowController:
                 event_action = "INSERT_REPLY"
                 event_type = "PREPARE_REPLY"
                 status_code = "READY_FOR_MANUAL_SUBMISSION"
+                now_human = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                try:
+                    self.excel_handler.update_task_status(
+                        worksheet_name=task.worksheet,
+                        excel_row=task.excel_row,
+                        new_status="Draft",
+                        timestamp_str=now_human,
+                        account_name=task.account_id or prof_name,
+                    )
+                except Exception as ex_draft:
+                    logger.warning("Could not sync Excel draft status: %s", ex_draft)
                 if tab_id:
                     self.activate_browser_tab(tab_id)
                 self.bring_browser_to_front("Chrome")
@@ -2502,6 +2514,17 @@ class WorkflowController:
                 final_sc = self.capture_live_screen_preview(prof_name, target_id=tab_id)
                 emit(7, "Draft Complete", "Reply prepared and proofread in editor. Content is ready for human manual submission (Human Submit mode).", {"screenshot_path": final_sc})
                 task.status = "Reply inserted - Ready for manual submission"
+                now_human = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                try:
+                    self.excel_handler.update_task_status(
+                        worksheet_name=task.worksheet,
+                        excel_row=task.excel_row,
+                        new_status="Draft",
+                        timestamp_str=now_human,
+                        account_name=active_account,
+                    )
+                except Exception as ex_draft:
+                    logger.warning("Could not sync Excel draft status: %s", ex_draft)
                 if tab_id:
                     self.activate_browser_tab(tab_id)
                 self.bring_browser_to_front("Chrome")
@@ -3679,6 +3702,12 @@ class WorkflowController:
         # Step 1b: Mark selected accounts as active in-memory batch participants
         self._active_batch_accounts = set(clean_accounts)
 
+        # Ensure OpenClaw gateway daemon is running before starting browser operations
+        try:
+            self.openclaw_client.ensure_gateway_running()
+        except Exception as gw_ex:
+            logger.warning("Gateway check during batch init: %s", gw_ex)
+
         # Check persistent session status & cookies for all participating accounts
         account_sessions = {
             acc: self.account_manager.check_session_status(acc)
@@ -3695,9 +3724,10 @@ class WorkflowController:
         include_comments = w_type_norm in ("all", "both", "comment", "comments")
         include_posts = w_type_norm in ("all", "both", "post", "posts")
 
-        # Comment tasks
+        # Comment tasks: picked up from bottom to top from Excel (highest row number to lowest)
         if include_comments:
-            for t in self.comment_tasks:
+            reversed_comment_tasks = sorted(self.comment_tasks, key=lambda x: getattr(x, "excel_row", 0), reverse=True)
+            for t in reversed_comment_tasks:
                 st_val = str(t.status or "").lower()
                 if not st_val or not st_val.startswith("complete"):
                     # Match account or assign round-robin from clean_accounts
@@ -3747,6 +3777,22 @@ class WorkflowController:
                 break
 
             viable_accounts = [a for a in clean_accounts if a not in failed_auth_accounts]
+            if not viable_accounts:
+                # Auto-expand pool with any configured system accounts that have active cookies and haven't failed
+                sys_logged = [
+                    acc_id for acc_id, prof in self.account_manager.accounts.items()
+                    if prof.enabled and acc_id not in failed_auth_accounts
+                    and self.account_manager.check_session_status(acc_id).get("has_cookies")
+                ]
+                if sys_logged:
+                    logger.info("Auto-expanding batch pool with available logged-in system accounts: %s", sys_logged)
+                    for sa in sys_logged:
+                        if sa not in clean_accounts:
+                            clean_accounts.append(sa)
+                            account_prepared_counts[sa] = 0
+                            account_failure_counts[sa] = 0
+                    viable_accounts = [a for a in clean_accounts if a not in failed_auth_accounts]
+
             if not viable_accounts:
                 halt_msg = (
                     f"⚠️ Batch stopped: No viable logged-in accounts remain in the pool "
@@ -3953,9 +3999,25 @@ class WorkflowController:
 
                     # Look for next eligible candidate in the pool
                     remaining_candidates = [
-                        c for c in eligible_candidates[cand_idx + 1:]
+                        c for c in eligible_candidates
                         if c != current_account and c not in failed_auth_accounts
                     ]
+                    if not remaining_candidates:
+                        # Auto-discover any verified system account that has saved cookies and hasn't failed
+                        sys_logged = [
+                            acc_id for acc_id, prof in self.account_manager.accounts.items()
+                            if prof.enabled and acc_id not in failed_auth_accounts and acc_id != current_account
+                            and self.account_manager.check_session_status(acc_id).get("has_cookies")
+                        ]
+                        if sys_logged:
+                            logger.info("Auto-fallback to available system logged-in accounts: %s", sys_logged)
+                            for sa in sys_logged:
+                                if sa not in clean_accounts:
+                                    clean_accounts.append(sa)
+                                    account_prepared_counts[sa] = 0
+                                    account_failure_counts[sa] = 0
+                            remaining_candidates = sys_logged
+
                     if remaining_candidates:
                         next_account = remaining_candidates[0]
                         logger.warning(
@@ -3977,7 +4039,7 @@ class WorkflowController:
                                 "account": current_account,
                                 "next_account": next_account,
                                 "error": msg,
-                                "message": f"⚠️ Account '{current_account}' not working / not logged in ({msg}). Switching to '{next_account}'...",
+                                "message": f"⚠️ Account '{current_account}' not working / not logged in ({msg}). Switching to logged-in account '{next_account}'...",
                             })
                         continue  # Try next candidate
                     else:

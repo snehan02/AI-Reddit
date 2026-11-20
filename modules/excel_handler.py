@@ -164,13 +164,20 @@ class ExcelHandler:
             wb.close()
             return False, f"Invalid row number {actual_row} for sheet '{worksheet_name}' (max: {max_row})"
 
-        # Find Status column dynamically
+        # Find Status column dynamically (and My status if present)
         status_col_idx: Optional[int] = None
+        my_status_col_idx: Optional[int] = None
         for c in range(1, max_col + 1):
             header_val = sheet.cell(row=1, column=c).value
-            if header_val and str(header_val).strip().lower() == "status":
-                status_col_idx = c
-                break
+            if header_val:
+                h_clean = str(header_val).strip().lower()
+                if h_clean == "status":
+                    status_col_idx = c
+                elif h_clean in ("my status", "mystatus"):
+                    my_status_col_idx = c
+
+        if not status_col_idx and my_status_col_idx:
+            status_col_idx = my_status_col_idx
 
         if not status_col_idx:
             wb.close()
@@ -182,6 +189,14 @@ class ExcelHandler:
             "Updated row %d in sheet '%s' (col %d 'Status') -> '%s'",
             actual_row, worksheet_name, status_col_idx, actual_status
         )
+
+        # Also update My status if present
+        if my_status_col_idx and my_status_col_idx != status_col_idx:
+            sheet.cell(row=actual_row, column=my_status_col_idx, value=actual_status)
+            logger.info(
+                "Updated row %d in sheet '%s' (col %d 'My status') -> '%s'",
+                actual_row, worksheet_name, my_status_col_idx, actual_status
+            )
 
         # Update Account posted column if provided and column exists
         if actual_account:
@@ -201,11 +216,20 @@ class ExcelHandler:
                     logger.info("Updated row %d Last checked (col %d) -> '%s'", actual_row, c, actual_timestamp)
                     break
 
+            for c in range(1, max_col + 1):
+                h_val = str(sheet.cell(row=1, column=c).value or "").strip().lower()
+                if h_val == "date":
+                    date_val = actual_timestamp.split()[0] if " " in actual_timestamp else actual_timestamp
+                    sheet.cell(row=actual_row, column=c, value=date_val)
+                    logger.info("Updated row %d Date (col %d) -> '%s'", actual_row, c, date_val)
+                    break
+
         # Handle Column N timestamp if requested
         if actual_timestamp:
             if max_col >= 14:
                 col_n_header = sheet.cell(row=1, column=14).value
-                if col_n_header and "timestamp" in str(col_n_header).lower():
+                col_n_str = str(col_n_header or "").replace(" ", "").replace("_", "").lower()
+                if col_n_header and "timestamp" in col_n_str:
                     sheet.cell(row=actual_row, column=14, value=actual_timestamp)
                     logger.info("Updated Column N timestamp on row %d: %s", actual_row, actual_timestamp)
                 else:
