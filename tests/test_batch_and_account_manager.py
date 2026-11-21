@@ -131,6 +131,7 @@ class TestAccountManagerAndBatch(unittest.TestCase):
         selected_accounts = ["schoolwaale01@gmail.com", "schoolwaale02@gmail.com"]
 
         with patch.object(ctrl, "sync_from_google_sheet", return_value=(True, "Synced")), \
+             patch.object(ctrl.openclaw_client, "ensure_gateway_running", return_value=True), \
              patch.object(ctrl, "prepare_reply_in_reddit", return_value=(True, "Staged", {"staged": True})), \
              patch.object(ctrl, "prepare_post_in_reddit", return_value=(True, "Staged", {"staged": True})), \
              patch.object(ctrl.excel_handler, "update_task_status", return_value=True), \
@@ -165,6 +166,7 @@ class TestAccountManagerAndBatch(unittest.TestCase):
             return True, "Staged item 1", {"staged": True}
 
         with patch.object(ctrl, "sync_from_google_sheet", return_value=(True, "Synced")), \
+             patch.object(ctrl.openclaw_client, "ensure_gateway_running", return_value=True), \
              patch.object(ctrl, "prepare_reply_in_reddit", side_effect=stop_on_first_call), \
              patch.object(ctrl, "prepare_post_in_reddit", side_effect=stop_on_first_call), \
              patch.object(ctrl.excel_handler, "update_task_status", return_value=(True, "OK")), \

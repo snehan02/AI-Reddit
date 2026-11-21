@@ -124,6 +124,11 @@ class WorkflowController:
     def initialize(self, reload_accounts: bool = True) -> WorkbookSchemaReport:
         """Run workbook inspection and prepare task queue."""
         logger.info("Initializing workflow controller...")
+        # 0. Sync workbook path
+        self.excel_handler.set_workbook_path(self.settings.workbook_path)
+        if hasattr(self, "schema_inspector"):
+            self.schema_inspector.workbook_path = Path(self.settings.workbook_path)
+
         # 1. Inspect schema
         self.schema_report = self.schema_inspector.inspect()
 
@@ -199,10 +204,11 @@ class WorkflowController:
         logger.info("Workflow initialization complete: %s", self.stats)
         return self.schema_report
 
-    def pull_latest_from_google_sheet(self) -> Tuple[bool, str]:
+    def pull_latest_from_google_sheet(self, target_path: Optional[str] = None) -> Tuple[bool, str]:
         """Download latest content from Google Sheet, update local workbook, and re-initialize tasks."""
+        dest = target_path or self.settings.workbook_path
         ok, msg = self.google_syncer.pull_latest_from_google_sheet(
-            target_path=self.settings.workbook_path
+            target_path=dest
         )
         if ok:
             self.initialize(reload_accounts=False)
@@ -1537,37 +1543,125 @@ class WorkflowController:
             logger.info("Human touch: Pausing %.2fs to simulate human reading the thread...", reading_delay)
             time.sleep(reading_delay)
 
-            # 3. Retrieve DOM page content with fast direct CDP auto-recovery
-            snap_resp = self.openclaw_client.get_page_snapshot(prof_name, target_id=tab_id)
-            if not snap_resp.success:
-                logger.info("Accessibility snapshot not ready (%s). Recovering page content via fast direct CDP evaluate...", snap_resp.error)
-                eval_snap = self.evaluate_in_browser(
-                    prof_name,
-                    "() => {\n"
-                    "  const closeBtn = document.querySelector('button[aria-label=\"Close\" i], button[aria-label=\"Close modal\" i], faceplate-modal-header button');\n"
-                    "  if (closeBtn) { try { closeBtn.click(); } catch(e) {} }\n"
-                    "  return document.body ? (document.body.innerText || document.body.textContent || '') : '';\n"
-                    "}",
-                    target_id=tab_id,
-                    timeout=15,
-                )
-                if eval_snap.success and eval_snap.data:
-                    snapshot_text = str(eval_snap.data)
-                else:
-                    eval_snap2 = self.evaluate_in_browser(
-                        prof_name,
-                        "() => document.body ? (document.body.innerText || document.body.textContent || '') : ''",
-                        timeout=10,
-                    )
-                    if eval_snap2.success and eval_snap2.data:
-                        snapshot_text = str(eval_snap2.data)
-                    else:
-                        return False, f"Failed to retrieve page content: {snap_resp.error or eval_snap.error}", {"status": "SNAPSHOT_FAILED"}
-            else:
-                snapshot_text = str(snap_resp.data or "")
+            # 3. Fast direct CDP inspection (<100ms): dismiss blocking modals, check auth, captcha, locked/archived
+            inspect_js = """
+            () => {
+                const wait = ms => new Promise(r => setTimeout(r, ms));
 
-            # 4. Check for CAPTCHA
-            if self.check_snapshot_for_captcha(snapshot_text):
+                // Helper to search across shadow roots
+                function findInShadow(root, selector) {
+                    if (!root) return null;
+                    try {
+                        const found = root.querySelector(selector);
+                        if (found) return found;
+                    } catch(e) {}
+                    const children = root.querySelectorAll('*');
+                    for (const el of children) {
+                        if (el.shadowRoot) {
+                            const res = findInShadow(el.shadowRoot, selector);
+                            if (res) return res;
+                        }
+                    }
+                    return null;
+                }
+
+                // 1. Dismiss any blocking interstitial / modal if present (click close 'X' or send Escape)
+                const closeSelectors = [
+                    'button[aria-label="Close" i]',
+                    'button[aria-label="Close modal" i]',
+                    'button[aria-label*="dismiss" i]',
+                    'faceplate-modal-header button',
+                    'shreddit-signup-drawer button',
+                    'auth-flow-modal button',
+                    'div[role="dialog"] button[aria-label*="close" i]',
+                    'div[role="dialog"] header button',
+                    'div[aria-label="Close" i] button',
+                    'button.close'
+                ];
+                for (const sel of closeSelectors) {
+                    try {
+                        const btn = document.querySelector(sel) || findInShadow(document, sel);
+                        if (btn && typeof btn.click === 'function') {
+                            btn.click();
+                        }
+                    } catch(e) {}
+                }
+                try {
+                    document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true}));
+                } catch(e) {}
+
+                // 2. Extract logged in user and authentication state
+                const app = document.querySelector('shreddit-app');
+                const currentUser = (app ? app.getAttribute('current-user') : '') || '';
+                const userDropdown = !!document.querySelector(
+                    '[data-testid="user-dropdown"], #USER_DROPDOWN_ID, button[aria-label*="User menu" i], button[aria-label*="User account" i], button[aria-label*="Open user menu" i], shreddit-user-drawer'
+                );
+                
+                let detectedUser = currentUser;
+                if (!detectedUser) {
+                    const uLink = document.querySelector('a[href*="/user/"][aria-label*="profile" i], faceplate-tracker[noun="user_profile"] a');
+                    if (uLink) {
+                        const href = uLink.getAttribute('href') || '';
+                        const m = href.match(/\\/user\\/([^\\/\\?]+)/);
+                        if (m) detectedUser = m[1];
+                    }
+                }
+
+                const hasEditor = !!document.querySelector('div[slot="rte"][contenteditable="true"], shreddit-composer, shreddit-comment-composer, faceplate-textarea-input, comment-body-header');
+                const loginBtn = document.querySelector('a[href*="/login"], button[data-testid="login-button"]');
+                const authModal = document.querySelector('shreddit-signup-drawer, auth-flow-modal');
+                const isBlockingModal = !!(authModal && authModal.offsetParent !== null);
+
+                // Authenticated if current user known, user dropdown present, or comment editor is ready and not blocked by a modal
+                const isAuth = (!!detectedUser || userDropdown || hasEditor) && !isBlockingModal;
+
+                // 3. Discussion state
+                const postEl = document.querySelector('shreddit-post');
+                const isLocked = !!(postEl && postEl.getAttribute('locked') === 'true') || !!document.querySelector('[data-testid="post-locked"]');
+                const isArchived = !!(postEl && postEl.getAttribute('archived') === 'true') || !!document.querySelector('[data-testid="post-archived"]');
+                const bodyTxt = (document.body ? (document.body.innerText || document.body.textContent || '') : '').toLowerCase();
+                const isDeleted = bodyTxt.includes('this post has been removed') || bodyTxt.includes('sorry, this post has been removed') || bodyTxt.includes('[deleted by user]');
+
+                // 4. Captcha check
+                const challengeIframe = document.querySelector(
+                    'iframe[src*="recaptcha/api2/bframe"], iframe[src*="challenges.cloudflare.com"], #px-captcha:not([style*="display: none"])'
+                );
+                const hasActiveChallenge = !!(challengeIframe && (challengeIframe.offsetWidth > 50 || challengeIframe.offsetHeight > 50));
+                const hasCaptchaText = !hasEditor && (
+                    bodyTxt.includes('verify you are human') ||
+                    bodyTxt.includes("verify you're human") ||
+                    bodyTxt.includes('press & hold to confirm you are a human') ||
+                    bodyTxt.includes('press & hold')
+                );
+                const hasCaptcha = hasActiveChallenge || hasCaptchaText;
+
+                return JSON.stringify({
+                    isAuth: isAuth,
+                    activeUser: detectedUser || (isAuth ? 'authenticated_user' : null),
+                    isLocked: isLocked,
+                    isArchived: isArchived,
+                    isDeleted: isDeleted,
+                    hasCaptcha: hasCaptcha,
+                    hasEditor: hasEditor,
+                    hasLoginButton: !!loginBtn,
+                    domSnippet: document.documentElement ? document.documentElement.outerHTML.slice(0, 100000) : ''
+                });
+            }
+            """
+
+            eval_inspect = self.evaluate_in_browser(prof_name, inspect_js, target_id=tab_id, timeout=15)
+            page_info: Dict[str, Any] = {}
+            if eval_inspect.success and eval_inspect.data:
+                page_info = _safe_json_loads(eval_inspect.data, default={})
+
+            snapshot_text = page_info.get("domSnippet") or ""
+            if not snapshot_text:
+                snap_resp = self.openclaw_client.get_page_snapshot(prof_name, target_id=tab_id)
+                snapshot_text = str(snap_resp.data or "") if snap_resp.success else ""
+
+            # 4. Check for CAPTCHA (only when comment editor is not present and active)
+            has_editor = bool(page_info.get("hasEditor"))
+            if not has_editor and (page_info.get("hasCaptcha") or self.check_snapshot_for_captcha(snapshot_text)):
                 self.audit_logger.log_event(
                     task_id=task_id,
                     event_type="OPENCLAW_ERROR",
@@ -1578,6 +1672,13 @@ class WorkflowController:
                 return False, "⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.", {"status": "CAPTCHA_DETECTED"}
 
             # 5. Check Discussion State (Locked, Archived, Deleted, Unavailable)
+            if page_info.get("isLocked"):
+                return False, "Discussion is locked. Skipping task.", {"status": "NON_ACTIONABLE", "reason": "Locked"}
+            if page_info.get("isArchived"):
+                return False, "Discussion is archived. Skipping task.", {"status": "NON_ACTIONABLE", "reason": "Archived"}
+            if page_info.get("isDeleted"):
+                return False, "Discussion is deleted or unavailable. Skipping task.", {"status": "NON_ACTIONABLE", "reason": "Deleted"}
+
             is_actionable, state_reason = self.openclaw_client.inspect_reddit_discussion_state(snapshot_text)
             if not is_actionable:
                 self.audit_logger.log_event(
@@ -1591,31 +1692,25 @@ class WorkflowController:
 
             # 6. Verify Active Account and Reddit Authentication
             is_test_url = "example.com" in (task.destination_url or "").lower()
-            active_user = None
-            if not is_test_url:
-                is_auth, active_user, auth_msg = self.openclaw_client.verify_reddit_auth_in_dom(snapshot_text)
-                # If page is still hydrating skeleton (< 250 chars) and not explicitly unauthenticated, wait briefly
-                if not is_auth and "unauthenticated" not in auth_msg.lower() and len(snapshot_text) < 250:
-                    time.sleep(1.5)
-                    eval_snap = self.evaluate_in_browser(
-                        prof_name,
-                        "() => document.body ? (document.body.innerText || document.body.textContent || '') : ''",
-                        target_id=tab_id,
-                        timeout=10,
-                    )
-                    if eval_snap.success and eval_snap.data:
-                        snapshot_text = str(eval_snap.data)
-                        is_auth, active_user, auth_msg = self.openclaw_client.verify_reddit_auth_in_dom(snapshot_text)
+            active_user = page_info.get("activeUser")
+            is_auth = bool(page_info.get("isAuth"))
 
-                if not is_auth:
-                    self.audit_logger.log_event(
-                        task_id=task_id,
-                        event_type="OPENCLAW_ERROR",
-                        operator_action="PREPARE_REPLY",
-                        outcome="Reddit authentication required. Please log in manually.",
-                        error_code="NOT_LOGGED_IN",
-                    )
-                    return False, f"Reddit account '{prof_name}' is not logged in. Please log in to Reddit.", {"status": "NOT_LOGGED_IN"}
+            if not is_test_url and not is_auth:
+                # Secondary confirmation via verify_reddit_auth_in_dom
+                is_auth_dom, dom_user, auth_msg = self.openclaw_client.verify_reddit_auth_in_dom(snapshot_text)
+                if is_auth_dom:
+                    is_auth = True
+                    active_user = dom_user or active_user
+
+            if not is_test_url and not is_auth:
+                self.audit_logger.log_event(
+                    task_id=task_id,
+                    event_type="OPENCLAW_ERROR",
+                    operator_action="PREPARE_REPLY",
+                    outcome="Reddit authentication required. Please log in manually.",
+                    error_code="NOT_LOGGED_IN",
+                )
+                return False, f"Reddit account '{prof_name}' is not logged in. Please log in to Reddit.", {"status": "NOT_LOGGED_IN"}
 
             if task.account_id and active_user:
                 expected_user = None
@@ -1707,9 +1802,24 @@ class WorkflowController:
                 "    }\n"
                 "  }\n"
                 "\n"
-                "  const authModal = document.querySelector('shreddit-signup-drawer, [aria-label*=\"Sign Up\" i], auth-flow-modal');\n"
-                "  const bodyTxt = (document.body ? (document.body.innerText || '') : '');\n"
-                "  if (authModal || bodyTxt.includes('Already a redditor? Log In') || (bodyTxt.includes('Continue with Google') && bodyTxt.includes('Sign Up'))) {\n"
+                "  // Dismiss any sign-up or interstitial modal if present\n"
+                "  const closeSelectors = [\n"
+                "    'button[aria-label=\"Close\" i]',\n"
+                "    'button[aria-label=\"Close modal\" i]',\n"
+                "    'faceplate-modal-header button',\n"
+                "    'shreddit-signup-drawer button[aria-label=\"Close\" i]',\n"
+                "    'auth-flow-modal button[aria-label=\"Close\" i]',\n"
+                "    'div[aria-label=\"Close\" i] button',\n"
+                "    'button.close'\n"
+                "  ];\n"
+                "  for (const sel of closeSelectors) {\n"
+                "    try { const b = document.querySelector(sel); if (b) b.click(); } catch(e) {}\n"
+                "  }\n"
+                "  await wait(150);\n"
+                "\n"
+                "  const authModal = document.querySelector('shreddit-signup-drawer, auth-flow-modal');\n"
+                "  const isBlockingModal = !!(authModal && authModal.offsetParent !== null);\n"
+                "  if (isBlockingModal && !editor) {\n"
                 "    return JSON.stringify({ success: false, isAuthError: true, error: 'Reddit authentication required. Session is not logged in.' });\n"
                 "  }\n"
                 "\n"
@@ -1950,6 +2060,10 @@ class WorkflowController:
                     excel_row=task.excel_row,
                     new_status="Completed - automated submission",
                     timestamp_str=now_iso,
+                    account_name=task.account_id or prof_name,
+                    destination_url=getattr(task, "destination_url", None),
+                    task_id=getattr(task, "task_id", None),
+                    thread_title=getattr(task, "thread_title", None) or getattr(task, "title", None),
                 )
                 excel_update_msg = excel_msg
                 if not excel_ok:
@@ -1975,6 +2089,9 @@ class WorkflowController:
                         new_status="Draft",
                         timestamp_str=now_human,
                         account_name=task.account_id or prof_name,
+                        destination_url=getattr(task, "destination_url", None),
+                        task_id=getattr(task, "task_id", None),
+                        thread_title=getattr(task, "thread_title", None) or getattr(task, "title", None),
                     )
                 except Exception as ex_draft:
                     logger.warning("Could not sync Excel draft status: %s", ex_draft)
@@ -2522,6 +2639,9 @@ class WorkflowController:
                         new_status="Draft",
                         timestamp_str=now_human,
                         account_name=active_account,
+                        destination_url=getattr(task, "destination_url", None),
+                        task_id=getattr(task, "task_id", None),
+                        thread_title=getattr(task, "thread_title", None) or getattr(task, "title", None),
                     )
                 except Exception as ex_draft:
                     logger.warning("Could not sync Excel draft status: %s", ex_draft)
@@ -3778,22 +3898,6 @@ class WorkflowController:
 
             viable_accounts = [a for a in clean_accounts if a not in failed_auth_accounts]
             if not viable_accounts:
-                # Auto-expand pool with any configured system accounts that have active cookies and haven't failed
-                sys_logged = [
-                    acc_id for acc_id, prof in self.account_manager.accounts.items()
-                    if prof.enabled and acc_id not in failed_auth_accounts
-                    and self.account_manager.check_session_status(acc_id).get("has_cookies")
-                ]
-                if sys_logged:
-                    logger.info("Auto-expanding batch pool with available logged-in system accounts: %s", sys_logged)
-                    for sa in sys_logged:
-                        if sa not in clean_accounts:
-                            clean_accounts.append(sa)
-                            account_prepared_counts[sa] = 0
-                            account_failure_counts[sa] = 0
-                    viable_accounts = [a for a in clean_accounts if a not in failed_auth_accounts]
-
-            if not viable_accounts:
                 halt_msg = (
                     f"⚠️ Batch stopped: No viable logged-in accounts remain in the pool "
                     f"({', '.join(failed_auth_accounts)} not logged in or encountered session errors). "
@@ -3948,13 +4052,18 @@ class WorkflowController:
                             new_status=new_status,
                             timestamp_str=now_str,
                             account_name=active_account,
+                            destination_url=getattr(task, "destination_url", None),
+                            task_id=getattr(task, "task_id", None),
+                            thread_title=task_title,
                         )
-                        if sync_gsheets and self.google_sheets_syncer:
-                            self.google_sheets_syncer.update_row_status(
+                        syncer = getattr(self, "google_syncer", None) or getattr(self, "google_sheets_syncer", None)
+                        if sync_gsheets and syncer:
+                            syncer.update_row_status(
                                 worksheet=task.worksheet,
                                 row_index=task.excel_row,
                                 status=new_status,
                                 timestamp=now_str,
+                                account_name=active_account,
                             )
                     except Exception as ex_err:
                         logger.warning("Could not sync Excel/Sheets status for row %s: %s", task.excel_row, ex_err)
@@ -4002,21 +4111,6 @@ class WorkflowController:
                         c for c in eligible_candidates
                         if c != current_account and c not in failed_auth_accounts
                     ]
-                    if not remaining_candidates:
-                        # Auto-discover any verified system account that has saved cookies and hasn't failed
-                        sys_logged = [
-                            acc_id for acc_id, prof in self.account_manager.accounts.items()
-                            if prof.enabled and acc_id not in failed_auth_accounts and acc_id != current_account
-                            and self.account_manager.check_session_status(acc_id).get("has_cookies")
-                        ]
-                        if sys_logged:
-                            logger.info("Auto-fallback to available system logged-in accounts: %s", sys_logged)
-                            for sa in sys_logged:
-                                if sa not in clean_accounts:
-                                    clean_accounts.append(sa)
-                                    account_prepared_counts[sa] = 0
-                                    account_failure_counts[sa] = 0
-                            remaining_candidates = sys_logged
 
                     if remaining_candidates:
                         next_account = remaining_candidates[0]
@@ -4047,7 +4141,7 @@ class WorkflowController:
                         break
 
             if not task_succeeded:
-                failed_acc = active_account or target_account
+                failed_acc = active_account or current_account or target_account
                 errors.append(f"Row {task.excel_row} ({failed_acc}): {last_error_msg}")
                 try:
                     self.audit_logger.save_prepared_item(
@@ -4066,15 +4160,21 @@ class WorkflowController:
                         status="Failed",
                         error_message=last_error_msg,
                     )
-                    self.excel_handler.update_task_status(
-                        worksheet_name=task.worksheet,
-                        excel_row=task.excel_row,
-                        new_status="Failed",
-                        timestamp_str=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                        account_name=failed_acc,
-                    )
-                except Exception:
-                    pass
+                    try:
+                        self.excel_handler.update_task_status(
+                            worksheet_name=task.worksheet,
+                            excel_row=task.excel_row,
+                            new_status="Failed",
+                            timestamp_str=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                            account_name=failed_acc,
+                            destination_url=getattr(task, "destination_url", None),
+                            task_id=getattr(task, "task_id", None),
+                            thread_title=task_title,
+                        )
+                    except Exception:
+                        pass
+                except Exception as e:
+                    logger.error("Failed to record failed prepared item in audit log: %s", e)
 
                 if progress_callback:
                     progress_callback({
@@ -4153,7 +4253,10 @@ class WorkflowController:
                 return false;
             }})()
             """
-            self.evaluate_in_browser(js_check_and_refill, profile_name=account_id)
+            try:
+                self.evaluate_in_browser(profile_name=account_id, script=js_check_and_refill)
+            except Exception as e:
+                logger.warning("Could not execute comment refill script via OpenClaw: %s", e)
 
         elif task_type == "post":
             title = item.get("title") or ""
@@ -4172,7 +4275,10 @@ class WorkflowController:
                 return true;
             }})()
             """
-            self.evaluate_in_browser(js_refill_post, profile_name=account_id)
+            try:
+                self.evaluate_in_browser(profile_name=account_id, script=js_refill_post)
+            except Exception as e:
+                logger.warning("Could not execute post refill script via OpenClaw: %s", e)
 
         self.bring_browser_to_front("Chrome")
         return True, f"Opened Chrome for {account_id}. Content is ready in the editor for your review."
@@ -4198,28 +4304,22 @@ class WorkflowController:
         )
 
         # Update Excel workbook
+        excel_ok = False
+        excel_msg = ""
         try:
-            self.excel_handler.update_task_status(
+            excel_ok, excel_msg = self.excel_handler.update_task_status(
                 worksheet_name=worksheet,
                 excel_row=excel_row,
                 new_status="Complete",
                 timestamp_str=now_human,
                 account_name=account_id,
+                destination_url=item.get("destination_url"),
+                task_id=item.get("task_id"),
+                thread_title=item.get("title"),
             )
         except Exception as e:
             logger.warning("Excel status update for row %s: %s", excel_row, e)
-
-        # Update Google Sheet
-        try:
-            if getattr(self, "google_syncer", None):
-                self.google_syncer.update_row_status(
-                    worksheet=worksheet,
-                    row_index=excel_row,
-                    status="Complete",
-                    timestamp=now_human,
-                )
-        except Exception as e:
-            logger.warning("Google Sheet status update for row %s: %s", excel_row, e)
+            excel_msg = str(e)
 
         # Log audit event
         self.audit_logger.log_event(
@@ -4227,10 +4327,14 @@ class WorkflowController:
             event_type="HUMAN_CONFIRMED_COMPLETED",
             operator_action="MARK_COMPLETE",
             outcome=f"Item {item_id} confirmed completed by human operator for {account_id}.",
-            error_details=f"Worksheet: {worksheet}, Row: {excel_row}, Published At: {now_human}",
+            error_details=f"Worksheet: {worksheet}, Row: {excel_row}, Published At: {now_human}, Excel: {excel_msg}",
         )
 
-        return True, f"Successfully verified & marked Complete for {account_id} (Row {excel_row})! Synchronized with Excel and Google Sheet."
+        wb_name = Path(self.excel_handler.workbook_path).name
+        if excel_ok:
+            return True, f"Successfully verified & marked Complete for {account_id} (Row {excel_row})! Synchronized with Excel workbook '{wb_name}'."
+        else:
+            return True, f"Successfully verified & marked Complete for {account_id} (Row {excel_row}) in database! (Excel sync notice: {excel_msg})"
 
 
 

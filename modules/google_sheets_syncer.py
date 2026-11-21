@@ -31,61 +31,65 @@ function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(data.sheet || "Posts");
+    var sheet = ss.getSheetByName(data.sheet || "Driving DMV");
+    if (!sheet) {
+      sheet = ss.getSheetByName("Posts") || ss.getSheets()[0];
+    }
     if (!sheet) {
       return ContentService.createTextOutput(JSON.stringify({result: "error", message: "Sheet not found: " + data.sheet}))
         .setMimeType(ContentService.MimeType.JSON);
     }
     var row = data.row;
-    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var lastCol = sheet.getLastColumn();
+    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
     
-    // 1. Update Status column
-    var statusCol = -1;
     for (var i = 0; i < headers.length; i++) {
-      if (String(headers[i]).toLowerCase().trim() === "status") {
-        statusCol = i + 1;
-        break;
-      }
-    }
-    if (statusCol > 0 && row > 1) {
-      sheet.getRange(row, statusCol).setValue(data.status || "Done");
-    }
-    
-    // 2. Update Live URL if column exists
-    if (data.live_url) {
-      var urlCol = -1;
-      for (var i = 0; i < headers.length; i++) {
-        var h = String(headers[i]).toLowerCase();
-        if (h.includes("live url") || h.includes("permalink") || h.includes("published url")) {
-          urlCol = i + 1;
-          break;
+      var h = String(headers[i]).toLowerCase().trim();
+      var colIdx = i + 1;
+      
+      // 1. Status and My status
+      if (h === "status" || h === "my status" || h === "mystatus") {
+        if (data.status && row > 1) {
+          sheet.getRange(row, colIdx).setValue(data.status);
         }
       }
-      if (urlCol > 0 && row > 1) {
-        sheet.getRange(row, urlCol).setValue(data.live_url);
-      }
-    }
-    
-    // 3. Update Timestamp if column exists
-    if (data.timestamp) {
-      var tsCol = -1;
-      for (var i = 0; i < headers.length; i++) {
-        var th = String(headers[i]).toLowerCase();
-        if (th.includes("time stamp") || th.includes("timestamp") || th.includes("date posted")) {
-          tsCol = i + 1;
-          break;
+      
+      // 2. Account posted
+      if (h.includes("account posted") || h === "account") {
+        if (data.account && row > 1) {
+          sheet.getRange(row, colIdx).setValue(data.account);
         }
       }
-      if (tsCol > 0 && row > 1) {
-        sheet.getRange(row, tsCol).setValue(data.timestamp);
+      
+      // 3. Last checked & Time Stamp
+      if (h.includes("last checked") || h.includes("time stamp") || h.includes("timestamp")) {
+        if (data.timestamp && row > 1) {
+          sheet.getRange(row, colIdx).setValue(data.timestamp);
+        }
+      }
+      
+      // 4. Date
+      if (h === "date") {
+        if (data.timestamp && row > 1) {
+          var dateVal = String(data.timestamp).split(" ")[0];
+          sheet.getRange(row, colIdx).setValue(dateVal);
+        }
+      }
+      
+      // 5. Live URL
+      if (h.includes("live url") || h.includes("permalink") || h.includes("published url")) {
+        if (data.live_url && row > 1) {
+          sheet.getRange(row, colIdx).setValue(data.live_url);
+        }
       }
     }
 
     return ContentService.createTextOutput(JSON.stringify({
       result: "success",
       row: row,
-      sheet: data.sheet,
-      status: data.status
+      sheet: sheet.getName(),
+      status: data.status,
+      account: data.account
     })).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({result: "error", error: err.toString()}))
@@ -177,6 +181,7 @@ class GoogleSheetsSyncer:
         new_status: str,
         live_url: Optional[str] = None,
         timestamp_str: Optional[str] = None,
+        account_name: Optional[str] = None,
         timeout: int = 15,
     ) -> Tuple[bool, str]:
         """Send row status update to Google Sheet via deployed Apps Script webhook."""
@@ -190,6 +195,7 @@ class GoogleSheetsSyncer:
             "sheet": worksheet_name,
             "row": excel_row,
             "status": new_status,
+            "account": account_name or "",
             "live_url": live_url,
             "timestamp": timestamp_str or datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         }
@@ -239,14 +245,16 @@ class GoogleSheetsSyncer:
         status: Optional[str] = None,
         live_url: Optional[str] = None,
         timestamp_str: Optional[str] = None,
+        account_name: Optional[str] = None,
         **kwargs: Any,
     ) -> Tuple[bool, str]:
         """Convenience alias for update_status_in_google_sheet with flexible keyword arguments."""
-        resolved_sheet = sheet_name or kwargs.get("worksheet") or kwargs.get("sheet") or "Posts"
+        resolved_sheet = sheet_name or kwargs.get("worksheet") or kwargs.get("sheet") or "Driving DMV"
         resolved_row = row_number or kwargs.get("row_index") or kwargs.get("row") or kwargs.get("excel_row") or 1
         resolved_status = status or kwargs.get("new_status") or "Done"
         resolved_ts = timestamp_str or kwargs.get("timestamp") or kwargs.get("timestamp_str")
         resolved_url = live_url or kwargs.get("live_url") or kwargs.get("url")
+        resolved_acc = account_name or kwargs.get("account_name") or kwargs.get("account")
 
         return self.update_status_in_google_sheet(
             worksheet_name=str(resolved_sheet),
@@ -254,5 +262,6 @@ class GoogleSheetsSyncer:
             new_status=str(resolved_status),
             live_url=resolved_url,
             timestamp_str=resolved_ts,
+            account_name=resolved_acc,
         )
 

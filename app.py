@@ -12,6 +12,7 @@ Strict compliance:
 
 import inspect
 import os
+from pathlib import Path
 import re
 import time
 import pandas as pd
@@ -124,44 +125,117 @@ with st.sidebar:
     st.caption(f"💡 **Why:** Account-level limit & anti-ban protection. | **Use:** Enforces max submissions per account and a {gap_str}-hour gap between posts.")
 
     st.markdown("---")
-    st.markdown("### 📊 Google Sheets Sync")
-    gsheet_url = f"https://docs.google.com/spreadsheets/d/{settings.google_spreadsheet_id}/edit?gid=0#gid=0"
-    st.caption("💡 **Why:** Single source of truth. | **Use:** Click 'Open' to view online or 'Pull Latest' to sync new rows.")
-    st.link_button("🌐 Open Google Sheet", gsheet_url, width='stretch')
+    st.markdown("### 📊 Local Excel / Spreadsheet Sync")
+    st.caption("💡 **Why:** Automatic live workbook output. | **Use:** Specify your local Excel file (`.xlsx`) and select your worksheet. Downloaded Google Sheets are fully supported directly with zero APIs or Apps Script.")
 
-    if st.button("🔄 Pull Latest from Google Sheet", width='stretch', help="Downloads the latest rows from your Google Sheet into the app and refreshes all tasks."):
-        with st.spinner("Downloading and syncing latest data from Google Sheet..."):
-            ok, msg = controller.pull_latest_from_google_sheet()
-            if ok:
-                st.success("✅ Workbook updated from Google Sheet!")
-                st.rerun()
-            else:
-                st.error(f"❌ {msg}")
-
-    wh_input = st.text_input(
-        "Apps Script Webhook URL (Live Write)",
-        value=settings.google_sheets_webhook_url,
-        help="Optional: Paste your deployed Google Apps Script Web App URL here to update 'Status' to Done directly in Google Sheets in real time.",
-        placeholder="https://script.google.com/macros/s/.../exec",
+    current_wb_path = settings.workbook_path or "data/Reddit Threads.xlsx"
+    new_wb_path = st.text_input(
+        "Excel File Path (.xlsx):",
+        value=current_wb_path,
+        help="Full path or relative path to your local or downloaded Excel workbook (e.g. data/Reddit Threads.xlsx or D:\\Shoro AI Reddit\\Driving_DMV.xlsx).",
     )
-    if wh_input != settings.google_sheets_webhook_url:
-        settings.google_sheets_webhook_url = wh_input.strip()
-        controller.google_syncer.webhook_url = wh_input.strip()
-        settings.save()
-        st.toast("Saved Google Sheets Webhook URL!")
 
-    with st.expander("ℹ️ How to Enable Live Google Sheet Updates", expanded=False):
-        st.markdown(
-            f"To have post status automatically set to **Done** directly inside your Google Sheet:\n\n"
-            f"1. Open your [Google Sheet]({gsheet_url}).\n"
-            "2. Click **Extensions** > **Apps Script**.\n"
-            "3. Replace any code with the script below.\n"
-            "4. Click **Deploy** > **New Deployment** > Select **Web app**.\n"
-            "5. Set *Execute as:* **Me**, *Who has access:* **Anyone** > Click **Deploy**.\n"
-            "6. Copy the **Web app URL** and paste it into the field above."
+    wb_p = Path(new_wb_path.strip()) if new_wb_path and new_wb_path.strip() else Path("data/Reddit Threads.xlsx")
+    if not wb_p.is_absolute():
+        wb_p = Path(os.getcwd()) / wb_p
+
+    # Auto-save file path change immediately if valid workbook exists
+    if new_wb_path.strip() and new_wb_path.strip() != settings.workbook_path:
+        if wb_p.exists() and wb_p.suffix.lower() == ".xlsx":
+            settings.workbook_path = new_wb_path.strip()
+            settings.save()
+            controller.excel_handler.set_workbook_path(settings.workbook_path)
+            controller.initialize(reload_accounts=False)
+
+    available_sheets = []
+    if wb_p.exists() and wb_p.suffix.lower() == ".xlsx":
+        try:
+            import openpyxl
+            wb_inspect = openpyxl.load_workbook(wb_p, read_only=True)
+            available_sheets = list(wb_inspect.sheetnames)
+            wb_inspect.close()
+        except Exception as wb_err:
+            st.error(f"⚠️ Error reading workbook: {wb_err}")
+    elif new_wb_path.strip():
+        st.warning(f"⚠️ File does not exist yet at: `{wb_p}`. You can enter an existing file path or click 'Download Google Sheet' below.")
+
+    # Worksheet selectors
+    if available_sheets:
+        comment_def_idx = available_sheets.index(settings.comment_sheet) if settings.comment_sheet in available_sheets else 0
+        selected_comment_sheet = st.selectbox(
+            "Discussion / Comment Sheet:",
+            options=available_sheets,
+            index=comment_def_idx,
+            help="Select the worksheet containing discussion threads to comment on.",
         )
-        from modules.google_sheets_syncer import APPS_SCRIPT_TEMPLATE
-        st.code(APPS_SCRIPT_TEMPLATE, language="javascript")
+        post_def_idx = available_sheets.index(settings.post_sheet) if settings.post_sheet in available_sheets else (1 if len(available_sheets) > 1 else 0)
+        selected_post_sheet = st.selectbox(
+            "Posts Sheet (Optional):",
+            options=available_sheets,
+            index=post_def_idx,
+            help="Select the worksheet containing new posts/threads to publish.",
+        )
+        # Auto-save sheet change immediately
+        if selected_comment_sheet != settings.comment_sheet or selected_post_sheet != settings.post_sheet:
+            settings.comment_sheet = selected_comment_sheet
+            settings.post_sheet = selected_post_sheet
+            settings.save()
+            controller.initialize(reload_accounts=False)
+    else:
+        selected_comment_sheet = st.text_input("Comment Sheet Name:", value=settings.comment_sheet or "Driving DMV")
+        selected_post_sheet = st.text_input("Post Sheet Name:", value=settings.post_sheet or "Posts")
+        if selected_comment_sheet != settings.comment_sheet or selected_post_sheet != settings.post_sheet:
+            settings.comment_sheet = selected_comment_sheet
+            settings.post_sheet = selected_post_sheet
+            settings.save()
+            controller.initialize(reload_accounts=False)
+
+    # Save button / Confirmation
+    path_changed = (new_wb_path.strip() != settings.workbook_path)
+    sheet_changed = (selected_comment_sheet != settings.comment_sheet or selected_post_sheet != settings.post_sheet)
+    if path_changed or sheet_changed:
+        if st.button("💾 Save Excel Configuration", type="primary", use_container_width=True):
+            settings.workbook_path = new_wb_path.strip()
+            settings.comment_sheet = selected_comment_sheet
+            settings.post_sheet = selected_post_sheet
+            settings.save()
+            controller.excel_handler.set_workbook_path(settings.workbook_path)
+            controller.initialize(reload_accounts=False)
+            st.toast("✅ Excel configuration saved and reloaded!")
+            st.rerun()
+
+    # Live Workbook Status Card & Verification
+    if wb_p.exists():
+        import datetime
+        mtime = datetime.datetime.fromtimestamp(wb_p.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S")
+        st.success(f"🟢 **Active Workbook:** `{wb_p.name}`\n\n• **Path:** `{wb_p}`\n• **Last Modified on Disk:** `{mtime}`")
+
+        # Live verification preview of rows in the workbook
+        recent_rows = controller.excel_handler.get_recent_updated_rows(settings.comment_sheet, limit=6)
+        if recent_rows:
+            st.markdown("📋 **Latest Updated Rows in Excel:**")
+            for r_item in recent_rows:
+                st.caption(f"• **Row {r_item['row']}**: `{r_item['status']}` ({r_item['account']}) | {r_item['timestamp']}")
+
+        st.info("💡 **Important Notice:** If this Excel file is currently open in Microsoft Excel, close and reopen it to see the updates, as Excel does not automatically reload spreadsheets updated by external software.")
+    else:
+        st.error(f"🔴 **Workbook Not Found:** `{wb_p}`\nPlease enter a valid file path or click 'Download Google Sheet' below.")
+
+    # Download from Google Sheet button (public .xlsx export - NO credentials/Apps Script required)
+    gsheet_url = f"https://docs.google.com/spreadsheets/d/{settings.google_spreadsheet_id}/edit?gid=0#gid=0"
+    col_dl1, col_dl2 = st.columns([1, 1])
+    with col_dl1:
+        st.link_button("🌐 Open Google Sheet", gsheet_url, use_container_width=True)
+    with col_dl2:
+        if st.button("📥 Download Google Sheet", use_container_width=True, help="Downloads the online Google Sheet directly as an .xlsx file into your configured file path."):
+            with st.spinner("Downloading Google Sheet to local Excel..."):
+                ok, msg = controller.pull_latest_from_google_sheet(target_path=settings.workbook_path)
+                if ok:
+                    controller.initialize(reload_accounts=False)
+                    st.toast("✅ Downloaded latest Google Sheet to local Excel!")
+                    st.rerun()
+                else:
+                    st.error(f"❌ {msg}")
 
     st.markdown("---")
     st.markdown("### 🦞 OpenClaw Gateway")

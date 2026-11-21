@@ -11270,3 +11270,1368 @@ Check the Control UI or run `openclaw gateway status` in your terminal.
 2026-11-20 22:42:50,271 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
 2026-11-20 22:43:20,294 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health
 2026-11-20 22:43:28,375 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:39:49,423 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:40:00,660 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:40:01,372 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 10:40:03,574 [INFO] modules.openclaw_client: OpenClaw gateway on port 18789 is unreachable. Auto-spawning gateway daemon...
+2026-11-21 10:40:55,341 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 10:41:25,409 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health
+2026-11-21 10:41:32,180 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:43:32,292 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:43:36,300 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:43:37,479 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:43:52,238 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:43:53,714 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:43:53,931 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:43:54,566 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:44:14,496 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:44:19,444 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:44:24,237 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:44:26,115 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:44:28,908 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:44:47,460 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:44:48,375 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:44:48,999 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 825, 'eligible_comments': 2, 'skipped_comments': 823, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 10:44:49,198 [INFO] config: Saved settings to config\settings.json
+2026-11-21 10:44:49,216 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 10:44:52,546 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_104452.xlsx
+2026-11-21 10:44:52,548 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (969829 bytes)
+2026-11-21 10:44:52,548 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:45:37,107 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 0, 'skipped_comments': 851, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 10:45:37,108 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:45:49,749 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 0, 'skipped_comments': 851, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 10:45:51,761 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'shoro_test': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\shoro_test" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:45:57,336 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:47:45,295 [INFO] modules.workflow_controller: Activated browser tab 8364562F3E7AE086E254C0E09FBD777D in Chrome: status 200
+2026-11-21 10:47:47,356 [INFO] modules.workflow_controller: Human touch: Pausing 4.58s to simulate human reading the thread...
+2026-11-21 10:47:52,022 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 8364562F3E7AE086E254C0E09FBD777D (timeout: 15s)
+2026-11-21 10:48:07,051 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 8364562F3E7AE086E254C0E09FBD777D
+2026-11-21 10:48:07,052 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:48:07,695 [INFO] modules.workflow_controller: Auto-fallback to available system logged-in accounts: ['schoolwaale01@gmail.com', 'schoolwaale02@gmail.com', 'schoolwaale08@gmail.com', 'schoolwaale24@gmail.com']
+2026-11-21 10:48:07,696 [WARNING] modules.workflow_controller: Account 'shoro_test' not working / not logged in for Row 852 (Reddit account 'shoro_test' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale01@gmail.com'...
+2026-11-21 10:48:07,764 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_104807_758371.xlsx (size: 969829 bytes)
+2026-11-21 10:48:08,480 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 10:48:08,480 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 10:48:08,481 [INFO] modules.excel_handler: Updated row 852 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 10:48:08,481 [INFO] modules.excel_handler: Updated row 852 Last checked (col 1) -> '2026-11-21 10:48:07'
+2026-11-21 10:48:08,481 [INFO] modules.excel_handler: Updated row 852 Date (col 15) -> '2026-11-21'
+2026-11-21 10:48:08,481 [INFO] modules.excel_handler: Updated Column N timestamp on row 852: 2026-11-21 10:48:07
+2026-11-21 10:48:09,758 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f184e8b2.xlsx
+2026-11-21 10:48:09,758 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 10:48:15,507 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\shoro_test' to 'schoolwaale01@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale01). Terminating running Chrome...
+2026-11-21 10:48:16,539 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale01@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale01" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:48:19,984 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:48:45,147 [INFO] modules.workflow_controller: Activated browser tab 2011F47A7050FFBC975CC76A12EFD91E in Chrome: status 200
+2026-11-21 10:48:47,176 [INFO] modules.workflow_controller: Human touch: Pausing 6.01s to simulate human reading the thread...
+2026-11-21 10:48:53,214 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 2011F47A7050FFBC975CC76A12EFD91E (timeout: 15s)
+2026-11-21 10:49:08,656 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 2011F47A7050FFBC975CC76A12EFD91E
+2026-11-21 10:49:08,657 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:49:08,783 [WARNING] modules.workflow_controller: Account 'schoolwaale01@gmail.com' not working / not logged in for Row 851 (Reddit account 'schoolwaale01@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale02@gmail.com'...
+2026-11-21 10:49:08,840 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale01' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 10:49:09,875 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:49:13,329 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:49:57,567 [INFO] modules.workflow_controller: Activated browser tab AC7C4942F0455A41AA183A3182E0CAEE in Chrome: status 200
+2026-11-21 10:49:59,621 [INFO] modules.workflow_controller: Human touch: Pausing 5.61s to simulate human reading the thread...
+2026-11-21 10:50:05,301 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id AC7C4942F0455A41AA183A3182E0CAEE (timeout: 15s)
+2026-11-21 10:50:20,331 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id AC7C4942F0455A41AA183A3182E0CAEE
+2026-11-21 10:50:20,332 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:50:23,185 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 851 (Reply text does not match Excel value: expected 'Driver licensing in Hawaii is handled by each county, not by...', found 'Driver licensing in Hawaii is handled by each county, not by...'). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 10:50:23,311 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 10:50:24,353 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:50:28,259 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:51:01,701 [INFO] modules.workflow_controller: Activated browser tab F89A4B24C337EF068A1A59A818EDB57C in Chrome: status 200
+2026-11-21 10:51:03,795 [INFO] modules.workflow_controller: Human touch: Pausing 5.33s to simulate human reading the thread...
+2026-11-21 10:51:09,170 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id F89A4B24C337EF068A1A59A818EDB57C (timeout: 15s)
+2026-11-21 10:51:24,527 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id F89A4B24C337EF068A1A59A818EDB57C
+2026-11-21 10:51:25,006 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:51:26,061 [WARNING] modules.workflow_controller: Account 'schoolwaale08@gmail.com' not working / not logged in for Row 851 (Reddit account 'schoolwaale08@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale02@gmail.com'...
+2026-11-21 10:51:26,127 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale24@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale24). Terminating running Chrome...
+2026-11-21 10:51:27,175 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale24@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale24" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:51:31,334 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:51:56,093 [INFO] modules.workflow_controller: Activated browser tab 7B2791E6DF04D4624AA6FA15F9C0A25C in Chrome: status 200
+2026-11-21 10:51:58,132 [INFO] modules.workflow_controller: Human touch: Pausing 6.76s to simulate human reading the thread...
+2026-11-21 10:52:04,908 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 7B2791E6DF04D4624AA6FA15F9C0A25C (timeout: 15s)
+2026-11-21 10:52:20,096 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 7B2791E6DF04D4624AA6FA15F9C0A25C
+2026-11-21 10:52:20,098 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:52:30,454 [WARNING] modules.workflow_controller: Account 'schoolwaale24@gmail.com' not working / not logged in for Row 851 (Reddit account 'schoolwaale24@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale02@gmail.com'...
+2026-11-21 10:52:30,615 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_105230_604108.xlsx (size: 868106 bytes)
+2026-11-21 10:52:40,721 [INFO] modules.excel_handler: Updated row 851 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 10:52:40,722 [INFO] modules.excel_handler: Updated row 851 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 10:52:40,722 [INFO] modules.excel_handler: Updated row 851 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 10:52:40,722 [INFO] modules.excel_handler: Updated row 851 Last checked (col 1) -> '2026-11-21 10:52:30'
+2026-11-21 10:52:40,722 [INFO] modules.excel_handler: Updated row 851 Date (col 15) -> '2026-11-21'
+2026-11-21 10:52:40,723 [INFO] modules.excel_handler: Updated Column N timestamp on row 851: 2026-11-21 10:52:30
+2026-11-21 10:52:42,204 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_056eed21.xlsx
+2026-11-21 10:52:42,205 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 10:52:46,193 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale24' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 10:52:47,228 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 10:52:50,043 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1txg7du/stuck_in_dmv_limbo_no_id_medical_flag_and_moving/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 10:53:16,139 [INFO] modules.workflow_controller: Activated browser tab BBF3D3A1661E3E77A3EF017771BDF6C0 in Chrome: status 200
+2026-11-21 10:53:18,191 [INFO] modules.workflow_controller: Human touch: Pausing 6.76s to simulate human reading the thread...
+2026-11-21 10:53:24,963 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id BBF3D3A1661E3E77A3EF017771BDF6C0 (timeout: 15s)
+2026-11-21 10:53:39,990 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id BBF3D3A1661E3E77A3EF017771BDF6C0
+2026-11-21 10:53:39,991 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 10:53:45,468 [WARNING] modules.workflow_controller: No more alternate accounts available for Row 850.
+2026-11-21 10:53:45,502 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_105345_498774.xlsx (size: 868132 bytes)
+2026-11-21 10:53:45,844 [INFO] modules.excel_handler: Updated row 850 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 10:53:45,844 [INFO] modules.excel_handler: Updated row 850 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 10:53:45,845 [INFO] modules.excel_handler: Updated row 850 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 10:53:45,845 [INFO] modules.excel_handler: Updated row 850 Last checked (col 1) -> '2026-11-21 10:53:45'
+2026-11-21 10:53:45,845 [INFO] modules.excel_handler: Updated row 850 Date (col 15) -> '2026-11-21'
+2026-11-21 10:53:45,845 [INFO] modules.excel_handler: Updated Column N timestamp on row 850: 2026-11-21 10:53:45
+2026-11-21 10:53:47,494 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_bed63caf.xlsx
+2026-11-21 10:53:47,494 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 10:53:50,966 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (schoolwaale24@gmail.com, schoolwaale01@gmail.com, schoolwaale02@gmail.com, schoolwaale08@gmail.com, shoro_test not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
+2026-11-21 10:53:57,894 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:58:20,993 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:58:26,706 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:58:26,829 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:58:31,310 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:58:34,357 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:58:37,744 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:58:42,485 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:58:47,472 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:58:54,364 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:58:59,285 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:59:01,191 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:59:08,595 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:59:13,916 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 10:59:15,126 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:59:21,850 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 851, 'eligible_comments': 3, 'skipped_comments': 848, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-21 10:59:21,962 [INFO] config: Saved settings to config\settings.json
+2026-11-21 10:59:21,965 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 10:59:24,476 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_105924.xlsx
+2026-11-21 10:59:24,476 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (971869 bytes)
+2026-11-21 10:59:24,476 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:59:30,338 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 0, 'skipped_comments': 852, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 10:59:30,340 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 10:59:37,034 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 0, 'skipped_comments': 852, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 10:59:39,052 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:00:11,903 [INFO] modules.workflow_controller: Activated browser tab F80C89518AF07CCA297B65D680BF7769 in Chrome: status 200
+2026-11-21 11:00:13,215 [INFO] modules.workflow_controller: Human touch: Pausing 5.40s to simulate human reading the thread...
+2026-11-21 11:00:18,648 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id F80C89518AF07CCA297B65D680BF7769 (timeout: 15s)
+2026-11-21 11:00:33,693 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id F80C89518AF07CCA297B65D680BF7769
+2026-11-21 11:00:33,695 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:00:34,040 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 853 (Reddit account 'schoolwaale02@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'shoro_test'...
+2026-11-21 11:00:34,127 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'shoro_test' (D:\Shoro AI Reddit\chrome_profiles\shoro_test). Terminating running Chrome...
+2026-11-21 11:00:35,164 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'shoro_test': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\shoro_test" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:00:39,820 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:01:07,589 [INFO] modules.workflow_controller: Activated browser tab 8C01763B9E7A2CB7EE9096280E0103FE in Chrome: status 200
+2026-11-21 11:01:09,625 [INFO] modules.workflow_controller: Human touch: Pausing 5.58s to simulate human reading the thread...
+2026-11-21 11:01:15,220 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 8C01763B9E7A2CB7EE9096280E0103FE (timeout: 15s)
+2026-11-21 11:01:30,259 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 8C01763B9E7A2CB7EE9096280E0103FE
+2026-11-21 11:01:30,260 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:01:30,287 [INFO] modules.workflow_controller: Auto-fallback to available system logged-in accounts: ['schoolwaale01@gmail.com', 'schoolwaale08@gmail.com', 'schoolwaale24@gmail.com']
+2026-11-21 11:01:30,288 [WARNING] modules.workflow_controller: Account 'shoro_test' not working / not logged in for Row 853 (Reddit account 'shoro_test' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale01@gmail.com'...
+2026-11-21 11:01:30,330 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_110130_326809.xlsx (size: 971869 bytes)
+2026-11-21 11:01:31,351 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 11:01:31,351 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 11:01:31,352 [INFO] modules.excel_handler: Updated row 853 (col 12 'account posted') -> 'schoolwaale02@gmail.com'
+2026-11-21 11:01:31,352 [INFO] modules.excel_handler: Updated row 853 Last checked (col 1) -> '2026-11-21 11:01:30'
+2026-11-21 11:01:31,352 [INFO] modules.excel_handler: Updated row 853 Date (col 15) -> '2026-11-21'
+2026-11-21 11:01:31,352 [INFO] modules.excel_handler: Updated Column N timestamp on row 853: 2026-11-21 11:01:30
+2026-11-21 11:01:32,034 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_e14581bd.xlsx
+2026-11-21 11:01:32,034 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 11:01:35,882 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\shoro_test' to 'schoolwaale01@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale01). Terminating running Chrome...
+2026-11-21 11:01:36,915 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale01@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale01" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:01:40,000 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:02:01,775 [INFO] modules.workflow_controller: Activated browser tab A8FCE2163EA9D550655D694ACC35474F in Chrome: status 200
+2026-11-21 11:02:03,810 [INFO] modules.workflow_controller: Human touch: Pausing 5.18s to simulate human reading the thread...
+2026-11-21 11:02:09,023 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id A8FCE2163EA9D550655D694ACC35474F (timeout: 15s)
+2026-11-21 11:02:24,060 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id A8FCE2163EA9D550655D694ACC35474F
+2026-11-21 11:02:24,061 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:02:24,160 [WARNING] modules.workflow_controller: Account 'schoolwaale01@gmail.com' not working / not logged in for Row 852 (Reddit account 'schoolwaale01@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 11:02:24,252 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale01' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 11:02:25,309 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:02:28,383 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:02:48,561 [INFO] modules.workflow_controller: Activated browser tab 3349A79C3349C1AD93530BB237FF739C in Chrome: status 200
+2026-11-21 11:02:50,614 [INFO] modules.workflow_controller: Human touch: Pausing 3.25s to simulate human reading the thread...
+2026-11-21 11:02:53,876 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 3349A79C3349C1AD93530BB237FF739C (timeout: 15s)
+2026-11-21 11:03:08,931 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 3349A79C3349C1AD93530BB237FF739C
+2026-11-21 11:03:08,932 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:03:09,002 [WARNING] modules.workflow_controller: Account 'schoolwaale08@gmail.com' not working / not logged in for Row 852 (Reddit account 'schoolwaale08@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale24@gmail.com'...
+2026-11-21 11:03:09,097 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale24@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale24). Terminating running Chrome...
+2026-11-21 11:03:10,154 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale24@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale24" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:03:13,370 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:03:34,955 [INFO] modules.workflow_controller: Activated browser tab 5FA1FF82D1B7BBEF280F08A8DABDE117 in Chrome: status 200
+2026-11-21 11:03:37,006 [INFO] modules.workflow_controller: Human touch: Pausing 3.29s to simulate human reading the thread...
+2026-11-21 11:03:40,301 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 5FA1FF82D1B7BBEF280F08A8DABDE117 (timeout: 15s)
+2026-11-21 11:03:55,331 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 5FA1FF82D1B7BBEF280F08A8DABDE117
+2026-11-21 11:03:55,331 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:03:55,386 [WARNING] modules.workflow_controller: No more alternate accounts available for Row 852.
+2026-11-21 11:03:55,411 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_110355_406666.xlsx (size: 869532 bytes)
+2026-11-21 11:03:55,744 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 11:03:55,745 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 11:03:55,745 [INFO] modules.excel_handler: Updated row 852 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 11:03:55,745 [INFO] modules.excel_handler: Updated row 852 Last checked (col 1) -> '2026-11-21 11:03:55'
+2026-11-21 11:03:55,745 [INFO] modules.excel_handler: Updated row 852 Date (col 15) -> '2026-11-21'
+2026-11-21 11:03:55,745 [INFO] modules.excel_handler: Updated Column N timestamp on row 852: 2026-11-21 11:03:55
+2026-11-21 11:03:56,832 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_1cc78813.xlsx
+2026-11-21 11:03:56,833 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 11:04:02,442 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (schoolwaale24@gmail.com, schoolwaale01@gmail.com, schoolwaale02@gmail.com, schoolwaale08@gmail.com, shoro_test not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
+2026-11-21 11:04:07,195 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:05:23,785 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:05:29,495 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:05:29,637 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:05:34,124 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:05:37,186 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:05:45,918 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:05:50,548 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:05:56,163 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:06:08,925 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:06:18,351 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:07:02,367 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:07:06,825 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:07:13,221 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:07:33,393 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:07:37,962 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:07:42,913 [INFO] modules.account_manager: Saved 27 account profiles to config\accounts.json
+2026-11-21 11:07:42,913 [INFO] modules.account_manager: Removed account profile: schoolwaale01@gmail.com
+2026-11-21 11:07:43,048 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:07:48,328 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:07:53,842 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:08:22,114 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:08:26,543 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:08:30,727 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 11:08:58,491 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:09:00,093 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:09:04,445 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:09:05,651 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 11:09:05,764 [INFO] config: Saved settings to config\settings.json
+2026-11-21 11:09:05,765 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 11:09:08,313 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_110908.xlsx
+2026-11-21 11:09:08,314 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (971985 bytes)
+2026-11-21 11:09:08,315 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:09:12,480 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 0, 'skipped_comments': 852, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 11:09:12,482 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 11:09:16,527 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 0, 'skipped_comments': 852, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 11:09:17,567 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:09:20,966 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:09:47,473 [INFO] modules.workflow_controller: Activated browser tab BFFC15199922F84FDCB86C8B67E82E5F in Chrome: status 200
+2026-11-21 11:09:49,236 [INFO] modules.workflow_controller: Human touch: Pausing 3.10s to simulate human reading the thread...
+2026-11-21 11:09:52,373 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id BFFC15199922F84FDCB86C8B67E82E5F (timeout: 15s)
+2026-11-21 11:10:07,410 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id BFFC15199922F84FDCB86C8B67E82E5F
+2026-11-21 11:10:07,410 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:10:07,463 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 853 (Reddit account 'schoolwaale02@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'shoro_test'...
+2026-11-21 11:10:07,568 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'shoro_test' (D:\Shoro AI Reddit\chrome_profiles\shoro_test). Terminating running Chrome...
+2026-11-21 11:10:08,620 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'shoro_test': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\shoro_test" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:10:11,705 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:10:32,391 [INFO] modules.workflow_controller: Activated browser tab 90A58DC8B9CC825A39C1A95F33FA715C in Chrome: status 200
+2026-11-21 11:10:34,434 [INFO] modules.workflow_controller: Human touch: Pausing 6.87s to simulate human reading the thread...
+2026-11-21 11:10:41,327 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 90A58DC8B9CC825A39C1A95F33FA715C (timeout: 15s)
+2026-11-21 11:10:56,095 [INFO] modules.workflow_controller: Auto-fallback to available system logged-in accounts: ['schoolwaale08@gmail.com', 'schoolwaale24@gmail.com']
+2026-11-21 11:10:56,095 [WARNING] modules.workflow_controller: Account 'shoro_test' not working / not logged in for Row 853 (Reddit account 'shoro_test' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 11:10:56,132 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_111056_128862.xlsx (size: 971985 bytes)
+2026-11-21 11:10:56,599 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 11:10:56,599 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 11:10:56,599 [INFO] modules.excel_handler: Updated row 853 (col 12 'account posted') -> 'schoolwaale02@gmail.com'
+2026-11-21 11:10:56,599 [INFO] modules.excel_handler: Updated row 853 Last checked (col 1) -> '2026-11-21 11:10:56'
+2026-11-21 11:10:56,600 [INFO] modules.excel_handler: Updated row 853 Date (col 15) -> '2026-11-21'
+2026-11-21 11:10:56,600 [INFO] modules.excel_handler: Updated Column N timestamp on row 853: 2026-11-21 11:10:56
+2026-11-21 11:10:57,955 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f1327651.xlsx
+2026-11-21 11:10:57,956 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 11:11:03,564 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\shoro_test' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 11:11:04,594 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:11:07,999 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:11:30,695 [INFO] modules.workflow_controller: Activated browser tab C33EF214D5B3A04BC455EA4E68F6BACB in Chrome: status 200
+2026-11-21 11:11:32,769 [INFO] modules.workflow_controller: Human touch: Pausing 5.86s to simulate human reading the thread...
+2026-11-21 11:11:38,669 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id C33EF214D5B3A04BC455EA4E68F6BACB (timeout: 15s)
+2026-11-21 11:11:53,706 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id C33EF214D5B3A04BC455EA4E68F6BACB
+2026-11-21 11:11:53,707 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:11:53,791 [WARNING] modules.workflow_controller: Account 'schoolwaale08@gmail.com' not working / not logged in for Row 852 (Reddit account 'schoolwaale08@gmail.com' is not logged in. Please log in to Reddit.). Switching to alternate logged-in account 'schoolwaale24@gmail.com'...
+2026-11-21 11:11:53,953 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale24@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale24). Terminating running Chrome...
+2026-11-21 11:11:55,035 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale24@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale24" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 11:11:58,163 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 11:12:19,369 [INFO] modules.workflow_controller: Activated browser tab 0E3594CAF52DBF054837FDA128F3637F in Chrome: status 200
+2026-11-21 11:12:21,418 [INFO] modules.workflow_controller: Human touch: Pausing 6.11s to simulate human reading the thread...
+2026-11-21 11:12:27,648 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 0E3594CAF52DBF054837FDA128F3637F (timeout: 15s)
+2026-11-21 11:12:42,680 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser snapshot --browser-profile shoro-test --format ai --limit 500 --target-id 0E3594CAF52DBF054837FDA128F3637F
+2026-11-21 11:12:42,681 [INFO] modules.workflow_controller: Accessibility snapshot not ready (Command timed out after 15 seconds.). Recovering page content via fast direct CDP evaluate...
+2026-11-21 11:12:42,748 [WARNING] modules.workflow_controller: No more alternate accounts available for Row 852.
+2026-11-21 11:12:42,778 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_111242_772082.xlsx (size: 869398 bytes)
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated row 852 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated row 852 Last checked (col 1) -> '2026-11-21 11:12:42'
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated row 852 Date (col 15) -> '2026-11-21'
+2026-11-21 11:12:43,205 [INFO] modules.excel_handler: Updated Column N timestamp on row 852: 2026-11-21 11:12:42
+2026-11-21 11:12:44,427 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_b5b28825.xlsx
+2026-11-21 11:12:44,427 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 11:12:49,787 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (schoolwaale08@gmail.com, schoolwaale02@gmail.com, shoro_test, schoolwaale24@gmail.com not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
+2026-11-21 11:12:55,083 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 12:00:18,586 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:00:24,028 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:00:24,059 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 12:00:24,618 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 12:00:42,368 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-21 12:01:02,358 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-21 12:01:20,598 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 12:01:24,734 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:01:31,036 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:01:37,272 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 12:01:39,293 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:01:42,439 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:01:47,919 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:01:49,663 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:01:54,939 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 12:01:55,988 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:01:57,197 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:02:04,142 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:02:05,409 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 852, 'eligible_comments': 2, 'skipped_comments': 850, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 12:02:05,540 [INFO] config: Saved settings to config\settings.json
+2026-11-21 12:02:05,542 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 12:02:07,832 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_120207.xlsx
+2026-11-21 12:02:07,833 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (973777 bytes)
+2026-11-21 12:02:07,834 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:02:13,428 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 0, 'skipped_comments': 853, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 12:02:13,428 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 12:02:18,172 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 0, 'skipped_comments': 853, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 12:02:18,271 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale24' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 12:02:19,309 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:02:22,872 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/DMV/comments/1y1bsz8/drivers_license_in_ct/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:02:49,038 [INFO] modules.workflow_controller: Activated browser tab 985B8C73EE238F4CEF62812A1E8A1209 in Chrome: status 200
+2026-11-21 12:02:49,817 [INFO] modules.workflow_controller: Human touch: Pausing 5.41s to simulate human reading the thread...
+2026-11-21 12:02:55,305 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 854 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'shoro_test'...
+2026-11-21 12:02:55,392 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'shoro_test' (D:\Shoro AI Reddit\chrome_profiles\shoro_test). Terminating running Chrome...
+2026-11-21 12:02:56,434 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'shoro_test': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\shoro_test" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:02:59,285 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/DMV/comments/1y1bsz8/drivers_license_in_ct/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:03:19,693 [INFO] modules.workflow_controller: Activated browser tab BF2A3204D36AE3ACFE8E3600AF20122F in Chrome: status 200
+2026-11-21 12:03:20,208 [INFO] modules.workflow_controller: Human touch: Pausing 5.79s to simulate human reading the thread...
+2026-11-21 12:03:26,052 [WARNING] modules.workflow_controller: Account 'shoro_test' not working / not logged in for Row 854 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale02@gmail.com'...
+2026-11-21 12:03:26,087 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_120326_083029.xlsx (size: 973777 bytes)
+2026-11-21 12:03:26,445 [INFO] modules.excel_handler: Updated row 854 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 12:03:26,446 [INFO] modules.excel_handler: Updated row 854 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 12:03:26,446 [INFO] modules.excel_handler: Updated row 854 (col 12 'account posted') -> 'schoolwaale02@gmail.com'
+2026-11-21 12:03:26,446 [INFO] modules.excel_handler: Updated row 854 Last checked (col 1) -> '2026-11-21 12:03:26'
+2026-11-21 12:03:26,446 [INFO] modules.excel_handler: Updated row 854 Date (col 15) -> '2026-11-21'
+2026-11-21 12:03:26,446 [INFO] modules.excel_handler: Updated Column N timestamp on row 854: 2026-11-21 12:03:26
+2026-11-21 12:03:27,672 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_e648b76a.xlsx
+2026-11-21 12:03:27,673 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 12:03:32,062 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:03:49,093 [INFO] modules.workflow_controller: Activated browser tab F33A0D1E7D0DB2200242859CB1777501 in Chrome: status 200
+2026-11-21 12:03:49,662 [INFO] modules.workflow_controller: Human touch: Pausing 3.60s to simulate human reading the thread...
+2026-11-21 12:03:53,302 [WARNING] modules.workflow_controller: Account 'shoro_test' not working / not logged in for Row 853 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale02@gmail.com'...
+2026-11-21 12:03:53,390 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\shoro_test' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 12:03:54,421 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:03:57,160 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/WestVirginia/comments/1toy2t0/princeton_dmv_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:04:20,590 [INFO] modules.workflow_controller: Activated browser tab 9FC3E259616B38E6B99C96F628CF3EAF in Chrome: status 200
+2026-11-21 12:04:20,948 [INFO] modules.workflow_controller: Human touch: Pausing 5.76s to simulate human reading the thread...
+2026-11-21 12:04:26,830 [INFO] modules.workflow_controller: Auto-fallback to available system logged-in accounts: ['schoolwaale08@gmail.com', 'schoolwaale24@gmail.com']
+2026-11-21 12:04:26,831 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 853 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 12:04:26,901 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_120426_898540.xlsx (size: 870813 bytes)
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated row 853 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated row 853 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated row 853 Last checked (col 1) -> '2026-11-21 12:04:26'
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated row 853 Date (col 15) -> '2026-11-21'
+2026-11-21 12:04:27,311 [INFO] modules.excel_handler: Updated Column N timestamp on row 853: 2026-11-21 12:04:26
+2026-11-21 12:04:28,838 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f4b2d23d.xlsx
+2026-11-21 12:04:28,839 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 12:04:34,044 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 12:04:35,100 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:04:38,028 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:05:03,579 [INFO] modules.workflow_controller: Activated browser tab 92FDC6229E5BAB75725534D69F2C9996 in Chrome: status 200
+2026-11-21 12:05:04,074 [INFO] modules.workflow_controller: Human touch: Pausing 5.73s to simulate human reading the thread...
+2026-11-21 12:05:09,889 [WARNING] modules.workflow_controller: Account 'schoolwaale08@gmail.com' not working / not logged in for Row 852 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale24@gmail.com'...
+2026-11-21 12:05:10,008 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale24@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale24). Terminating running Chrome...
+2026-11-21 12:05:11,038 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale24@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale24" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:05:14,373 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Idaho/comments/1y17mhq/has_anyone_been_pulled_over_specifically_for/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:05:37,561 [INFO] modules.workflow_controller: Activated browser tab C263DD15DC82E3EBB7265630B1D89103 in Chrome: status 200
+2026-11-21 12:05:38,148 [INFO] modules.workflow_controller: Human touch: Pausing 6.40s to simulate human reading the thread...
+2026-11-21 12:05:44,651 [WARNING] modules.workflow_controller: Account 'schoolwaale24@gmail.com' not working / not logged in for Row 852 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 12:05:44,699 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_120544_694826.xlsx (size: 870850 bytes)
+2026-11-21 12:05:45,082 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 12:05:45,083 [INFO] modules.excel_handler: Updated row 852 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 12:05:45,083 [INFO] modules.excel_handler: Updated row 852 (col 12 'account posted') -> 'schoolwaale02@gmail.com'
+2026-11-21 12:05:45,083 [INFO] modules.excel_handler: Updated row 852 Last checked (col 1) -> '2026-11-21 12:05:44'
+2026-11-21 12:05:45,083 [INFO] modules.excel_handler: Updated row 852 Date (col 15) -> '2026-11-21'
+2026-11-21 12:05:45,083 [INFO] modules.excel_handler: Updated Column N timestamp on row 852: 2026-11-21 12:05:44
+2026-11-21 12:05:46,299 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_bd29bc8b.xlsx
+2026-11-21 12:05:46,300 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 12:05:51,006 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale24' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 12:05:52,062 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:05:54,526 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:06:14,947 [INFO] modules.workflow_controller: Activated browser tab FC2B64ADEDF00C36E1CFB4CF855CAF47 in Chrome: status 200
+2026-11-21 12:06:15,506 [INFO] modules.workflow_controller: Human touch: Pausing 7.19s to simulate human reading the thread...
+2026-11-21 12:06:22,802 [WARNING] modules.workflow_controller: Account 'schoolwaale08@gmail.com' not working / not logged in for Row 851 (⚠️ CAPTCHA or verification screen detected. Please handle manually in the browser.). Switching to alternate logged-in account 'schoolwaale24@gmail.com'...
+2026-11-21 12:06:22,911 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale24@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale24). Terminating running Chrome...
+2026-11-21 12:06:23,945 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale24@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale24" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 12:06:26,721 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Hawaii/comments/1wsr3dy/getting_in_touch_with_oahu_dmv/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 12:06:46,257 [INFO] modules.workflow_controller: Activated browser tab FCD9B999DE6F5964821AD52B40C9F6E3 in Chrome: status 200
+2026-11-21 12:06:46,745 [INFO] modules.workflow_controller: Human touch: Pausing 5.62s to simulate human reading the thread...
+2026-11-21 12:06:52,425 [WARNING] modules.workflow_controller: No more alternate accounts available for Row 851.
+2026-11-21 12:06:52,450 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_120652_445324.xlsx (size: 870890 bytes)
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated row 851 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated row 851 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated row 851 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated row 851 Last checked (col 1) -> '2026-11-21 12:06:52'
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated row 851 Date (col 15) -> '2026-11-21'
+2026-11-21 12:06:52,785 [INFO] modules.excel_handler: Updated Column N timestamp on row 851: 2026-11-21 12:06:52
+2026-11-21 12:06:53,757 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_9b3c336d.xlsx
+2026-11-21 12:06:53,757 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 12:06:58,974 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (schoolwaale08@gmail.com, shoro_test, schoolwaale02@gmail.com, schoolwaale24@gmail.com not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
+2026-11-21 12:07:04,258 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:03:49,935 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:04:02,453 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 4, 'skipped_comments': 849, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 30}
+2026-11-21 18:04:03,415 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 18:04:04,230 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 18:04:38,811 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:05:07,225 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:05:19,528 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 4, 'skipped_comments': 849, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 30}
+2026-11-21 18:05:30,269 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:05:50,933 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:06:02,723 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 4, 'skipped_comments': 849, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 30}
+2026-11-21 18:06:13,460 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:11:22,335 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:11:35,425 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 4, 'skipped_comments': 849, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 30}
+2026-11-21 18:11:42,521 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:11:54,913 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 853, 'eligible_comments': 4, 'skipped_comments': 849, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 30}
+2026-11-21 18:11:55,199 [INFO] config: Saved settings to config\settings.json
+2026-11-21 18:11:55,214 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 18:11:59,554 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_181159.xlsx
+2026-11-21 18:11:59,556 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (993904 bytes)
+2026-11-21 18:11:59,560 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:12:12,752 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 0, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 18:12:12,753 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:12:25,464 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 0, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 18:12:26,534 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'shoro_test': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\shoro_test" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 18:12:29,696 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/maryland/comments/1uxd9wj/why_doesnt_the_mva_allow_hyphens/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 18:13:35,564 [INFO] modules.workflow_controller: Activated browser tab 8DAE48FABDAEC01A0F23657D33B68CBE in Chrome: status 200
+2026-11-21 18:13:36,009 [INFO] modules.workflow_controller: Human touch: Pausing 7.23s to simulate human reading the thread...
+2026-11-21 18:16:24,144 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser evaluate --fn async () => {
+  const expected = "Why would the Maryland MVA refuse to print a hyphen in a name on a driver's license, and how do you get it fixed?\n\nMaryland does not ban hyphens in names. A hyphen is part of a legal name, and the MVA prints the name shown on the applicant's proof of identity. When Social Security has accepted a hyphenated married name, the MVA record should match that spelling exactly, hyphen included.\n\nRefusals usually happen for practical reasons, not legal ones. The MVA checks that the name on the application matches the name on the identity documents. If a birth certificate shows a maiden name, a marriage certificate shows the name change, and a Social Security card shows the hyphenated name, the clerk must link those documents and enter the hyphen by hand. Some branch systems and staff drop special characters, run the two parts of the name together, or replace the hyphen with a space. The printed license then does not match the Social Security record, which creates problems with REAL ID verification, banks, insurers, and other agencies that compare names across records.\n\nTo get the hyphen printed, bring the complete document set to one MVA visit. Bring the Social Security card showing the hyphenated name, a birth certificate or passport, the marriage certificate if the hyphenated name came from marriage, and the current driver's license. Ask the clerk to confirm the exact spelling, including the hyphen, on screen before the card is printed. If the card is printed without the hyphen, request a corrected card and ask for a branch supervisor to review the record.\n\nIf the branch still will not correct the name, escalate in writing. Keep copies of the documents presented and note the branch, date, and staff response. A Maryland state senator or delegate office can contact the MVA constituent services team on a resident's behalf, and that route has resolved hyphen cases where the branch refused to print the correct name. Do not change the Social Security record to match an incorrect MVA card. The Social Security record should be correct first, and the MVA license should be corrected to match it.";
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // 1. Human touch: Step-by-step natural screen scrolling
+  const scrollSteps = Math.floor(Math.random() * 2) + 2;
+  for (let s = 0; s < scrollSteps; s++) {
+    const scrollDelta = Math.floor(Math.random() * 160) + 140;
+    window.scrollBy({ top: scrollDelta, behavior: 'smooth' });
+    await wait(Math.floor(Math.random() * 200) + 180);
+  }
+
+  // 2. Locate existing editor or trigger
+  let editor = document.querySelector('div[slot="rte"][contenteditable="true"]') ||
+               document.querySelector('shreddit-composer div[contenteditable="true"]') ||
+               document.querySelector('div[contenteditable="true"]:not([class*="recaptcha"])');
+
+  if (!editor) {
+    const trigger = document.querySelector('faceplate-textarea-input[data-testid="trigger-button"], [placeholder*="conversation" i], [aria-label*="Join the conversation" i], faceplate-textarea-input');
+    if (trigger) {
+      try {
+        trigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await wait(250);
+        trigger.click();
+        const inner = trigger.querySelector('button, textarea, [placeholder*="conversation" i]');
+        if (inner) inner.click();
+      } catch (e) {}
+    }
+
+    // Poll for up to 3 seconds for editor to mount
+    for (let i = 0; i < 30; i++) {
+      await wait(100);
+      editor = document.querySelector('div[slot="rte"][contenteditable="true"]') ||
+               document.querySelector('shreddit-composer div[contenteditable="true"]') ||
+               document.querySelector('div[contenteditable="true"]:not([class*="recaptcha"])');
+      if (editor) break;
+    }
+  }
+
+  if (!editor) {
+    const composers = document.querySelectorAll('shreddit-comment-composer, comment-body-header, faceplate-textarea-input, comment-composer-host');
+    for (const c of composers) {
+      const root = c.shadowRoot || c;
+      editor = root.querySelector('div[contenteditable="true"], textarea, [name="content"]');
+      if (editor) break;
+    }
+  }
+
+  // Dismiss any sign-up or interstitial modal if present
+  const closeSelectors = [
+    'button[aria-label="Close" i]',
+    'button[aria-label="Close modal" i]',
+    'faceplate-modal-header button',
+    'shreddit-signup-drawer button[aria-label="Close" i]',
+    'auth-flow-modal button[aria-label="Close" i]',
+    'div[aria-label="Close" i] button',
+    'button.close'
+  ];
+  for (const sel of closeSelectors) {
+    try { const b = document.querySelector(sel); if (b) b.click(); } catch(e) {}
+  }
+  await wait(150);
+
+  const authModal = document.querySelector('shreddit-signup-drawer, auth-flow-modal');
+  const isBlockingModal = !!(authModal && authModal.offsetParent !== null);
+  if (isBlockingModal && !editor) {
+    return JSON.stringify({ success: false, isAuthError: true, error: 'Reddit authentication required. Session is not logged in.' });
+  }
+
+  if (!editor) {
+    return JSON.stringify({ success: false, error: 'Comment editor could not be identified confidently.' });
+  }
+
+  // 3. Human touch: Focus & manual progressive typing simulation
+  try {
+    editor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    editor.focus();
+  } catch (e) {}
+  await wait(200);
+
+  const words = expected.split(' ');
+  let progressiveText = '';
+  const batchSize = Math.floor(Math.random() * 3) + 4;
+  for (let i = 0; i < words.length; i++) {
+    progressiveText += (i > 0 ? ' ' : '') + words[i];
+    if (i % batchSize === 0 || i === words.length - 1 || words[i].includes('\n')) {
+      if (editor.__lexicalEditor && typeof editor.__lexicalEditor.parseEditorState === 'function') {
+        const paras = progressiveText.split('\n\n').map(p => ({
+          children: [{
+            detail: 0,
+            format: 0,
+            mode: 'normal',
+            style: '',
+            text: p,
+            type: 'text',
+            version: 1
+          }],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          type: 'paragraph',
+          version: 1
+        }));
+        const stateObj = {
+          root: {
+            children: paras,
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            type: 'root',
+            version: 1
+          }
+        };
+        editor.__lexicalEditor.setEditorState(editor.__lexicalEditor.parseEditorState(JSON.stringify(stateObj)));
+      } else {
+        editor.innerText = progressiveText;
+      }
+      editor.dispatchEvent(new InputEvent('input', { bubbles: true, cancelable: true, data: words[i] }));
+      await wait(Math.floor(Math.random() * 20) + 15);
+    }
+  }
+
+  // Ensure exact final state matching Column K character-for-character
+  if (editor.__lexicalEditor && typeof editor.__lexicalEditor.parseEditorState === 'function') {
+    const finalParas = expected.split('\n\n').map(p => ({
+      children: [{
+        detail: 0,
+        format: 0,
+        mode: 'normal',
+        style: '',
+        text: p,
+        type: 'text',
+        version: 1
+      }],
+      direction: 'ltr',
+      format: '',
+      indent: 0,
+      type: 'paragraph',
+      version: 1
+    }));
+    const finalState = {
+      root: {
+        children: finalParas,
+        direction: 'ltr',
+        format: '',
+        indent: 0,
+        type: 'root',
+        version: 1
+      }
+    };
+    editor.__lexicalEditor.setEditorState(editor.__lexicalEditor.parseEditorState(JSON.stringify(finalState)));
+  } else {
+    if (editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT') {
+      editor.value = expected;
+    } else {
+      editor.innerText = expected;
+    }
+    editor.dispatchEvent(new InputEvent('input', { bubbles: true, cancelable: true, data: expected }));
+    editor.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  await wait(200);
+
+  // 4. Read back and verify
+  let rawText = ((editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT')
+    ? editor.value
+    : (editor.innerText || editor.textContent || '')).trim();
+  const readBack = rawText.replace(/<[^>]+>/g, '').trim();
+
+  // 5. If auto_submit is enabled, human proofreading pause (1.5 to 2.5 seconds) before submit
+  let submitted = false;
+  if (false) {
+    await wait(Math.floor(Math.random() * 1000) + 1500);
+    function findDeepButtons(root) {
+      let res = [];
+      if (!root) return res;
+      try { res = res.concat(Array.from(root.querySelectorAll('button'))); } catch(e) {}
+      const allEls = root.querySelectorAll ? Array.from(root.querySelectorAll('*')) : [];
+      for (const el of allEls) {
+        if (el.shadowRoot) {
+          res = res.concat(findDeepButtons(el.shadowRoot));
+        }
+      }
+      return res;
+    }
+    const allButtons = findDeepButtons(document);
+    let submitBtn = allButtons.find(b => {
+      const slot = (b.getAttribute('slot') || '').toLowerCase();
+      const txt = (b.innerText || b.textContent || '').trim().toLowerCase();
+      const aria = (b.getAttribute('aria-label') || '').toLowerCase();
+      const testId = (b.getAttribute('data-testid') || '').toLowerCase();
+      return slot === 'submit-button' || txt === 'comment' || aria === 'comment' || testId.includes('comment') || (b.type === 'submit' && (txt.includes('comment') || slot === 'submit-button'));
+    });
+    if (!submitBtn) {
+      const composer = document.querySelector('shreddit-composer, shreddit-comment-composer');
+      if (composer) {
+        const root = composer.shadowRoot || composer;
+        submitBtn = root.querySelector('button[slot="submit-button"], button[type="submit"]') ||
+                    Array.from(root.querySelectorAll('button')).find(b => (b.innerText || '').trim().toLowerCase() === 'comment');
+      }
+    }
+    if (submitBtn) {
+      if (submitBtn.disabled || submitBtn.hasAttribute('disabled')) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('disabled');
+        submitBtn.removeAttribute('aria-disabled');
+      }
+      submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await wait(350);
+      submitBtn.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, composed: true }));
+      submitBtn.click();
+      await wait(2500);
+      submitted = true;
+    }
+  }
+
+  return JSON.stringify({
+    success: true,
+    verifiedText: readBack,
+    submitted: submitted,
+  });
+} --browser-profile shoro-test --target-id 8DAE48FABDAEC01A0F23657D33B68CBE (timeout: 120s)
+2026-11-21 18:17:09,339 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_181709_334215.xlsx (size: 993904 bytes)
+2026-11-21 18:17:10,827 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 13 'Status') -> 'Draft'
+2026-11-21 18:17:10,828 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 9 'My status') -> 'Draft'
+2026-11-21 18:17:10,828 [INFO] modules.excel_handler: Updated row 872 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 18:17:10,828 [INFO] modules.excel_handler: Updated row 872 Last checked (col 1) -> '2026-11-21 18:17:09'
+2026-11-21 18:17:10,828 [INFO] modules.excel_handler: Updated row 872 Date (col 15) -> '2026-11-21'
+2026-11-21 18:17:10,830 [INFO] modules.excel_handler: Updated Column N timestamp on row 872: 2026-11-21 18:17:09
+2026-11-21 18:17:12,511 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_072b8133.xlsx
+2026-11-21 18:17:12,513 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 18:17:12,548 [INFO] modules.workflow_controller: Activated browser tab 8DAE48FABDAEC01A0F23657D33B68CBE in Chrome: status 200
+2026-11-21 18:17:13,433 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_181713_430125.xlsx (size: 889316 bytes)
+2026-11-21 18:17:14,250 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 13 'Status') -> 'Draft'
+2026-11-21 18:17:14,250 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 9 'My status') -> 'Draft'
+2026-11-21 18:17:14,251 [INFO] modules.excel_handler: Updated row 872 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 18:17:14,251 [INFO] modules.excel_handler: Updated row 872 Last checked (col 1) -> '2026-11-21 18:17:13'
+2026-11-21 18:17:14,251 [INFO] modules.excel_handler: Updated row 872 Date (col 15) -> '2026-11-21'
+2026-11-21 18:17:14,251 [INFO] modules.excel_handler: Updated Column N timestamp on row 872: 2026-11-21 18:17:13
+2026-11-21 18:17:15,838 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_2a84c353.xlsx
+2026-11-21 18:17:15,840 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 18:17:15,843 [WARNING] modules.workflow_controller: Could not sync Excel/Sheets status for row 872: 'WorkflowController' object has no attribute 'google_sheets_syncer'
+2026-11-21 18:17:22,087 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://old.reddit.com/r/Iowa/comments/1vkzkp9/hows_the_drivers_test_lately_going_to_take_it_soon/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 18:18:00,514 [INFO] modules.workflow_controller: Activated browser tab 962F20EB0494E791CDC4FBFF31C37502 in Chrome: status 200
+2026-11-21 18:18:00,863 [INFO] modules.workflow_controller: Human touch: Pausing 3.32s to simulate human reading the thread...
+2026-11-21 18:18:04,289 [WARNING] modules.workflow_controller: No more alternate accounts available for Row 871.
+2026-11-21 18:18:04,312 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_181804_307089.xlsx (size: 889316 bytes)
+2026-11-21 18:18:05,195 [INFO] modules.excel_handler: Updated row 871 in sheet 'Driving DMV' (col 13 'Status') -> 'Failed'
+2026-11-21 18:18:05,196 [INFO] modules.excel_handler: Updated row 871 in sheet 'Driving DMV' (col 9 'My status') -> 'Failed'
+2026-11-21 18:18:05,196 [INFO] modules.excel_handler: Updated row 871 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 18:18:05,196 [INFO] modules.excel_handler: Updated row 871 Last checked (col 1) -> '2026-11-21 18:18:04'
+2026-11-21 18:18:05,196 [INFO] modules.excel_handler: Updated row 871 Date (col 15) -> '2026-11-21'
+2026-11-21 18:18:05,197 [INFO] modules.excel_handler: Updated Column N timestamp on row 871: 2026-11-21 18:18:04
+2026-11-21 18:18:06,837 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_c6e596e5.xlsx
+2026-11-21 18:18:06,839 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 18:18:12,843 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (shoro_test not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
+2026-11-21 18:18:23,804 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:19:12,409 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:19:21,472 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:19:26,561 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 18:19:35,374 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 18:19:35,687 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_181935_684518.xlsx (size: 889346 bytes)
+2026-11-21 18:19:36,519 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 13 'Status') -> 'Complete'
+2026-11-21 18:19:36,520 [INFO] modules.excel_handler: Updated row 872 in sheet 'Driving DMV' (col 9 'My status') -> 'Complete'
+2026-11-21 18:19:36,520 [INFO] modules.excel_handler: Updated row 872 (col 12 'account posted') -> 'shoro_test'
+2026-11-21 18:19:36,520 [INFO] modules.excel_handler: Updated row 872 Last checked (col 1) -> '2026-11-21 18:19:35'
+2026-11-21 18:19:36,520 [INFO] modules.excel_handler: Updated row 872 Date (col 15) -> '2026-11-21'
+2026-11-21 18:19:36,521 [INFO] modules.excel_handler: Updated Column N timestamp on row 872: 2026-11-21 18:19:35
+2026-11-21 18:19:38,084 [INFO] modules.excel_handler: Atomically updated workbook data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_b6362952.xlsx
+2026-11-21 18:19:38,086 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 18:19:38,087 [INFO] modules.google_sheets_syncer: Google Sheets Webhook URL not configured. Updates saved locally to Excel.
+2026-11-21 18:19:39,249 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:19:51,568 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 18:20:00,744 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 18:34:25,672 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:34:38,370 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 18:34:38,406 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 18:34:39,015 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 18:35:00,475 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-21 18:35:01,981 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 18:35:13,473 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 18:35:13,481 [INFO] config: Saved settings to config\settings.json
+2026-11-21 18:35:13,492 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 18:35:13,725 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 18:35:30,417 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-21 18:35:36,106 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-21 18:36:00,796 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-21 18:36:28,119 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 20:43:49,664 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:44:03,651 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 20:49:17,176 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:49:28,210 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 20:49:29,032 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 20:49:29,564 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 20:49:55,062 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-21 20:50:40,118 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles
+2026-11-21 20:50:41,642 [INFO] modules.openclaw_client: OpenClaw gateway on port 18789 is unreachable. Auto-spawning gateway daemon...
+2026-11-21 20:51:33,448 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-21 20:52:13,515 [ERROR] modules.openclaw_client: OpenClaw execution timeout: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test
+2026-11-21 20:52:26,232 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 20:57:44,964 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:57:58,358 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 20:58:09,289 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 20:58:12,037 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:58:14,012 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:58:29,398 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 20:58:31,473 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 871, 'eligible_comments': 2, 'skipped_comments': 869, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 28}
+2026-11-21 20:58:31,558 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 20:58:35,116 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_205835.xlsx
+2026-11-21 20:58:35,119 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (1011520 bytes)
+2026-11-21 20:58:35,120 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:58:49,975 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 20:58:49,977 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:59:02,717 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 20:59:02,915 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 20:59:14,722 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 20:59:22,465 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:02:23,281 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:02:35,269 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:02:45,687 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:02:49,122 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:03:00,605 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:03:09,626 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:03:21,476 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:03:32,417 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:06:57,027 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:07:04,834 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:07:12,448 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:07:19,714 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:07:30,650 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:07:31,807 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:07:44,102 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:07:54,790 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:08:43,498 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:08:45,129 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:08:51,048 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:08:51,883 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:08:52,097 [INFO] config: Saved settings to config\settings.json
+2026-11-21 21:08:52,097 [INFO] modules.google_sheets_syncer: Pulling latest data from Google Sheet: https://docs.google.com/spreadsheets/d/1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4/export?format=xlsx
+2026-11-21 21:08:54,668 [INFO] modules.google_sheets_syncer: Created backup before Google Sheet pull: backups\Reddit Threads_pre_gsheet_pull_20261121_210854.xlsx
+2026-11-21 21:08:54,669 [INFO] modules.google_sheets_syncer: Successfully updated local data\Reddit Threads.xlsx with Google Sheet data (1011315 bytes)
+2026-11-21 21:08:54,669 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:08:59,646 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:08:59,647 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:09:04,701 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 0, 'skipped_comments': 888, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 26}
+2026-11-21 21:09:04,929 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\shoro_test' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 21:09:05,958 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 21:09:09,797 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/driving/comments/1y1g1fd/learners_permit_soon_to_expire/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:09:31,849 [INFO] modules.workflow_controller: Activated browser tab 86B6B518460419EE9FDDF9156227090C in Chrome: status 200
+2026-11-21 21:09:32,207 [INFO] modules.workflow_controller: Human touch: Pausing 6.52s to simulate human reading the thread...
+2026-11-21 21:09:41,206 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 889 (Reply text does not match Excel value: expected 'Michigan learner permit (TIP) expiring: adult options when y...', found 'Michigan learner permit (TIP) expiring: adult options when y...'). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 21:09:41,293 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 21:09:42,335 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 21:09:44,681 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/driving/comments/1y1g1fd/learners_permit_soon_to_expire/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:10:02,529 [INFO] modules.workflow_controller: Activated browser tab 33418F313902E1DD0B054E976AF71028 in Chrome: status 200
+2026-11-21 21:10:03,025 [INFO] modules.workflow_controller: Human touch: Pausing 7.14s to simulate human reading the thread...
+2026-11-21 21:10:15,916 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211015_910043.xlsx (size: 1011315 bytes)
+2026-11-21 21:10:16,331 [INFO] modules.excel_handler: Matched task to row 889 via URL match in col 4
+2026-11-21 21:10:17,226 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_3c19c53a.xlsx
+2026-11-21 21:10:17,228 [INFO] modules.workflow_controller: Activated browser tab 33418F313902E1DD0B054E976AF71028 in Chrome: status 200
+2026-11-21 21:10:17,642 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211017_640393.xlsx (size: 904980 bytes)
+2026-11-21 21:10:18,145 [INFO] modules.excel_handler: Matched task to row 889 via URL match in col 4
+2026-11-21 21:10:18,905 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_d1b8bbf0.xlsx
+2026-11-21 21:10:19,502 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:10:25,398 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/DMV/comments/1y02l1j/where_is_the_easiest_route_for_road_test_in/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:10:42,318 [INFO] modules.workflow_controller: Activated browser tab 696F7D856C964E307B257236C0C28EF8 in Chrome: status 200
+2026-11-21 21:10:42,730 [INFO] modules.workflow_controller: Human touch: Pausing 3.84s to simulate human reading the thread...
+2026-11-21 21:10:52,318 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211052_316129.xlsx (size: 904985 bytes)
+2026-11-21 21:10:52,576 [INFO] modules.excel_handler: Matched task to row 888 via URL match in col 4
+2026-11-21 21:10:53,179 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_c4a829ee.xlsx
+2026-11-21 21:10:53,198 [INFO] modules.workflow_controller: Activated browser tab 696F7D856C964E307B257236C0C28EF8 in Chrome: status 200
+2026-11-21 21:10:53,605 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211053_604077.xlsx (size: 905010 bytes)
+2026-11-21 21:10:54,031 [INFO] modules.excel_handler: Matched task to row 888 via URL match in col 4
+2026-11-21 21:10:55,040 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_db901ba3.xlsx
+2026-11-21 21:10:56,395 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:11:00,206 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale08' to 'schoolwaale02@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale02). Terminating running Chrome...
+2026-11-21 21:11:01,239 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale02@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale02" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 21:11:04,298 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Ontariodrivetest/comments/1y1i8ii/tips_for_g2_test_in_kitchener/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:11:24,140 [INFO] modules.workflow_controller: Activated browser tab 2AC80F549E7B6DBA5E2721D8743CD82D in Chrome: status 200
+2026-11-21 21:11:24,663 [INFO] modules.workflow_controller: Human touch: Pausing 3.02s to simulate human reading the thread...
+2026-11-21 21:11:30,220 [WARNING] modules.workflow_controller: Account 'schoolwaale02@gmail.com' not working / not logged in for Row 887 (Reply text does not match Excel value: expected 'G2 road test in Kitchener: examiner directions, lane choice,...', found 'G2 road test in Kitchener: examiner directions, lane choice,...'). Switching to alternate logged-in account 'schoolwaale08@gmail.com'...
+2026-11-21 21:11:30,368 [INFO] modules.workflow_controller: Switching Chrome profile from 'D:\Shoro AI Reddit\chrome_profiles\schoolwaale02' to 'schoolwaale08@gmail.com' (D:\Shoro AI Reddit\chrome_profiles\schoolwaale08). Terminating running Chrome...
+2026-11-21 21:11:31,409 [INFO] modules.workflow_controller: Spawning visible desktop Chrome window for 'schoolwaale08@gmail.com': start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="D:\Shoro AI Reddit\chrome_profiles\schoolwaale08" --no-first-run --no-default-browser-check --start-maximized "about:blank"
+2026-11-21 21:11:34,968 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Ontariodrivetest/comments/1y1i8ii/tips_for_g2_test_in_kitchener/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:11:52,131 [INFO] modules.workflow_controller: Activated browser tab 4C4360302346C47D575EDF540E7C09AF in Chrome: status 200
+2026-11-21 21:11:52,573 [INFO] modules.workflow_controller: Human touch: Pausing 4.91s to simulate human reading the thread...
+2026-11-21 21:12:03,272 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211203_265227.xlsx (size: 905010 bytes)
+2026-11-21 21:12:03,587 [INFO] modules.excel_handler: Matched task to row 887 via URL match in col 4
+2026-11-21 21:12:04,403 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_184a4846.xlsx
+2026-11-21 21:12:04,405 [INFO] modules.workflow_controller: Activated browser tab 4C4360302346C47D575EDF540E7C09AF in Chrome: status 200
+2026-11-21 21:12:04,770 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211204_767880.xlsx (size: 905040 bytes)
+2026-11-21 21:12:05,252 [INFO] modules.excel_handler: Matched task to row 887 via URL match in col 4
+2026-11-21 21:12:06,053 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_563ab8b3.xlsx
+2026-11-21 21:12:06,632 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:12:12,824 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Ontariodrivetest/comments/1y1mum7/g2_road_test_in_oshawa_super_nervous_any_tips_or/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:12:29,334 [INFO] modules.workflow_controller: Activated browser tab 7A5AAD90D91800D5E1A0EACBDCF21E5D in Chrome: status 200
+2026-11-21 21:12:30,049 [INFO] modules.workflow_controller: Human touch: Pausing 7.25s to simulate human reading the thread...
+2026-11-21 21:12:43,330 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211243_322819.xlsx (size: 905041 bytes)
+2026-11-21 21:12:43,799 [INFO] modules.excel_handler: Matched task to row 886 via URL match in col 4
+2026-11-21 21:12:44,571 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_7e9018b7.xlsx
+2026-11-21 21:12:44,573 [INFO] modules.workflow_controller: Activated browser tab 7A5AAD90D91800D5E1A0EACBDCF21E5D in Chrome: status 200
+2026-11-21 21:12:44,960 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211244_958245.xlsx (size: 905062 bytes)
+2026-11-21 21:12:45,438 [INFO] modules.excel_handler: Matched task to row 886 via URL match in col 4
+2026-11-21 21:12:46,639 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_9fbfb348.xlsx
+2026-11-21 21:12:47,315 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:12:53,530 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/DMV/comments/1y1qbmg/2nd_reassignment_title_registration_issue/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:13:15,767 [INFO] modules.workflow_controller: Activated browser tab 24C489F58142B92AD0331D182BB5CF03 in Chrome: status 200
+2026-11-21 21:13:16,277 [INFO] modules.workflow_controller: Human touch: Pausing 3.23s to simulate human reading the thread...
+2026-11-21 21:13:25,882 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211325_877315.xlsx (size: 905059 bytes)
+2026-11-21 21:13:26,206 [INFO] modules.excel_handler: Matched task to row 885 via URL match in col 4
+2026-11-21 21:13:27,169 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_c7feba56.xlsx
+2026-11-21 21:13:27,170 [INFO] modules.workflow_controller: Activated browser tab 24C489F58142B92AD0331D182BB5CF03 in Chrome: status 200
+2026-11-21 21:13:27,651 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211327_635234.xlsx (size: 905094 bytes)
+2026-11-21 21:13:28,020 [INFO] modules.excel_handler: Matched task to row 885 via URL match in col 4
+2026-11-21 21:13:29,223 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_c6dce665.xlsx
+2026-11-21 21:13:29,854 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:13:35,096 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/DMV/comments/1xfipee/dmv_road_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:14:06,530 [INFO] modules.workflow_controller: Activated browser tab BF893A4305EBF9986010E8E07130E4BB in Chrome: status 200
+2026-11-21 21:14:06,902 [INFO] modules.workflow_controller: Human touch: Pausing 4.74s to simulate human reading the thread...
+2026-11-21 21:14:17,612 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211417_604267.xlsx (size: 905095 bytes)
+2026-11-21 21:14:18,022 [INFO] modules.excel_handler: Matched task to row 884 via URL match in col 4
+2026-11-21 21:14:18,933 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_b59d52a7.xlsx
+2026-11-21 21:14:18,954 [INFO] modules.workflow_controller: Activated browser tab BF893A4305EBF9986010E8E07130E4BB in Chrome: status 200
+2026-11-21 21:14:19,404 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211419_400164.xlsx (size: 905134 bytes)
+2026-11-21 21:14:19,818 [INFO] modules.excel_handler: Matched task to row 884 via URL match in col 4
+2026-11-21 21:14:20,671 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_cbd6b7ae.xlsx
+2026-11-21 21:14:21,341 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:14:26,943 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/DMV/comments/1xpql4m/driving_test_reading_question_paper/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:14:45,110 [INFO] modules.workflow_controller: Activated browser tab BFB05985B939B9D0DBC6E72628918ADC in Chrome: status 200
+2026-11-21 21:14:45,592 [INFO] modules.workflow_controller: Human touch: Pausing 3.84s to simulate human reading the thread...
+2026-11-21 21:14:55,178 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211455_174113.xlsx (size: 905137 bytes)
+2026-11-21 21:14:55,513 [INFO] modules.excel_handler: Matched task to row 883 via URL match in col 4
+2026-11-21 21:14:56,103 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_432d2c95.xlsx
+2026-11-21 21:14:56,127 [INFO] modules.workflow_controller: Activated browser tab BFB05985B939B9D0DBC6E72628918ADC in Chrome: status 200
+2026-11-21 21:14:56,520 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211456_519805.xlsx (size: 905173 bytes)
+2026-11-21 21:14:56,864 [INFO] modules.excel_handler: Matched task to row 883 via URL match in col 4
+2026-11-21 21:14:57,565 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_dd9be25b.xlsx
+2026-11-21 21:14:58,215 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:15:04,015 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1u0t3an/do_i_need_my_passport_for_my_license_road_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:15:26,712 [INFO] modules.workflow_controller: Activated browser tab B24CE55E16E04B9E3540F429E3639DF0 in Chrome: status 200
+2026-11-21 21:15:27,313 [INFO] modules.workflow_controller: Human touch: Pausing 3.15s to simulate human reading the thread...
+2026-11-21 21:16:29,837 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211629_825760.xlsx (size: 905172 bytes)
+2026-11-21 21:16:30,268 [INFO] modules.excel_handler: Matched task to row 882 via URL match in col 4
+2026-11-21 21:16:31,343 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_4104cbcd.xlsx
+2026-11-21 21:16:31,371 [INFO] modules.workflow_controller: Activated browser tab B24CE55E16E04B9E3540F429E3639DF0 in Chrome: status 200
+2026-11-21 21:16:31,888 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_211631_884386.xlsx (size: 905213 bytes)
+2026-11-21 21:16:32,265 [INFO] modules.excel_handler: Matched task to row 882 via URL match in col 4
+2026-11-21 21:16:32,977 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_009c627e.xlsx
+2026-11-21 21:16:33,727 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:16:39,486 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/wisconsin/comments/1wu27uq/received_multiple_license_plate_stickers/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:16:56,772 [INFO] modules.workflow_controller: Activated browser tab 9D2FEA7C3F036A6A14674A0C3077FAE0 in Chrome: status 200
+2026-11-21 21:16:57,085 [INFO] modules.workflow_controller: Human touch: Pausing 7.47s to simulate human reading the thread...
+2026-11-21 21:22:16,899 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser evaluate --fn async () => {
+  const expected = "What should you do if your Wisconsin registration renewal mails you multiple license plate stickers?\n\nReceiving duplicate stickers after an online renewal is a known mailing duplication. You only need one sticker on the plate. Before applying it, check that the year on the sticker is the new registration year and that the plate number printed on it matches your license plate.\n\nIf all the stickers are identical, apply one and destroy the extras rather than keeping or giving them away. If they show different years, use the newest year and destroy the older ones. If the plate number on the stickers is not yours, contact the Wisconsin DMV before using any of them.\n\nFinally, verify your registration status online to confirm the record shows current with the new expiration date. The sticker is the visible proof, but the DMV record is what matters if you are stopped.";
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // 1. Human touch: Step-by-step natural screen scrolling
+  const scrollSteps = Math.floor(Math.random() * 2) + 2;
+  for (let s = 0; s < scrollSteps; s++) {
+    const scrollDelta = Math.floor(Math.random() * 160) + 140;
+    window.scrollBy({ top: scrollDelta, behavior: 'smooth' });
+    await wait(Math.floor(Math.random() * 200) + 180);
+  }
+
+  // 2. Locate existing editor or trigger
+  let editor = document.querySelector('div[slot="rte"][contenteditable="true"]') ||
+               document.querySelector('shreddit-composer div[contenteditable="true"]') ||
+               document.querySelector('div[contenteditable="true"]:not([class*="recaptcha"])');
+
+  if (!editor) {
+    const trigger = document.querySelector('faceplate-textarea-input[data-testid="trigger-button"], [placeholder*="conversation" i], [aria-label*="Join the conversation" i], faceplate-textarea-input');
+    if (trigger) {
+      try {
+        trigger.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await wait(250);
+        trigger.click();
+        const inner = trigger.querySelector('button, textarea, [placeholder*="conversation" i]');
+        if (inner) inner.click();
+      } catch (e) {}
+    }
+
+    // Poll for up to 3 seconds for editor to mount
+    for (let i = 0; i < 30; i++) {
+      await wait(100);
+      editor = document.querySelector('div[slot="rte"][contenteditable="true"]') ||
+               document.querySelector('shreddit-composer div[contenteditable="true"]') ||
+               document.querySelector('div[contenteditable="true"]:not([class*="recaptcha"])');
+      if (editor) break;
+    }
+  }
+
+  if (!editor) {
+    const composers = document.querySelectorAll('shreddit-comment-composer, comment-body-header, faceplate-textarea-input, comment-composer-host');
+    for (const c of composers) {
+      const root = c.shadowRoot || c;
+      editor = root.querySelector('div[contenteditable="true"], textarea, [name="content"]');
+      if (editor) break;
+    }
+  }
+
+  // Dismiss any sign-up or interstitial modal if present
+  const closeSelectors = [
+    'button[aria-label="Close" i]',
+    'button[aria-label="Close modal" i]',
+    'faceplate-modal-header button',
+    'shreddit-signup-drawer button[aria-label="Close" i]',
+    'auth-flow-modal button[aria-label="Close" i]',
+    'div[aria-label="Close" i] button',
+    'button.close'
+  ];
+  for (const sel of closeSelectors) {
+    try { const b = document.querySelector(sel); if (b) b.click(); } catch(e) {}
+  }
+  await wait(150);
+
+  const authModal = document.querySelector('shreddit-signup-drawer, auth-flow-modal');
+  const isBlockingModal = !!(authModal && authModal.offsetParent !== null);
+  if (isBlockingModal && !editor) {
+    return JSON.stringify({ success: false, isAuthError: true, error: 'Reddit authentication required. Session is not logged in.' });
+  }
+
+  if (!editor) {
+    return JSON.stringify({ success: false, error: 'Comment editor could not be identified confidently.' });
+  }
+
+  // 3. Human touch: Focus & manual progressive typing simulation
+  try {
+    editor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    editor.focus();
+  } catch (e) {}
+  await wait(200);
+
+  const words = expected.split(' ');
+  let progressiveText = '';
+  const batchSize = Math.floor(Math.random() * 3) + 4;
+  for (let i = 0; i < words.length; i++) {
+    progressiveText += (i > 0 ? ' ' : '') + words[i];
+    if (i % batchSize === 0 || i === words.length - 1 || words[i].includes('\n')) {
+      if (editor.__lexicalEditor && typeof editor.__lexicalEditor.parseEditorState === 'function') {
+        const paras = progressiveText.split('\n\n').map(p => ({
+          children: [{
+            detail: 0,
+            format: 0,
+            mode: 'normal',
+            style: '',
+            text: p,
+            type: 'text',
+            version: 1
+          }],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          type: 'paragraph',
+          version: 1
+        }));
+        const stateObj = {
+          root: {
+            children: paras,
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            type: 'root',
+            version: 1
+          }
+        };
+        editor.__lexicalEditor.setEditorState(editor.__lexicalEditor.parseEditorState(JSON.stringify(stateObj)));
+      } else {
+        editor.innerText = progressiveText;
+      }
+      editor.dispatchEvent(new InputEvent('input', { bubbles: true, cancelable: true, data: words[i] }));
+      await wait(Math.floor(Math.random() * 20) + 15);
+    }
+  }
+
+  // Ensure exact final state matching Column K character-for-character
+  if (editor.__lexicalEditor && typeof editor.__lexicalEditor.parseEditorState === 'function') {
+    const finalParas = expected.split('\n\n').map(p => ({
+      children: [{
+        detail: 0,
+        format: 0,
+        mode: 'normal',
+        style: '',
+        text: p,
+        type: 'text',
+        version: 1
+      }],
+      direction: 'ltr',
+      format: '',
+      indent: 0,
+      type: 'paragraph',
+      version: 1
+    }));
+    const finalState = {
+      root: {
+        children: finalParas,
+        direction: 'ltr',
+        format: '',
+        indent: 0,
+        type: 'root',
+        version: 1
+      }
+    };
+    editor.__lexicalEditor.setEditorState(editor.__lexicalEditor.parseEditorState(JSON.stringify(finalState)));
+  } else {
+    if (editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT') {
+      editor.value = expected;
+    } else {
+      editor.innerText = expected;
+    }
+    editor.dispatchEvent(new InputEvent('input', { bubbles: true, cancelable: true, data: expected }));
+    editor.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  await wait(200);
+
+  // 4. Read back and verify
+  let rawText = ((editor.tagName === 'TEXTAREA' || editor.tagName === 'INPUT')
+    ? editor.value
+    : (editor.innerText || editor.textContent || '')).trim();
+  const readBack = rawText.replace(/<[^>]+>/g, '').trim();
+
+  // 5. If auto_submit is enabled, human proofreading pause (1.5 to 2.5 seconds) before submit
+  let submitted = false;
+  if (false) {
+    await wait(Math.floor(Math.random() * 1000) + 1500);
+    function findDeepButtons(root) {
+      let res = [];
+      if (!root) return res;
+      try { res = res.concat(Array.from(root.querySelectorAll('button'))); } catch(e) {}
+      const allEls = root.querySelectorAll ? Array.from(root.querySelectorAll('*')) : [];
+      for (const el of allEls) {
+        if (el.shadowRoot) {
+          res = res.concat(findDeepButtons(el.shadowRoot));
+        }
+      }
+      return res;
+    }
+    const allButtons = findDeepButtons(document);
+    let submitBtn = allButtons.find(b => {
+      const slot = (b.getAttribute('slot') || '').toLowerCase();
+      const txt = (b.innerText || b.textContent || '').trim().toLowerCase();
+      const aria = (b.getAttribute('aria-label') || '').toLowerCase();
+      const testId = (b.getAttribute('data-testid') || '').toLowerCase();
+      return slot === 'submit-button' || txt === 'comment' || aria === 'comment' || testId.includes('comment') || (b.type === 'submit' && (txt.includes('comment') || slot === 'submit-button'));
+    });
+    if (!submitBtn) {
+      const composer = document.querySelector('shreddit-composer, shreddit-comment-composer');
+      if (composer) {
+        const root = composer.shadowRoot || composer;
+        submitBtn = root.querySelector('button[slot="submit-button"], button[type="submit"]') ||
+                    Array.from(root.querySelectorAll('button')).find(b => (b.innerText || '').trim().toLowerCase() === 'comment');
+      }
+    }
+    if (submitBtn) {
+      if (submitBtn.disabled || submitBtn.hasAttribute('disabled')) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('disabled');
+        submitBtn.removeAttribute('aria-disabled');
+      }
+      submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await wait(350);
+      submitBtn.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new PointerEvent('pointerup', { bubbles: true, composed: true }));
+      submitBtn.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, composed: true }));
+      submitBtn.click();
+      await wait(2500);
+      submitted = true;
+    }
+  }
+
+  return JSON.stringify({
+    success: true,
+    verifiedText: readBack,
+    submitted: submitted,
+  });
+} --browser-profile shoro-test --target-id 9D2FEA7C3F036A6A14674A0C3077FAE0 (timeout: 120s)
+2026-11-21 21:22:42,446 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212242_436978.xlsx (size: 905217 bytes)
+2026-11-21 21:22:42,847 [INFO] modules.excel_handler: Matched task to row 881 via URL match in col 4
+2026-11-21 21:22:44,118 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f5a0e36c.xlsx
+2026-11-21 21:22:44,150 [INFO] modules.workflow_controller: Activated browser tab 9D2FEA7C3F036A6A14674A0C3077FAE0 in Chrome: status 200
+2026-11-21 21:22:44,829 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212244_825108.xlsx (size: 905254 bytes)
+2026-11-21 21:22:45,249 [INFO] modules.excel_handler: Matched task to row 881 via URL match in col 4
+2026-11-21 21:22:45,971 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_9a825d45.xlsx
+2026-11-21 21:22:46,713 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:22:51,209 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/wisconsin/comments/1ub18gs/license_plate_renewal_fyi/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:23:10,042 [INFO] modules.workflow_controller: Activated browser tab 4B6967786AB191E0BC0D8D624289BA24 in Chrome: status 200
+2026-11-21 21:23:10,610 [INFO] modules.workflow_controller: Human touch: Pausing 6.12s to simulate human reading the thread...
+2026-11-21 21:23:23,150 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212323_138147.xlsx (size: 905249 bytes)
+2026-11-21 21:23:23,517 [INFO] modules.excel_handler: Matched task to row 880 via URL match in col 4
+2026-11-21 21:23:24,615 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8dc665ee.xlsx
+2026-11-21 21:23:24,629 [INFO] modules.workflow_controller: Activated browser tab 4B6967786AB191E0BC0D8D624289BA24 in Chrome: status 200
+2026-11-21 21:23:25,020 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212325_019590.xlsx (size: 905288 bytes)
+2026-11-21 21:23:25,367 [INFO] modules.excel_handler: Matched task to row 880 via URL match in col 4
+2026-11-21 21:23:26,221 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_dacb3949.xlsx
+2026-11-21 21:23:26,847 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:23:31,891 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1x417xu/ct_dmv_and_elderly_drivers_revoking_licenses/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:23:50,751 [INFO] modules.workflow_controller: Activated browser tab DCD16080C51422A6053B9668464D7E70 in Chrome: status 200
+2026-11-21 21:23:51,458 [INFO] modules.workflow_controller: Human touch: Pausing 4.43s to simulate human reading the thread...
+2026-11-21 21:24:01,955 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212401_950144.xlsx (size: 905291 bytes)
+2026-11-21 21:24:02,275 [INFO] modules.excel_handler: Matched task to row 879 via URL match in col 4
+2026-11-21 21:24:03,324 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f9d94153.xlsx
+2026-11-21 21:24:03,347 [INFO] modules.workflow_controller: Activated browser tab DCD16080C51422A6053B9668464D7E70 in Chrome: status 200
+2026-11-21 21:24:03,803 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212403_801090.xlsx (size: 905329 bytes)
+2026-11-21 21:24:04,210 [INFO] modules.excel_handler: Matched task to row 879 via URL match in col 4
+2026-11-21 21:24:04,892 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_50c246c8.xlsx
+2026-11-21 21:24:05,485 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:24:09,087 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1uq2lfq/tips_for_a_road_test_at_danburys_the_next_street/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:24:27,995 [INFO] modules.workflow_controller: Activated browser tab 5581C038F51177A8200B5412B9CFB0AE in Chrome: status 200
+2026-11-21 21:24:28,680 [INFO] modules.workflow_controller: Human touch: Pausing 5.42s to simulate human reading the thread...
+2026-11-21 21:24:39,986 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212439_981109.xlsx (size: 905334 bytes)
+2026-11-21 21:24:40,322 [INFO] modules.excel_handler: Matched task to row 878 via URL match in col 4
+2026-11-21 21:24:41,798 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_f99b7d4f.xlsx
+2026-11-21 21:24:41,801 [INFO] modules.workflow_controller: Activated browser tab 5581C038F51177A8200B5412B9CFB0AE in Chrome: status 200
+2026-11-21 21:24:42,329 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212442_327812.xlsx (size: 905373 bytes)
+2026-11-21 21:24:42,887 [INFO] modules.excel_handler: Matched task to row 878 via URL match in col 4
+2026-11-21 21:24:43,928 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_c7225629.xlsx
+2026-11-21 21:24:44,567 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:25:03,087 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1uu1w8e/dmv_enfield/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:25:23,661 [INFO] modules.workflow_controller: Activated browser tab 3E41FDB50A8D7C6F2CE762F12B7A9479 in Chrome: status 200
+2026-11-21 21:25:24,462 [INFO] modules.workflow_controller: Human touch: Pausing 4.50s to simulate human reading the thread...
+2026-11-21 21:25:35,391 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212535_385229.xlsx (size: 905377 bytes)
+2026-11-21 21:25:36,171 [INFO] modules.excel_handler: Matched task to row 877 via URL match in col 4
+2026-11-21 21:25:37,237 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8a665c43.xlsx
+2026-11-21 21:25:37,266 [INFO] modules.workflow_controller: Activated browser tab 3E41FDB50A8D7C6F2CE762F12B7A9479 in Chrome: status 200
+2026-11-21 21:25:37,737 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212537_715405.xlsx (size: 905412 bytes)
+2026-11-21 21:25:38,457 [INFO] modules.excel_handler: Matched task to row 877 via URL match in col 4
+2026-11-21 21:25:39,737 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_18c7c4ec.xlsx
+2026-11-21 21:25:40,397 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:25:45,763 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1wew8n7/any_tips_for_taking_the_road_test_at_the_next/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:26:16,165 [INFO] modules.workflow_controller: Activated browser tab 0B761AE65B037F80783745E344465618 in Chrome: status 200
+2026-11-21 21:26:17,275 [INFO] modules.workflow_controller: Human touch: Pausing 4.09s to simulate human reading the thread...
+2026-11-21 21:26:27,025 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212627_017637.xlsx (size: 905415 bytes)
+2026-11-21 21:26:27,419 [INFO] modules.excel_handler: Matched task to row 876 via URL match in col 4
+2026-11-21 21:26:30,903 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_e970715a.xlsx
+2026-11-21 21:26:30,905 [INFO] modules.workflow_controller: Activated browser tab 0B761AE65B037F80783745E344465618 in Chrome: status 200
+2026-11-21 21:26:31,281 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212631_280634.xlsx (size: 905454 bytes)
+2026-11-21 21:26:31,756 [INFO] modules.excel_handler: Matched task to row 876 via URL match in col 4
+2026-11-21 21:26:32,650 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_90fef429.xlsx
+2026-11-21 21:26:33,229 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:26:39,338 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/Connecticut/comments/1uqhaff/next_street_driving_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:26:59,252 [INFO] modules.workflow_controller: Activated browser tab 568551285A744B0BCA083E50650B9F18 in Chrome: status 200
+2026-11-21 21:27:00,278 [INFO] modules.workflow_controller: Human touch: Pausing 3.19s to simulate human reading the thread...
+2026-11-21 21:27:09,556 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212709_550254.xlsx (size: 905450 bytes)
+2026-11-21 21:27:09,901 [INFO] modules.excel_handler: Matched task to row 875 via URL match in col 4
+2026-11-21 21:27:11,183 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_ee477968.xlsx
+2026-11-21 21:27:11,185 [INFO] modules.workflow_controller: Activated browser tab 568551285A744B0BCA083E50650B9F18 in Chrome: status 200
+2026-11-21 21:27:11,734 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212711_730695.xlsx (size: 905495 bytes)
+2026-11-21 21:27:12,311 [INFO] modules.excel_handler: Matched task to row 875 via URL match in col 4
+2026-11-21 21:27:13,428 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_04fcebb3.xlsx
+2026-11-21 21:27:14,616 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:27:19,760 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/wisconsin/comments/1xrvif9/what_to_expect_from_drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:27:41,949 [INFO] modules.workflow_controller: Activated browser tab 9FB91C26B604286EE1675E9AE7277E1F in Chrome: status 200
+2026-11-21 21:27:42,734 [INFO] modules.workflow_controller: Human touch: Pausing 6.41s to simulate human reading the thread...
+2026-11-21 21:27:54,771 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212754_758522.xlsx (size: 905492 bytes)
+2026-11-21 21:27:55,191 [INFO] modules.excel_handler: Matched task to row 874 via URL match in col 4
+2026-11-21 21:27:56,504 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_bf92b667.xlsx
+2026-11-21 21:27:56,514 [INFO] modules.workflow_controller: Activated browser tab 9FB91C26B604286EE1675E9AE7277E1F in Chrome: status 200
+2026-11-21 21:27:58,547 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212758_544708.xlsx (size: 905532 bytes)
+2026-11-21 21:27:58,970 [INFO] modules.excel_handler: Matched task to row 874 via URL match in col 4
+2026-11-21 21:27:59,723 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8c3b957f.xlsx
+2026-11-21 21:28:00,359 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:28:07,089 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser open https://www.reddit.com/r/wisconsin/comments/1uy0m1b/drivers_test/ --browser-profile shoro-test (timeout: 120s)
+2026-11-21 21:28:38,706 [INFO] modules.workflow_controller: Activated browser tab 1C012879CA07A176C984441E82463BE6 in Chrome: status 200
+2026-11-21 21:28:39,492 [INFO] modules.workflow_controller: Human touch: Pausing 5.57s to simulate human reading the thread...
+2026-11-21 21:28:51,686 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212851_681676.xlsx (size: 905533 bytes)
+2026-11-21 21:28:52,047 [INFO] modules.excel_handler: Matched task to row 873 via URL match in col 4
+2026-11-21 21:28:53,556 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_9863cc6f.xlsx
+2026-11-21 21:28:53,558 [INFO] modules.workflow_controller: Activated browser tab 1C012879CA07A176C984441E82463BE6 in Chrome: status 200
+2026-11-21 21:28:54,072 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_212854_069898.xlsx (size: 905563 bytes)
+2026-11-21 21:28:54,534 [INFO] modules.excel_handler: Matched task to row 873 via URL match in col 4
+2026-11-21 21:28:59,089 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_64db2b9c.xlsx
+2026-11-21 21:29:00,225 [WARNING] modules.google_sheets_syncer: Google Sheet Webhook HTTP error 401: Unauthorized
+2026-11-21 21:29:05,074 [INFO] modules.workflow_controller: All viable participating accounts reached batch limit (17 items each).
+2026-11-21 21:29:23,938 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:36:00,864 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:36:07,424 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:36:07,697 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_213607_693403.xlsx (size: 905564 bytes)
+2026-11-21 21:36:08,126 [INFO] modules.excel_handler: Matched task to row 873 via URL match in col 4
+2026-11-21 21:36:08,757 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_3fb686f4.xlsx
+2026-11-21 21:36:09,879 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:36:16,965 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:36:21,459 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:38:27,707 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:38:29,185 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:38:36,535 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:38:37,188 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:38:37,432 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_213837_429702.xlsx (size: 905571 bytes)
+2026-11-21 21:38:37,728 [INFO] modules.excel_handler: Matched task to row 875 via URL match in col 4
+2026-11-21 21:38:38,604 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_07701655.xlsx
+2026-11-21 21:38:40,563 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:38:43,667 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:39:11,029 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:11,737 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:11,951 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_213911_949600.xlsx (size: 905571 bytes)
+2026-11-21 21:39:12,253 [INFO] modules.excel_handler: Matched task to row 876 via URL match in col 4
+2026-11-21 21:39:13,129 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_db2f643c.xlsx
+2026-11-21 21:39:14,281 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:39:20,060 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:25,472 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:39:26,638 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:39:32,315 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:32,590 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_213932_586798.xlsx (size: 905575 bytes)
+2026-11-21 21:39:33,081 [INFO] modules.excel_handler: Matched task to row 878 via URL match in col 4
+2026-11-21 21:39:34,019 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8d68968e.xlsx
+2026-11-21 21:39:35,124 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:39:41,941 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:46,969 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:39:52,378 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:39:52,622 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_213952_620449.xlsx (size: 905576 bytes)
+2026-11-21 21:39:53,047 [INFO] modules.excel_handler: Matched task to row 879 via URL match in col 4
+2026-11-21 21:39:53,869 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_54b2ff77.xlsx
+2026-11-21 21:39:54,950 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:01,564 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:06,539 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:40:07,953 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:09,718 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:12,798 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:17,534 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:19,570 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:20,680 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:21,178 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214021_175241.xlsx (size: 905574 bytes)
+2026-11-21 21:40:21,528 [INFO] modules.excel_handler: Matched task to row 881 via URL match in col 4
+2026-11-21 21:40:22,382 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_bc9abbef.xlsx
+2026-11-21 21:40:23,551 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:25,310 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:27,212 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:40:34,133 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:35,877 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:36,517 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:40:40,860 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:41:49,621 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:41:57,413 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:41:57,678 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214157_675909.xlsx (size: 905577 bytes)
+2026-11-21 21:41:58,117 [INFO] modules.excel_handler: Matched task to row 880 via URL match in col 4
+2026-11-21 21:41:58,726 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_59105b22.xlsx
+2026-11-21 21:42:00,033 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:42:06,433 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:42:10,361 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:45:15,127 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:45:24,358 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:45:24,686 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214524_682439.xlsx (size: 905576 bytes)
+2026-11-21 21:45:25,326 [INFO] modules.excel_handler: Matched task to row 877 via URL match in col 4
+2026-11-21 21:45:26,481 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_1750724a.xlsx
+2026-11-21 21:45:27,681 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:45:35,143 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:45:35,372 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214535_369498.xlsx (size: 905579 bytes)
+2026-11-21 21:45:36,010 [INFO] modules.excel_handler: Matched task to row 874 via URL match in col 4
+2026-11-21 21:45:37,596 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_640cc92f.xlsx
+2026-11-21 21:45:38,901 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:45:45,374 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:45:50,893 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:45:51,772 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:45:55,194 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:46:00,661 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:46:04,902 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:46:05,444 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214605_439583.xlsx (size: 905572 bytes)
+2026-11-21 21:46:05,865 [INFO] modules.excel_handler: Matched task to row 884 via URL match in col 4
+2026-11-21 21:46:06,892 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_da857de0.xlsx
+2026-11-21 21:46:08,179 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:46:15,046 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:46:20,035 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:47:02,937 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:47:08,534 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:47:08,833 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214708_829496.xlsx (size: 905574 bytes)
+2026-11-21 21:47:09,346 [INFO] modules.excel_handler: Matched task to row 885 via URL match in col 4
+2026-11-21 21:47:10,100 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_6916ef98.xlsx
+2026-11-21 21:47:11,224 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:47:17,733 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:47:23,797 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:47:25,723 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:47:31,638 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:47:31,994 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_214731_991932.xlsx (size: 905580 bytes)
+2026-11-21 21:47:32,494 [INFO] modules.excel_handler: Matched task to row 886 via URL match in col 4
+2026-11-21 21:47:33,300 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_b87a79ca.xlsx
+2026-11-21 21:47:34,544 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:47:41,425 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:47:46,849 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:48:36,181 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:48:41,669 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:55:01,738 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:55:06,550 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:55:06,949 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-21 21:55:07,428 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-21 21:55:22,730 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-21 21:55:53,580 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-21 21:56:24,703 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:56:44,802 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:56:55,480 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:57:03,927 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:57:48,944 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:58:04,738 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:58:20,070 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:58:42,509 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:58:53,474 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:58:53,718 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_215853_698011.xlsx (size: 905580 bytes)
+2026-11-21 21:58:54,291 [INFO] modules.excel_handler: Matched task to row 882 via URL match in col 4
+2026-11-21 21:58:55,015 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8f6886e4.xlsx
+2026-11-21 21:58:56,594 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:59:11,158 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:59:15,463 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:59:21,220 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:59:27,764 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:59:28,009 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_215928_007830.xlsx (size: 905582 bytes)
+2026-11-21 21:59:28,569 [INFO] modules.excel_handler: Matched task to row 883 via URL match in col 4
+2026-11-21 21:59:29,344 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_8c291715.xlsx
+2026-11-21 21:59:30,464 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:59:37,928 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 21:59:43,224 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 21:59:44,966 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 21:59:51,249 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:00:01,889 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 22:00:08,597 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:00:14,525 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:00:14,916 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_220014_913524.xlsx (size: 905580 bytes)
+2026-11-21 22:00:15,561 [INFO] modules.excel_handler: Matched task to row 887 via URL match in col 4
+2026-11-21 22:00:16,520 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_b1117bf5.xlsx
+2026-11-21 22:00:17,664 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:00:24,449 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:00:29,419 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 22:00:32,558 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:00:39,298 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:00:39,624 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_220039_620579.xlsx (size: 905581 bytes)
+2026-11-21 22:00:40,167 [INFO] modules.excel_handler: Matched task to row 888 via URL match in col 4
+2026-11-21 22:00:41,147 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_0636c24f.xlsx
+2026-11-21 22:00:42,371 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:00:50,323 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:00:55,712 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-21 22:01:03,378 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:01:07,896 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:01:08,257 [INFO] modules.excel_handler: Created incremental workbook backup at backups\Reddit Threads_backup_20261121_220108_255579.xlsx (size: 905583 bytes)
+2026-11-21 22:01:08,928 [INFO] modules.excel_handler: Matched task to row 889 via URL match in col 4
+2026-11-21 22:01:09,751 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_e4279052.xlsx
+2026-11-21 22:01:10,859 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-21 22:01:19,456 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 888, 'eligible_comments': 17, 'skipped_comments': 871, 'total_posts': 26, 'eligible_posts': 26, 'skipped_posts': 0, 'total_queue': 43}
+2026-11-21 22:01:24,819 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data

@@ -6,6 +6,9 @@ import json
 import logging
 import os
 import re
+import shutil
+import sqlite3
+import tempfile
 from typing import Any, Dict, List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
@@ -358,7 +361,7 @@ class AccountManager:
         return Path(os.getcwd()) / "chrome_profiles" / clean
 
     def check_session_status(self, account_id: str) -> Dict[str, Any]:
-        """Check persistent session status for an account."""
+        """Check persistent session status and verified Reddit authentication for an account."""
         profile = self.accounts.get(account_id) or next(
             (p for k, p in self.accounts.items() if k.lower() == str(account_id).strip().lower()), None
         )
@@ -377,19 +380,40 @@ class AccountManager:
 
         dir_exists = p_dir.exists() and p_dir.is_dir()
         has_cookies = False
+        has_reddit_auth = False
         if dir_exists:
             # Check common Chrome cookie locations (Network/Cookies or Default/Network/Cookies)
             cookie_candidates = [
                 p_dir / "Default" / "Network" / "Cookies",
-                p_dir / "Default" / "Network" / "Cookies-journal",
-                p_dir / "Default" / "Cookies",
-                p_dir / "Default" / "Cookies-journal",
                 p_dir / "Network" / "Cookies",
+                p_dir / "Default" / "Cookies",
                 p_dir / "Cookies",
             ]
-            has_cookies = any(c.exists() and c.stat().st_size > 0 for c in cookie_candidates)
+            cookie_file = next((c for c in cookie_candidates if c.exists() and c.stat().st_size > 0), None)
+            if cookie_file:
+                has_cookies = True
+                safe_name = re.sub(r'[^a-zA-Z0-9]', '_', profile.account_id)
+                tmp_cookie = Path(tempfile.gettempdir()) / f"chk_auth_{os.getpid()}_{safe_name}.sqlite"
+                try:
+                    shutil.copyfile(cookie_file, tmp_cookie)
+                    conn = sqlite3.connect(tmp_cookie, timeout=2.0)
+                    cur = conn.cursor()
+                    cur.execute(
+                        "SELECT 1 FROM cookies WHERE host_key LIKE '%reddit.com%' AND name IN ('reddit_session', 'token_v2') LIMIT 1"
+                    )
+                    has_reddit_auth = cur.fetchone() is not None
+                    conn.close()
+                except Exception as c_err:
+                    logger.debug("Could not inspect cookies for %s: %s", profile.account_id, c_err)
+                    has_reddit_auth = False
+                finally:
+                    try:
+                        if tmp_cookie.exists():
+                            tmp_cookie.unlink()
+                    except Exception:
+                        pass
 
-        status_label = "Logged In / Active" if (dir_exists and has_cookies) else ("Profile Created" if dir_exists else "No Session")
+        status_label = "Logged In / Active" if (dir_exists and has_reddit_auth) else ("Profile Created" if dir_exists else "No Session")
         return {
             "account_id": profile.account_id,
             "configured": True,
@@ -397,7 +421,7 @@ class AccountManager:
             "profile_name": profile.chrome_profile_name,
             "profile_dir": str(p_dir),
             "session_status": status_label,
-            "has_cookies": has_cookies,
+            "has_cookies": has_reddit_auth if dir_exists else False,
             "dir_exists": dir_exists,
         }
 

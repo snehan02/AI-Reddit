@@ -682,29 +682,46 @@ class OpenClawClient:
         """Heuristically detect CAPTCHA or login-verification screens in a page snapshot.
 
         Checks the accessible DOM snapshot text for common CAPTCHA / verification
-        indicators.  This is a best-effort signal only; the operator must always
-        make the final judgement.
+        indicators. Strips script/style tags and HTML tags to prevent false positives
+        from passive script includes or analytics bundles.
 
-        Returns True if CAPTCHA-like content is suspected, False otherwise.
+        Returns True if CAPTCHA-like challenge is suspected, False otherwise.
         No network calls are made; this is a pure text analysis.
         """
         if not snapshot_text:
             return False
-        lower = snapshot_text.lower()
+
+        # Check for active blocking challenge iframes first
+        lower_raw = snapshot_text.lower()
+        if ("#px-captcha" in lower_raw or "challenges.cloudflare.com" in lower_raw or "recaptcha/api2/bframe" in lower_raw) and ("<iframe" in lower_raw or "iframe" in lower_raw):
+            return True
+
+        # Strip script and style blocks and HTML tags to avoid false positives from background JS bundles
+        cleaned = re.sub(r'<script[\s\S]*?</script>', ' ', snapshot_text, flags=re.IGNORECASE)
+        cleaned = re.sub(r'<style[\s\S]*?</style>', ' ', cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r'<[^>]+>', ' ', cleaned)
+        lower = cleaned.lower()
+
         indicators = [
             "captcha",
-            "i'm not a robot",
-            "are you a robot",
-            "verify you are human",
-            "verify you're human",
-            "human verification",
-            "security check",
-            "prove you're not a robot",
             "recaptcha",
             "hcaptcha",
             "turnstile",
-            "suspicious activity",
-            "please verify",
+            "verify you are human",
+            "verify you're human",
+            "human verification required",
+            "human verification",
+            "press & hold to confirm you are a human",
+            "press & hold",
+            "confirm you are human",
+            "confirm you're human",
+            "confirm you're not a robot",
+            "i'm not a robot",
+            "i am not a robot",
+            "prove you're not a robot",
+            "prove you are not a robot",
+            "security verification",
+            "suspicious activity detected",
         ]
         return any(ind in lower for ind in indicators)
 
@@ -721,9 +738,57 @@ class OpenClawClient:
         if not snapshot_text or not isinstance(snapshot_text, str):
             return False, None, "No DOM snapshot content available to verify."
 
+        # 0. Fast-path: Structured JSON from browser CDP evaluate
+        trimmed = snapshot_text.strip()
+        if trimmed.startswith("{") and trimmed.endswith("}"):
+            try:
+                import json
+                payload = json.loads(trimmed)
+                if isinstance(payload, dict) and "isAuth" in payload:
+                    is_a = bool(payload.get("isAuth"))
+                    usr = payload.get("activeUser")
+                    msg = f"Verified active Reddit session for '{usr}'" if is_a else "Unauthenticated: Reddit login prompt / modal detected on page."
+                    return is_a, usr, msg
+            except Exception:
+                pass
+
         text = snapshot_text.lower()
 
-        # 1. Logged-out indicators: If login/signup buttons or signup modal are present, user is NOT logged in.
+        # 1. Check for user markers specifically on the logged-in user element (positive signal first)
+        user_match = re.search(r'current-user=["\']([^"\']+)["\']', snapshot_text, re.IGNORECASE)
+        if not user_match:
+            user_match = re.search(r'aria-label=["\']user account:\s*([^"\']+)["\']', snapshot_text, re.IGNORECASE)
+
+        if user_match:
+            uname = user_match.group(1).strip()
+            if uname and uname.lower() not in ("login", "signup", "register", "submit", "settings", "notifications"):
+                return True, uname, f"Verified active Reddit session for user '{uname}'"
+
+        # 2. User menu dropdown or authenticated top-bar indicators (strictly impossible when logged out)
+        has_user_dropdown = (
+            'data-testid="user-dropdown"' in text
+            or 'id="user_dropdown_id"' in text
+            or 'aria-label="open user menu"' in text
+            or 'class="header-user-dropdown"' in text
+            or 'expand user menu' in text
+            or ('open chat' in text and 'create' in text)
+            or ('open inbox' in text and 'open chat' in text)
+            or 'shreddit-user-drawer' in text
+        )
+        if has_user_dropdown:
+            return True, None, "Verified active Reddit session (user dropdown menu present)"
+
+        # 3. Active comment editor without an active blocking modal
+        has_active_editor = (
+            'div[slot="rte"]' in text
+            or 'shreddit-composer' in text
+            or 'shreddit-comment-composer' in text
+            or 'faceplate-textarea-input' in text
+        ) and not ('dialog "sign up"' in text or 'heading "sign up"' in text or 'continue with phone number' in text)
+        if has_active_editor:
+            return True, None, "Verified active Reddit session (comment composer active and ready)"
+
+        # 4. Logged-out indicators: If login/signup buttons or signup modal are present, user is NOT logged in.
         has_login_button = (
             'data-testid="login-button"' in text
             or 'href="/login"' in text
@@ -749,30 +814,6 @@ class OpenClawClient:
 
         if has_login_button:
             return False, None, "Unauthenticated: Reddit login prompt / button / sign up modal detected on page."
-
-        # 2. Check for user markers specifically on the logged-in user element (never post authors or commenters)
-        user_match = re.search(r'current-user=["\']([^"\']+)["\']', snapshot_text, re.IGNORECASE)
-        if not user_match:
-            user_match = re.search(r'aria-label=["\']user account:\s*([^"\']+)["\']', snapshot_text, re.IGNORECASE)
-
-        if user_match:
-            uname = user_match.group(1).strip()
-            if uname and uname.lower() not in ("login", "signup", "register", "submit", "settings", "notifications"):
-                return True, uname, f"Verified active Reddit session for user '{uname}'"
-
-        # 3. User menu dropdown or authenticated top-bar indicators (strictly impossible when logged out)
-        # Note: Never use generic 'user avatar' here, as other commenters in the thread also have avatars!
-        has_user_dropdown = (
-            'data-testid="user-dropdown"' in text
-            or 'id="user_dropdown_id"' in text
-            or 'aria-label="open user menu"' in text
-            or 'class="header-user-dropdown"' in text
-            or 'expand user menu' in text
-            or ('open chat' in text and 'create' in text)
-            or ('open inbox' in text and 'open chat' in text)
-        )
-        if has_user_dropdown:
-            return True, None, "Verified active Reddit session (user dropdown menu present)"
 
         return False, None, "Unverified: Page does not contain active Reddit authentication indicators."
 

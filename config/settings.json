@@ -11,7 +11,7 @@
   "require_human_outcome_confirmation": true,
   "automated_submission_enabled": false,
   "google_spreadsheet_id": "1_AcKE7VErFV2sLIFqLWeGcBQy8AKmPBEmeSPkHjUkl4",
-  "google_sheets_webhook_url": "",
+  "google_sheets_webhook_url": "https://script.google.com/macros/s/AKfycbzRqezpsVNp_HHWf8BVaifxxNI7iGJ8MqTlFNXGZUJ1Jroji6nMfEExS8_oomHphxRUPQ/exec",
   "database_path": "database/execution_state.db",
   "backup_directory": "backups",
   "log_file": "logs/application.log",
