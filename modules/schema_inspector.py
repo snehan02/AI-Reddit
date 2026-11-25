@@ -87,7 +87,7 @@ class SchemaInspector:
     def __init__(self, workbook_path: Path | str = "data/Reddit Threads.xlsx"):
         self.workbook_path = Path(workbook_path)
 
-    def inspect(self) -> WorkbookSchemaReport:
+    def inspect(self, workbook: Optional[openpyxl.Workbook] = None) -> WorkbookSchemaReport:
         path = self.workbook_path
         if not path.exists():
             return WorkbookSchemaReport(
@@ -105,15 +105,20 @@ class SchemaInspector:
                 errors=[f"Unsupported file format: {path.suffix}. Expected .xlsx"],
             )
 
-        try:
-            wb = openpyxl.load_workbook(path, data_only=True, read_only=False)
-        except Exception as exc:
-            return WorkbookSchemaReport(
-                file_path=str(path),
-                file_exists=True,
-                is_valid_file=False,
-                errors=[f"Failed to open workbook: {exc}"],
-            )
+        should_close = False
+        if workbook is not None:
+            wb = workbook
+        else:
+            try:
+                wb = openpyxl.load_workbook(path, data_only=True, read_only=False)
+                should_close = True
+            except Exception as exc:
+                return WorkbookSchemaReport(
+                    file_path=str(path),
+                    file_exists=True,
+                    is_valid_file=False,
+                    errors=[f"Failed to open workbook: {exc}"],
+                )
 
         report = WorkbookSchemaReport(
             file_path=str(path),
@@ -170,7 +175,8 @@ class SchemaInspector:
                     "'Posts' has no Column N (7 columns present). Column N will not be created; timestamps will be stored in SQLite."
                 )
 
-        wb.close()
+        if should_close:
+            wb.close()
         return report
 
     def _inspect_sheet(

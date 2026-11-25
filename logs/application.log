@@ -12709,3 +12709,29 @@ Check the Control UI or run `openclaw gateway status` in your terminal.
 2026-11-25 15:19:02,728 [INFO] modules.excel_handler: Atomically updated workbook D:\Shoro AI Reddit\data\Reddit Threads.xlsx via temporary file Reddit Threads_atomic_tmp_816581ed.xlsx
 2026-11-25 15:19:07,609 [WARNING] modules.workflow_controller: ⚠️ Batch stopped: No viable logged-in accounts remain in the pool (schoolwaale24@gmail.com, schoolwaale08@gmail.com, shoro_test, schoolwaale02@gmail.com not logged in or encountered session errors). Please select accounts with active Reddit sessions or log in via 'Account Sessions & Management'.
 2026-11-25 15:19:08,375 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-25 15:58:50,412 [WARNING] modules.state_manager: Recovering from previous ungraceful termination. Setting status to PAUSED.
+2026-11-25 15:58:50,419 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-25 15:58:52,776 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 1063, 'eligible_comments': 1, 'skipped_comments': 1062, 'total_posts': 28, 'eligible_posts': 28, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-25 16:00:02,457 [WARNING] modules.state_manager: Recovering from previous ungraceful termination. Setting status to PAUSED.
+2026-11-25 16:00:02,463 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-25 16:00:08,014 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 1063, 'eligible_comments': 1, 'skipped_comments': 1062, 'total_posts': 28, 'eligible_posts': 28, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-25 16:07:44,469 [WARNING] modules.state_manager: Recovering from previous ungraceful termination. Setting status to PAUSED.
+2026-11-25 16:07:44,480 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-25 16:07:52,984 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 1063, 'eligible_comments': 1, 'skipped_comments': 1062, 'total_posts': 28, 'eligible_posts': 28, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-25 16:16:18,444 [WARNING] modules.state_manager: Recovering from previous ungraceful termination. Setting status to PAUSED.
+2026-11-25 16:16:18,448 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-25 16:16:19,635 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 1063, 'eligible_comments': 1, 'skipped_comments': 1062, 'total_posts': 28, 'eligible_posts': 28, 'skipped_posts': 0, 'total_queue': 29}
+2026-11-25 16:18:30,778 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-25 16:18:31,116 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-25 16:18:43,525 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser profiles (timeout: 45s)
+2026-11-25 16:18:54,449 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs --version (timeout: 15s)
+2026-11-25 16:18:56,211 [INFO] modules.openclaw_client: OpenClaw gateway on port 18789 is unreachable. Auto-spawning gateway daemon...
+2026-11-25 16:19:08,771 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs browser status --browser-profile shoro-test (timeout: 40s)
+2026-11-25 16:19:37,241 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-25 16:19:48,006 [INFO] modules.openclaw_client: Executing OpenClaw CLI: C:\Program Files\nodejs\node.EXE C:\Users\sneha\AppData\Roaming\npm\node_modules\openclaw\openclaw.mjs health (timeout: 30s)
+2026-11-25 16:19:59,440 [WARNING] modules.openclaw_client: OpenClaw command failed [Exit 1]: [openclaw] The CLI command failed.
+[openclaw] For help, run `openclaw doctor`.
+2026-11-25 16:19:59,762 [INFO] modules.openclaw_client: Profile session check for 'shoro-test': exists=True path=C:\Users\sneha\.openclaw\browser\shoro-test\user-data
+2026-11-25 16:22:47,235 [WARNING] modules.state_manager: Recovering from previous ungraceful termination. Setting status to PAUSED.
+2026-11-25 16:22:47,238 [INFO] modules.workflow_controller: Initializing workflow controller...
+2026-11-25 16:22:49,248 [INFO] modules.workflow_controller: Workflow initialization complete: {'total_comments': 1063, 'eligible_comments': 1, 'skipped_comments': 1062, 'total_posts': 28, 'eligible_posts': 28, 'skipped_posts': 0, 'total_queue': 29}

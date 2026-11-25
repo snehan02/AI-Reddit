@@ -19,16 +19,38 @@ logger = logging.getLogger(__name__)
 
 def find_system_chrome() -> Optional[str]:
     """Find local Google Chrome executable on Windows."""
-    # Check standard PATH
+    # 1. Check standard PATH
     path_hit = shutil.which("chrome") or shutil.which("google-chrome")
     if path_hit and os.path.exists(path_hit):
         return path_hit
 
-    # Standard Windows install locations
+    # 2. Check Windows Registry App Paths (most reliable across all Windows machines & drives)
+    if os.name == "nt":
+        try:
+            import winreg
+            reg_keys = [
+                (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"),
+                (winreg.HKEY_CURRENT_USER, r"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"),
+                (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe"),
+            ]
+            for root, subkey in reg_keys:
+                try:
+                    with winreg.OpenKey(root, subkey) as k:
+                        val, _ = winreg.QueryValueEx(k, "")
+                        if val and os.path.exists(val):
+                            return val
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+    # 3. Standard Windows install locations
     common_locations = [
         os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
         os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
         os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
     ]
     for loc in common_locations:
         if os.path.exists(loc):

@@ -58,9 +58,9 @@ with st.sidebar:
     with col_hdr_ref:
         if st.button("🔄 Refresh Data", help="Reload latest data from Excel, database, and accounts.", use_container_width=True):
             controller.initialize(reload_accounts=True)
-            # Invalidate cached UI sheets & recent rows
+            # Invalidate cached UI sheets, recent rows, and account sessions
             for k in list(st.session_state.keys()):
-                if k.startswith("sheets_") or k.startswith("recent_rows_") or k == "openclaw_overview":
+                if k.startswith("sheets_") or k.startswith("recent_rows_") or k in ("openclaw_overview", "account_sessions_cache"):
                     del st.session_state[k]
             st.toast("✅ System data refreshed!")
             st.rerun()
@@ -325,12 +325,18 @@ with tab_ops:
     accounts_list = controller.account_manager.list_accounts()
     all_account_ids = [p.account_id for p in accounts_list]
 
-    # Pre-calculate accounts with active persistent sessions
-    logged_in_ids = []
-    for p in accounts_list:
-        st_info = controller.account_manager.check_session_status(p.account_id)
-        if st_info.get("has_cookies") or st_info.get("session_status") == "Logged In / Active":
-            logged_in_ids.append(p.account_id)
+    # Pre-calculate accounts with active persistent sessions (cached in session state for fast render)
+    if "account_sessions_cache" not in st.session_state:
+        st.session_state["account_sessions_cache"] = {
+            p.account_id: controller.account_manager.check_session_status(p.account_id)
+            for p in accounts_list
+        }
+    acc_sessions = st.session_state["account_sessions_cache"]
+
+    logged_in_ids = [
+        aid for aid, st_info in acc_sessions.items()
+        if st_info.get("has_cookies") or st_info.get("session_status") == "Logged In / Active"
+    ]
 
     # Manage session state selection
     if "multiselect_participating" not in st.session_state:
@@ -1187,11 +1193,7 @@ with tab_accounts:
     accounts_list = controller.account_manager.list_accounts()
 
     # Metrics
-    logged_in_count = 0
-    for a in accounts_list:
-        st_info = controller.account_manager.check_session_status(a.account_id)
-        if st_info.get("has_cookies"):
-            logged_in_count += 1
+    logged_in_count = sum(1 for a in accounts_list if acc_sessions.get(a.account_id, {}).get("has_cookies"))
 
     am_c1, am_c2, am_c3 = st.columns(3)
     am_c1.metric("👥 Total Accounts Configured", len(accounts_list))
@@ -1289,11 +1291,11 @@ with tab_accounts:
 
     if acc_filter != "All Accounts":
         if "Logged In" in acc_filter:
-            filtered_accounts = [a for a in filtered_accounts if controller.account_manager.check_session_status(a.account_id).get("has_cookies")]
+            filtered_accounts = [a for a in filtered_accounts if acc_sessions.get(a.account_id, {}).get("has_cookies")]
         elif "Profile Created" in acc_filter:
-            filtered_accounts = [a for a in filtered_accounts if not controller.account_manager.check_session_status(a.account_id).get("has_cookies") and controller.account_manager.check_session_status(a.account_id).get("dir_exists")]
+            filtered_accounts = [a for a in filtered_accounts if not acc_sessions.get(a.account_id, {}).get("has_cookies") and acc_sessions.get(a.account_id, {}).get("dir_exists")]
         elif "No Session" in acc_filter:
-            filtered_accounts = [a for a in filtered_accounts if not controller.account_manager.check_session_status(a.account_id).get("dir_exists")]
+            filtered_accounts = [a for a in filtered_accounts if not acc_sessions.get(a.account_id, {}).get("dir_exists")]
 
     # Sort so that if recent_acc_id is present, it appears first
     if recent_acc_id:
@@ -1308,7 +1310,7 @@ with tab_accounts:
         st.info("No matching accounts found.")
 
     for acc in filtered_accounts:
-        acc_status = controller.account_manager.check_session_status(acc.account_id)
+        acc_status = acc_sessions.get(acc.account_id) or controller.account_manager.check_session_status(acc.account_id)
         has_cookies = acc_status.get("has_cookies", False)
         status_label = "🟢 Logged In / Active" if has_cookies else ("🟡 Profile Created" if acc_status.get("dir_exists") else "⚪ No Session")
 

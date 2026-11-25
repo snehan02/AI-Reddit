@@ -144,13 +144,32 @@ class OpenClawClient:
         return None
 
     def is_gateway_healthy(self, port: int = 18789) -> bool:
-        """Check if OpenClaw Gateway HTTP endpoint is responding on loopback."""
+        """Check if OpenClaw Gateway HTTP endpoint is responding on loopback with short caching."""
+        now = time.time()
+        cached = getattr(self, "_gw_health_cache", None)
+        if cached and (now - cached.get("time", 0)) < 3.0 and cached.get("port") == port:
+            return cached.get("healthy", False)
+
+        import socket
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.settimeout(0.08)
+                if s.connect_ex(("127.0.0.1", port)) != 0:
+                    self._gw_health_cache = {"time": now, "port": port, "healthy": False}
+                    return False
+        except Exception:
+            self._gw_health_cache = {"time": now, "port": port, "healthy": False}
+            return False
+
         import urllib.request
         try:
             req = urllib.request.Request(f"http://127.0.0.1:{port}/health")
-            with urllib.request.urlopen(req, timeout=1.5) as resp:
-                return resp.status == 200
+            with urllib.request.urlopen(req, timeout=0.5) as resp:
+                healthy = (resp.status == 200)
+                self._gw_health_cache = {"time": now, "port": port, "healthy": healthy}
+                return healthy
         except Exception:
+            self._gw_health_cache = {"time": now, "port": port, "healthy": False}
             return False
 
     def ensure_gateway_running(self, port: int = 18789, force_restart: bool = False) -> bool:
@@ -218,7 +237,7 @@ class OpenClawClient:
                     normalized_args[i + 1] = "shoro-test"
         args = normalized_args
 
-        if args and args[0] in ["browser", "health", "tabs"]:
+        if args and args[0] in ["browser", "tabs"]:
             self.ensure_gateway_running()
 
         if self.cli_path and self.cli_path.endswith(".mjs"):
@@ -326,7 +345,13 @@ class OpenClawClient:
 
     def get_gateway_health(self) -> OpenClawResponse:
         """Fetch health from the running OpenClaw local Gateway."""
-        resp = self._execute(["health"], timeout=30)
+        if not self.is_gateway_healthy():
+            return OpenClawResponse(
+                success=False,
+                error="OpenClaw gateway is offline (port 18789 unreachable).",
+                exit_code=1,
+            )
+        resp = self._execute(["health"], timeout=10)
         if resp.success and resp.data:
             health_text = str(resp.data)
             parsed: Dict[str, Any] = {

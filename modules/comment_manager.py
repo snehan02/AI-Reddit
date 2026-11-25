@@ -33,7 +33,7 @@ class CommentManager:
         self.account_manager = account_manager
         self.duplicate_checker = duplicate_checker
 
-    def load_tasks(self) -> Tuple[List[CommentTask], Dict[str, Any]]:
+    def load_tasks(self, workbook: Optional[openpyxl.Workbook] = None) -> Tuple[List[CommentTask], Dict[str, Any]]:
         """Load and validate all rows from the worksheet.
         
         Returns:
@@ -48,10 +48,16 @@ class CommentManager:
                 "skipped_by_reason": {},
             }
 
-        wb = openpyxl.load_workbook(self.workbook_path, data_only=True)
+        should_close = False
+        if workbook is not None:
+            wb = workbook
+        else:
+            wb = openpyxl.load_workbook(self.workbook_path, data_only=True)
+            should_close = True
         if self.sheet_name not in wb.sheetnames:
             logger.error("Worksheet %s not found in workbook", self.sheet_name)
-            wb.close()
+            if should_close:
+                wb.close()
             return [], {
                 "total": 0,
                 "eligible": 0,
@@ -208,7 +214,8 @@ class CommentManager:
             )
             tasks.append(task)
 
-        wb.close()
+        if should_close:
+            wb.close()
         stats = {
             "total": total_count,
             "eligible": eligible_count,

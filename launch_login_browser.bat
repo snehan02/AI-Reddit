@@ -5,9 +5,16 @@ echo   Opening Google Chrome for Reddit Login (Shoro-AI-02)
 echo ========================================================
 echo.
 echo 1. Ensuring profile lock is released...
-python "C:\Users\sneha\.gemini\antigravity\brain\ee628f13-5ecc-4120-b360-bf8f061bfb3a\scratch\clean_shoro_profile.py" 2>nul
+set DATA_DIR=%USERPROFILE%\.openclaw\browser\shoro-test\user-data
+if exist "%DATA_DIR%\lockfile" del /f /q "%DATA_DIR%\lockfile" 2>nul
 echo 2. Launching Google Chrome...
-start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=18801 --user-data-dir="%USERPROFILE%\.openclaw\browser\shoro-test\user-data" --no-first-run --no-default-browser-check "https://www.reddit.com/login"
+set CHROME_BIN=
+if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" set "CHROME_BIN=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
+if not defined CHROME_BIN if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" set "CHROME_BIN=%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"
+if not defined CHROME_BIN if exist "%LocalAppData%\Google\Chrome\Application\chrome.exe" set "CHROME_BIN=%LocalAppData%\Google\Chrome\Application\chrome.exe"
+if not defined CHROME_BIN set CHROME_BIN=chrome.exe
+
+start "" "%CHROME_BIN%" --remote-debugging-port=18801 --user-data-dir="%DATA_DIR%" --no-first-run --no-default-browser-check "https://www.reddit.com/login"
 echo.
 echo ========================================================
 echo Chrome window has opened on your screen!

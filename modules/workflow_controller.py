@@ -311,18 +311,22 @@ class WorkflowController:
         return success, msg
 
     def get_openclaw_overview(self) -> Dict[str, Any]:
-        """Fetch overall OpenClaw CLI and Gateway status."""
+        """Fetch overall OpenClaw CLI and Gateway status instantaneously without blocking UI."""
         v_resp = self.openclaw_client.get_version()
-        h_resp = self.openclaw_client.get_gateway_health()
+        is_healthy = self.openclaw_client.is_gateway_healthy()
 
-        is_healthy = bool(h_resp.success and h_resp.data and h_resp.data.get("healthy"))
         profiles = []
         profiles_error = None
         shoro_status = None
         shoro_running = False
         shoro_error = None
+        h_data = None
+        h_error = None
 
         if is_healthy:
+            h_resp = self.openclaw_client.get_gateway_health()
+            h_data = h_resp.data if h_resp.success else None
+            h_error = h_resp.error
             p_resp = self.openclaw_client.list_browser_profiles()
             if p_resp.success and p_resp.data:
                 profiles = p_resp.data
@@ -337,12 +341,13 @@ class WorkflowController:
                 shoro_error = st_resp.error
         else:
             profiles_error = "Gateway is offline or unreachable."
+            h_error = "Gateway is offline (port 18789)"
 
         return {
             "version": v_resp.data if v_resp.success else None,
             "version_error": v_resp.error,
-            "health": h_resp.data if h_resp.success else None,
-            "health_error": h_resp.error,
+            "health": h_data,
+            "health_error": h_error,
             "is_healthy": is_healthy,
             "profiles": profiles,
             "profiles_error": profiles_error,
@@ -609,8 +614,9 @@ class WorkflowController:
 
         # 2. For legacy shoro-test login only, use bat helper if no specific URL requested
         if profile_name in ("shoro-test", "shoro_test") and (not url or url == "https://www.reddit.com/login"):
+            local_bat = Path(os.getcwd()) / "launch_login_browser.bat"
             bat_candidates = [
-                r"d:\Shoro AI Reddit\launch_login_browser.bat",
+                str(local_bat),
                 os.path.expandvars(r"%USERPROFILE%\OneDrive\Desktop\Login to Reddit.bat"),
                 os.path.expandvars(r"%USERPROFILE%\Desktop\Login to Reddit.bat"),
             ]
@@ -623,12 +629,8 @@ class WorkflowController:
                 except Exception as exc:
                     logger.warning("os.startfile on bat failed: %s; trying direct Chrome spawn", exc)
 
-        chrome_candidates = [
-            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-            os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
-        ]
-        chrome_exe = next((p for p in chrome_candidates if os.path.exists(p)), None)
+        from modules.browser_manager import find_system_chrome
+        chrome_exe = find_system_chrome()
         if not chrome_exe:
             resp = self.openclaw_client.open_url(url, profile_name)
             return resp.success, resp.error or "Opened in OpenClaw browser"
@@ -744,12 +746,8 @@ class WorkflowController:
         except Exception:
             pass
 
-        chrome_candidates = [
-            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-            os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
-        ]
-        chrome_exe = next((p for p in chrome_candidates if os.path.exists(p)), None)
+        from modules.browser_manager import find_system_chrome
+        chrome_exe = find_system_chrome()
 
         if not is_running:
             if chrome_exe and os.name == "nt":
