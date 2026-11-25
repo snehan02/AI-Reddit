@@ -35,14 +35,15 @@ st.set_page_config(
 )
 
 
-def get_controller() -> WorkflowController:
-    """Instantiate and return a fresh WorkflowController instance."""
-    settings = AppSettings.load()
-    ctrl = WorkflowController(settings)
-    ctrl.initialize()
-    ctrl.allow_account_independent = True
-    st.session_state.controller = ctrl
-    return ctrl
+def get_controller(force_reload: bool = False) -> WorkflowController:
+    """Instantiate and return a cached WorkflowController instance for fast loads."""
+    if "controller" not in st.session_state or force_reload:
+        settings = AppSettings.load()
+        ctrl = WorkflowController(settings)
+        ctrl.initialize()
+        ctrl.allow_account_independent = True
+        st.session_state.controller = ctrl
+    return st.session_state.controller
 
 
 controller = get_controller()
@@ -52,6 +53,18 @@ settings = controller.settings
 with st.sidebar:
     st.title("🛡️ Shoro AI Operations")
     st.caption("Autonomous Reddit Review & Engagement Console")
+
+    col_hdr_ref, _ = st.columns([1.2, 0.8])
+    with col_hdr_ref:
+        if st.button("🔄 Refresh Data", help="Reload latest data from Excel, database, and accounts.", use_container_width=True):
+            controller.initialize(reload_accounts=True)
+            # Invalidate cached UI sheets & recent rows
+            for k in list(st.session_state.keys()):
+                if k.startswith("sheets_") or k.startswith("recent_rows_") or k == "openclaw_overview":
+                    del st.session_state[k]
+            st.toast("✅ System data refreshed!")
+            st.rerun()
+
     st.markdown("---")
 
     st.subheader("⚙️ Operational Settings")
@@ -108,22 +121,6 @@ with st.sidebar:
         controller.state_manager.daily_cap = posts_per_acc
         settings.save()
 
-    curr_interval = float(getattr(settings, "min_post_interval_hours", 8.0))
-    post_interval_hours = st.number_input(
-        "Publication Interval (Hours)",
-        min_value=0.5,
-        max_value=72.0,
-        value=curr_interval,
-        step=0.5,
-        help="Configurable minimum cooldown period (in hours) between consecutive publications for any single account.",
-    )
-    if post_interval_hours != curr_interval:
-        settings.min_post_interval_hours = float(post_interval_hours)
-        settings.save()
-
-    gap_str = f"{int(settings.min_post_interval_hours)}" if settings.min_post_interval_hours == int(settings.min_post_interval_hours) else f"{settings.min_post_interval_hours:.1f}"
-    st.caption(f"💡 **Why:** Account-level limit & anti-ban protection. | **Use:** Enforces max submissions per account and a {gap_str}-hour gap between posts.")
-
     st.markdown("---")
     st.markdown("### 📊 Local Excel / Spreadsheet Sync")
     st.caption("💡 **Why:** Automatic live workbook output. | **Use:** Specify your local Excel file (`.xlsx`) and select your worksheet. Downloaded Google Sheets are fully supported directly with zero APIs or Apps Script.")
@@ -147,16 +144,23 @@ with st.sidebar:
             controller.excel_handler.set_workbook_path(settings.workbook_path)
             controller.initialize(reload_accounts=False)
 
-    available_sheets = []
-    if wb_p.exists() and wb_p.suffix.lower() == ".xlsx":
-        try:
-            import openpyxl
-            wb_inspect = openpyxl.load_workbook(wb_p, read_only=True)
-            available_sheets = list(wb_inspect.sheetnames)
-            wb_inspect.close()
-        except Exception as wb_err:
-            st.error(f"⚠️ Error reading workbook: {wb_err}")
-    elif new_wb_path.strip():
+    # Cached sheet inspection to prevent slow openpyxl loads on every click
+    wb_mtime = wb_p.stat().st_mtime if wb_p.exists() else 0
+    wb_cache_key = f"sheets_{wb_p}_{wb_mtime}"
+    if wb_cache_key not in st.session_state:
+        available_sheets = []
+        if wb_p.exists() and wb_p.suffix.lower() == ".xlsx":
+            try:
+                import openpyxl
+                wb_inspect = openpyxl.load_workbook(wb_p, read_only=True)
+                available_sheets = list(wb_inspect.sheetnames)
+                wb_inspect.close()
+            except Exception as wb_err:
+                st.error(f"⚠️ Error reading workbook: {wb_err}")
+        st.session_state[wb_cache_key] = available_sheets
+    available_sheets = st.session_state[wb_cache_key]
+
+    if not wb_p.exists() and new_wb_path.strip():
         st.warning(f"⚠️ File does not exist yet at: `{wb_p}`. You can enter an existing file path or click 'Download Google Sheet' below.")
 
     # Worksheet selectors
@@ -210,8 +214,12 @@ with st.sidebar:
         mtime = datetime.datetime.fromtimestamp(wb_p.stat().st_mtime).strftime("%Y-%m-%d %H:%M:%S")
         st.success(f"🟢 **Active Workbook:** `{wb_p.name}`\n\n• **Path:** `{wb_p}`\n• **Last Modified on Disk:** `{mtime}`")
 
-        # Live verification preview of rows in the workbook
-        recent_rows = controller.excel_handler.get_recent_updated_rows(settings.comment_sheet, limit=6)
+        # Cached live verification preview of rows in the workbook
+        recent_cache_key = f"recent_rows_{wb_p}_{wb_mtime}_{settings.comment_sheet}"
+        if recent_cache_key not in st.session_state:
+            st.session_state[recent_cache_key] = controller.excel_handler.get_recent_updated_rows(settings.comment_sheet, limit=6)
+        recent_rows = st.session_state[recent_cache_key]
+
         if recent_rows:
             st.markdown("📋 **Latest Updated Rows in Excel:**")
             for r_item in recent_rows:
@@ -394,7 +402,7 @@ with tab_ops:
             st.caption("💡 **Why:** Choose between human approval vs direct publishing. | **Use:** 'Human Submit' leaves post/comment in editor ready to click; 'Auto' posts directly.")
 
         with col_bm2:
-            col_blim, col_binterval, col_bcooldown, col_bsync = st.columns([1.1, 1.1, 1.1, 1.0])
+            col_blim, col_binterval, col_bsync = st.columns([1.2, 1.6, 1.0])
             with col_blim:
                 post_limit = st.number_input(
                     "Posts Per Account:",
@@ -405,24 +413,16 @@ with tab_ops:
                 )
             with col_binterval:
                 batch_interval_val = st.number_input(
-                    "Interval (Hours):",
+                    "Account Cooldown Gap (Hours):",
                     min_value=0.5,
                     max_value=72.0,
                     value=float(getattr(settings, "min_post_interval_hours", 8.0)),
                     step=0.5,
-                    help="Minimum publication interval / cooldown (hours) between actions for the same account.",
+                    help="Anti-ban publication cooldown: minimum time (in hours) between consecutive actions from the same Reddit account.",
                 )
                 if batch_interval_val != getattr(settings, "min_post_interval_hours", 8.0):
                     settings.min_post_interval_hours = float(batch_interval_val)
                     settings.save()
-            with col_bcooldown:
-                batch_cooldown_val = st.number_input(
-                    "Anti-ban Cooldown (s):",
-                    min_value=5,
-                    max_value=600,
-                    value=30,
-                    help="Pacing cooldown between consecutive batch actions.",
-                )
             with col_bsync:
                 st.write("")
                 sync_gsheets_first = st.checkbox("Sync Sheets First", value=True)
@@ -547,7 +547,34 @@ with tab_ops:
     if not items:
         st.info("No prepared items found matching your filters. You can prepare drafts via **Start Batch Operation** above.")
     else:
-        for it in items:
+        # Caching account gap checks per render to eliminate hundreds of redundant queries
+        min_gap = float(getattr(settings, "min_post_interval_hours", 8.0))
+        gap_cache = {}
+
+        # Add pagination to keep browser rendering lightweight and snappy
+        page_size = 20
+        total_items = len(items)
+        total_pages = max(1, (total_items + page_size - 1) // page_size)
+
+        col_pg1, col_pg2, col_pg3 = st.columns([2, 1, 1])
+        with col_pg1:
+            st.caption(f"Showing **{min(total_items, page_size)}** items per page (Total: **{total_items}**)")
+        with col_pg2:
+            current_page = st.number_input(
+                "Page:",
+                min_value=1,
+                max_value=total_pages,
+                value=1,
+                step=1,
+                key="tab1_prep_page",
+            )
+        with col_pg3:
+            st.caption(f"of **{total_pages}** pages")
+
+        start_idx = (int(current_page) - 1) * page_size
+        page_items = items[start_idx : start_idx + page_size]
+
+        for it in page_items:
             it_id = it.get("item_id")
             it_type = (it.get("task_type") or "task").upper()
             it_acc = it.get("account_id") or "Unknown"
@@ -586,9 +613,10 @@ with tab_ops:
                     st.caption("💡 **Why:** Opens Chrome. | **Use:** Inspect thread and manually click submit.")
 
                     if it_status != "Complete":
-                        # Check publication interval gap
-                        min_gap = float(getattr(settings, "min_post_interval_hours", 8.0))
-                        can_pub, gap_msg = controller.audit_logger.check_eight_hour_gap(it_acc, min_gap_hours=min_gap)
+                        # Check publication interval gap with local render cache
+                        if it_acc not in gap_cache:
+                            gap_cache[it_acc] = controller.audit_logger.check_eight_hour_gap(it_acc, min_gap_hours=min_gap)
+                        can_pub, gap_msg = gap_cache[it_acc]
                         if not can_pub:
                             st.caption(f"⚠️ {gap_msg}")
 

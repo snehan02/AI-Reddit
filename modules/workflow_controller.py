@@ -155,34 +155,38 @@ class WorkflowController:
         )
         self.post_tasks, post_stats = pm.load_tasks()
 
-        # 5. Persist task state into database
+        # 5. Persist task state into database using fast atomic batch
+        wb_name = Path(self.settings.workbook_path).name
+        task_records = []
         for task in self.comment_tasks:
             if task.fingerprint:
-                self.audit_logger.log_task(
-                    task_id=task.task_id,
-                    task_fingerprint=task.fingerprint,
-                    workbook_name=Path(self.settings.workbook_path).name,
-                    worksheet_name=task.worksheet,
-                    excel_row_number=task.excel_row,
-                    task_type=task.task_type,
-                    account_id=task.account_id,
-                    destination_url=task.destination_url,
-                    task_status=task.status,
-                )
+                task_records.append({
+                    "task_id": task.task_id,
+                    "task_fingerprint": task.fingerprint,
+                    "workbook_name": wb_name,
+                    "worksheet_name": task.worksheet,
+                    "excel_row_number": task.excel_row,
+                    "task_type": task.task_type,
+                    "account_id": task.account_id,
+                    "destination_url": task.destination_url,
+                    "task_status": task.status,
+                })
 
         for post in self.post_tasks:
             if post.fingerprint:
-                self.audit_logger.log_task(
-                    task_id=post.task_id,
-                    task_fingerprint=post.fingerprint,
-                    workbook_name=Path(self.settings.workbook_path).name,
-                    worksheet_name=post.worksheet,
-                    excel_row_number=post.excel_row,
-                    task_type=post.task_type,
-                    account_id=post.account_id,
-                    destination_url=f"https://www.reddit.com/{post.subreddit}",
-                    task_status=post.status,
-                )
+                task_records.append({
+                    "task_id": post.task_id,
+                    "task_fingerprint": post.fingerprint,
+                    "workbook_name": wb_name,
+                    "worksheet_name": post.worksheet,
+                    "excel_row_number": post.excel_row,
+                    "task_type": post.task_type,
+                    "account_id": post.account_id,
+                    "destination_url": f"https://www.reddit.com/{post.subreddit}",
+                    "task_status": post.status,
+                })
+
+        self.audit_logger.log_tasks_batch(task_records)
 
         # Build combined active queue: comments prioritized from bottom to top of Excel (highest row first)
         reversed_comments = sorted(self.comment_tasks, key=lambda x: getattr(x, "excel_row", 0), reverse=True)

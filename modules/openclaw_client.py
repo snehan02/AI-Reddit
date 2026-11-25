@@ -311,6 +311,8 @@ class OpenClawClient:
 
     def get_version(self) -> OpenClawResponse:
         """Check OpenClaw CLI installation and retrieve version."""
+        if getattr(self, "_cached_version", None) is not None:
+            return self._cached_version
         resp = self._execute(["--version"], timeout=15)
         if resp.success and resp.data:
             match = re.search(r"(\d+\.\d+\.\d+)", str(resp.data))
@@ -319,6 +321,7 @@ class OpenClawClient:
                     "raw_version": resp.data,
                     "version_number": match.group(1),
                 }
+            self._cached_version = resp
         return resp
 
     def get_gateway_health(self) -> OpenClawResponse:
